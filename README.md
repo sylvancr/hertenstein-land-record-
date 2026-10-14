@@ -2,7 +2,7 @@
 
 A shared record of the Stella Matutina land at Hertenstein, Weggis: the parcels, the landscape architect's proposals pinned to the map, federal and cantonal environmental data, species and habitat records, the ecological plan, and visitor readings.
 
-Open `index.html` in a browser, or use the published page.
+Live page: https://sylvancr.github.io/hertenstein-land-record-/ . You can also open `index.html` locally.
 
 ## What is here
 
