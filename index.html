@@ -141,13 +141,56 @@ a { color: inherit; }
 #proposals tbody tr:hover td, #parcels tbody tr:hover td { background: color-mix(in srgb, var(--color-fg) 5%, transparent); }
 #proposals tbody tr.hl-on td, #parcels tbody tr.hl-on td { background: color-mix(in srgb, var(--color-fg) 9%, transparent); }
 @media (max-width: 640px) { .hl-hide-sm { display: none; } .hl-map { min-height: 340px; } }
+.hl-headrow { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--cds-gap-md); flex-wrap: wrap; }
+.hl-about { border: 1px solid var(--color-border-line); border-radius: 12px; background: var(--color-panel); color: var(--color-fg); padding: 0; width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 48px); box-shadow: 0 12px 40px rgba(0,0,0,.18); }
+.hl-about::backdrop { background: rgba(20,20,18,.45); }
+.hl-about-in { position: relative; padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 12px; font-size: var(--cds-font-size-body); line-height: 1.5; }
+.hl-about h2 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 24px; line-height: 1.2; margin: 0; padding-right: 24px; }
+.hl-about p { margin: 0; }
+.hl-eyebrow { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); text-transform: uppercase; letter-spacing: .06em; }
+.hl-about-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.hl-about-list li { padding-left: 12px; border-left: 2px solid var(--color-border-line); }
+.hl-about-list b { display: block; font-weight: var(--cds-font-weight-medium); }
+.hl-about-note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.hl-about-act { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+.hl-about-act .hl-btn { font-size: var(--cds-font-size-body); padding: 6px 14px; }
+.hl-btn-main { background: var(--color-fg); color: var(--color-panel); border-color: var(--color-fg); }
+.hl-btn-main:hover { background: var(--color-fg); opacity: .88; }
+.hl-x { position: absolute; top: 12px; right: 12px; font: inherit; font-size: 22px; line-height: 1; width: 32px; height: 32px; border: 0; background: transparent; color: var(--color-fg-muted); cursor: pointer; border-radius: 6px; }
+.hl-x:hover { color: var(--color-fg); background: color-mix(in srgb, var(--color-fg) 6%, transparent); }
+@media (max-width: 640px) { .hl-about-in { padding: 22px 18px 18px; } }
 </style>
 
 <div class="hl" id="land">
   <header class="hl-head" id="top">
-    <h1 class="hl-title">Hertenstein Land Record</h1>
-    <p class="hl-take" id="takeaway">The shared record of the land at Stella Matutina: what the records say, what we measure, and what we plan to change.</p>
+    <div class="hl-headrow">
+      <h1 class="hl-title">Hertenstein Land Record</h1>
+      <button type="button" class="hl-btn" id="about-open">About this site</button>
+    </div>
+    <p class="hl-take" id="takeaway">One shared picture of the land at Stella Matutina on Lake Lucerne: the five parcels, what public records say about them, the landscape architect's proposals, and how we plan to measure and care for the land over time.</p>
   </header>
+
+  <dialog class="hl-about" id="about" aria-labelledby="about-title">
+    <form method="dialog" class="hl-about-in">
+      <button class="hl-x" value="close" aria-label="Close">&times;</button>
+      <p class="hl-eyebrow">Stella Matutina, Hertenstein</p>
+      <h2 id="about-title">Welcome to the Hertenstein Land Record</h2>
+      <p>Everything we know about the land, in one place, so the team, the landscape architect and everyone working with us start from the same picture. It will grow as we survey the land and visitors add readings.</p>
+      <ul class="hl-about-list">
+        <li><b>Map</b> The five parcels (5.66 ha), the architect's sheets laid over them, and federal and cantonal environmental data. Zoom, drag, and click any proposal to read it.</li>
+        <li><b>Site and Public data</b> Facts, protections and zoning for each parcel, from the official registers.</li>
+        <li><b>Life</b> Species and habitats on record around the site.</li>
+        <li><b>Measures and Plan</b> What we intend to measure, and the first moves ranked.</li>
+        <li><b>Readings</b> Where visitors' readings of the land will appear.</li>
+        <li><b>Gaps and log</b> What we don't know yet, and what has changed.</li>
+      </ul>
+      <p class="hl-about-note">This is a first draft from October 2026. Nothing has been measured on the land yet, and every change shown is a proposal that needs the owner's agreement.</p>
+      <div class="hl-about-act">
+        <button class="hl-btn hl-btn-main" value="map" autofocus>Open the map</button>
+        <button class="hl-btn" value="close">Start with the overview</button>
+      </div>
+    </form>
+  </dialog>
 
   <nav class="hl-tabs" role="tablist" aria-label="Sections">
     <button class="hl-tab" role="tab" id="tab-overview" data-page="overview" aria-selected="true">Overview</button>
@@ -393,7 +436,7 @@ a { color: inherit; }
     <p class="hl-prose">Visitors take short readings at ten numbered posts by scanning a QR code. Each reading becomes a row here once the form is live and connected.</p>
     <div class="hl-card" id="card-readings">
       <h3>Latest readings</h3>
-      <div class="hl-empty" id="readings-empty" hidden>No readings yet. The form is built and tested, and goes live once Sylvan deploys it from the stella.earth account. Readings then flow in from its Sheet.</div>
+      <div class="hl-empty" id="readings-empty" hidden>No readings yet. Visitors will log readings at ten marked posts around the land with a short form on their phone, and each one will appear here. The form is built and goes live soon.</div>
       <div class="hl-scroll" id="readings-wrap">
         <table class="hl-tbl" id="readings-table" data-source="readings" data-row-key="Received">
           <thead><tr><th data-field="Received">Received</th><th data-field="Station">Station</th><th data-field="Reading">Reading</th><th data-field="Summary">Summary</th></tr></thead>
@@ -1059,12 +1102,7 @@ dash.calc('solar_summary', {
 
   function takeaway() {
     const c = dash.data('overview_counts');
-    const el = document.getElementById('takeaway');
     if (c.status !== 'ok' || !c.data.length) return;
-    const r = c.data[0];
-    el.textContent = r.measured === 0
-      ? 'Nothing is measured on the land yet. The land is now mapped with the landscape architect\'s proposals; next come the owner side\'s agreement on what to change and a baseline survey year.'
-      : r.measured + ' of ' + r.measures + ' measures have a baseline.';
     const rd = document.getElementById('readings-empty');
     const rw = document.getElementById('readings-wrap');
     const rs = dash.data('readings');
@@ -1094,6 +1132,17 @@ dash.calc('solar_summary', {
   dash.onData(window.hlDraw);
   window.addEventListener('resize', () => { MS.sig = ''; landmap(); });
   document.getElementById('open-map').addEventListener('click', () => { window.hlShow('map'); dash.setLink('map'); });
+  const about = document.getElementById('about');
+  const KEY = 'hl-about-seen';
+  document.getElementById('about-open').addEventListener('click', () => about.showModal());
+  about.addEventListener('close', () => {
+    try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    if (about.returnValue === 'map') { window.hlShow('map'); dash.setLink('map'); }
+  });
+  about.addEventListener('click', (e) => { if (e.target === about) about.close('close'); });
+  let seen = false;
+  try { seen = localStorage.getItem(KEY) === '1'; } catch (e) {}
+  if (!seen && !location.hash) about.showModal();
 })();
 </script>
 
