@@ -1,0 +1,146 @@
+[
+ {
+  "key": "address",
+  "label": "Address",
+  "value": "Zinnenstrasse 7, 6353 Weggis",
+  "num": null,
+  "unit": "",
+  "status": "Checked",
+  "source": "geo.admin.ch address search"
+ },
+ {
+  "key": "parcel",
+  "label": "Land register",
+  "value": "Weggis parcels 286, 289, 292, 505 and 288 (the green perimeter on the 2022 land register plan)",
+  "num": null,
+  "unit": "",
+  "status": "Checked",
+  "source": "2022 land register plan supplied by Sylvan; outlines from the federal cadastral map"
+ },
+ {
+  "key": "parcel_area",
+  "label": "Area of the land",
+  "value": "5.66 ha",
+  "num": 5.66,
+  "unit": "ha",
+  "status": "Checked",
+  "source": "Sum of the five federal parcel outlines (286: 1.70 ha, 292: 2.58, 505: 0.65, 289: 0.56, 288: 0.17)"
+ },
+ {
+  "key": "holding_area",
+  "label": "Compared with \"60 acres\"",
+  "value": "The green perimeter is about 14 acres (5.66 ha), a quarter of the 60 acres quoted elsewhere",
+  "num": 14,
+  "unit": "acres",
+  "status": "Unknown",
+  "source": "Ask the owner side whether more land is meant"
+ },
+ {
+  "key": "height",
+  "label": "Ground height at the house",
+  "value": "457.7 m",
+  "num": 457.7,
+  "unit": "m",
+  "status": "Checked",
+  "source": "swisstopo height service"
+ },
+ {
+  "key": "above_lake",
+  "label": "Height above the lake",
+  "value": "24 m",
+  "num": 24,
+  "unit": "m",
+  "status": "Inferred",
+  "source": "Lake mean level about 434 m"
+ },
+ {
+  "key": "coords",
+  "label": "Coordinates",
+  "value": "LV95 2 673 037 / 1 209 337; 47.0310 N, 8.3995 E",
+  "num": null,
+  "unit": "",
+  "status": "Checked",
+  "source": "geo.admin.ch"
+ },
+ {
+  "key": "bln",
+  "label": "Federal landscape inventory",
+  "value": "BLN 1606, subarea 5, western lake bays",
+  "num": null,
+  "unit": "",
+  "status": "Checked",
+  "source": "BAFU BLN layer and object sheet"
+ },
+ {
+  "key": "geology",
+  "label": "Ground under the buildings",
+  "value": "Artificial fill over Quaternary loose deposits; Molasse rib landscape around",
+  "num": null,
+  "unit": "",
+  "status": "Checked",
+  "source": "swisstopo GeoCover; BLN sheet"
+ },
+ {
+  "key": "soils",
+  "label": "Soils",
+  "value": "Not mapped or sampled",
+  "num": null,
+  "unit": "",
+  "status": "Unknown",
+  "source": "Baseline soil survey"
+ },
+ {
+  "key": "temp",
+  "label": "Mean temperature (Lucerne, 1991–2020)",
+  "value": "10.3 °C",
+  "num": 10.3,
+  "unit": "°C",
+  "status": "Checked",
+  "source": "MeteoNews, from MeteoSwiss, rounded"
+ },
+ {
+  "key": "rain",
+  "label": "Rain a year (Lucerne, 1991–2020)",
+  "value": "1,295 mm",
+  "num": 1295,
+  "unit": "mm",
+  "status": "Checked",
+  "source": "MeteoNews, from MeteoSwiss, rounded"
+ },
+ {
+  "key": "lake_temp",
+  "label": "Lake surface, end of June 2026",
+  "value": "26.3 °C",
+  "num": 26.3,
+  "unit": "°C",
+  "status": "Checked",
+  "source": "SRF, 29 July 2026"
+ },
+ {
+  "key": "quagga",
+  "label": "Quagga mussel first found in the lake",
+  "value": "2024",
+  "num": 2024,
+  "unit": "",
+  "status": "Checked",
+  "source": "SRF, 29 July 2026"
+ },
+ {
+  "key": "sisters",
+  "label": "Sisters of Baldegg at Hertenstein",
+  "value": "1916 to 2024",
+  "num": null,
+  "unit": "",
+  "status": "Checked",
+  "source": "Historical Lexicon of Switzerland; Kloster Baldegg"
+ },
+ {
+  "key": "sale",
+  "label": "Sale",
+  "value": "Preliminary contract June 2026; completes after official clearances",
+  "num": null,
+  "unit": "",
+  "status": "Checked",
+  "source": "Kloster Baldegg press release, 24 June 2026"
+ }
+]

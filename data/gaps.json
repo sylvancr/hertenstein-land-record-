@@ -1,0 +1,74 @@
+[
+ {
+  "gap": "Which parcels are in the sale, and their areas",
+  "fill": "Land register plan with the green perimeter, received 14 October 2026",
+  "blocks": "Almost every land decision",
+  "status": "Done"
+ },
+ {
+  "gap": "Zoning, building lines, hazards, groundwater",
+  "fill": "Read from the canton's public map services on 14 October 2026 (see Public data); the formal land-register restriction extracts per parcel still need opening by hand",
+  "blocks": "Any building or earthworks",
+  "status": "Partly known"
+ },
+ {
+  "gap": "Historical maps and aerial photos",
+  "fill": "Map editions and aerial photo years listed on Public data (1932 to 1996); still to look at them",
+  "blocks": "Where orchards, wet ground and paths were",
+  "status": "Partly known"
+ },
+ {
+  "gap": "Soils",
+  "fill": "Samples and profile pits in the baseline year",
+  "blocks": "Garden siting, meadow plan, pond",
+  "status": "Open"
+ },
+ {
+  "gap": "Precise plant and animal records",
+  "fill": "Data requests to Info Flora, info fauna, Swiss Ornithological Institute, canton",
+  "blocks": "Protecting sensitive species",
+  "status": "Open"
+ },
+ {
+  "gap": "Age and condition of the oaks",
+  "fill": "Arborist survey",
+  "blocks": "Oak protection zones",
+  "status": "Open"
+ },
+ {
+  "gap": "Shore length and underwater state",
+  "fill": "Shore mapping and aquatic survey",
+  "blocks": "Shore concept",
+  "status": "Open"
+ },
+ {
+  "gap": "What the Sisters did with the land",
+  "fill": "Talk to the sisters and the garden group",
+  "blocks": "Mowing, grazing and garden history",
+  "status": "Open"
+ },
+ {
+  "gap": "Whether parcel 288 (boathouse) is part of the land",
+  "fill": "Ask the owner side; it is shaded on the 2022 plan, but the concept screens the boathouse with a hedge",
+  "blocks": "Shore plan for 505 and 288",
+  "status": "Open"
+ },
+ {
+  "gap": "60 acres quoted elsewhere against 14 acres in the green perimeter",
+  "fill": "Ask the owner side whether other land, leases or the neighbouring slope are meant",
+  "blocks": "Scale of grazing and woodland plans",
+  "status": "Open"
+ },
+ {
+  "gap": "Concept drawn on neighbouring land (678, 287)",
+  "fill": "Talk to the owners of 678 and 287 before any work on the oak belt, the creek or the formal entrance",
+  "blocks": "Oak woodland belt, open creek, entrance",
+  "status": "Open"
+ },
+ {
+  "gap": "Whether there is a buried stream on 292 and 505",
+  "fill": "Ask the architect; check drainage plans and the 1932 and 1946 aerial photos; walk it after heavy rain",
+  "blocks": "Re-opening the stream, the pond and the wetland",
+  "status": "Open"
+ }
+]

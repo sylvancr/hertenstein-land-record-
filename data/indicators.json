@@ -1,0 +1,92 @@
+[
+ {
+  "id": 1,
+  "measure": "Meadow plant diversity",
+  "how": "Species in fixed 25 m² plots; federal meadow quality indicators",
+  "who": "Botanist",
+  "when": "May–June",
+  "direction": "More species",
+  "state": "Not measured"
+ },
+ {
+  "id": 2,
+  "measure": "Pollinators",
+  "how": "Timed flower counts on a fixed route",
+  "who": "Specialist + visitors",
+  "when": "May–September",
+  "direction": "More visits, more groups",
+  "state": "Not measured"
+ },
+ {
+  "id": 3,
+  "measure": "Breeding birds",
+  "how": "Spring territory mapping; point counts all year",
+  "who": "Ornithologist + visitors",
+  "when": "March–June",
+  "direction": "More species and territories",
+  "state": "Not measured"
+ },
+ {
+  "id": 4,
+  "measure": "Bats",
+  "how": "Passive acoustic recorders; roost checks",
+  "who": "Bat specialist",
+  "when": "May–September",
+  "direction": "More species and activity",
+  "state": "Not measured"
+ },
+ {
+  "id": 5,
+  "measure": "Old trees",
+  "how": "Every large tree tagged: size, condition, hollows, deadwood",
+  "who": "Arborist",
+  "when": "Winter",
+  "direction": "No veterans lost; successors planted",
+  "state": "Not measured"
+ },
+ {
+  "id": 6,
+  "measure": "Soil",
+  "how": "Carbon, pH, nutrients, earthworms, infiltration",
+  "who": "Soil lab + visitors",
+  "when": "Spring",
+  "direction": "More carbon and life",
+  "state": "Not measured"
+ },
+ {
+  "id": 7,
+  "measure": "Shore and water",
+  "how": "Natural shore length; near-shore plants; temperature; clarity",
+  "who": "Aquatic ecologist + visitors",
+  "when": "July–August",
+  "direction": "More natural shore",
+  "state": "Not measured"
+ },
+ {
+  "id": 8,
+  "measure": "Invasive species",
+  "how": "Area and stem counts by species",
+  "who": "Garden group",
+  "when": "June and September",
+  "direction": "Down",
+  "state": "Partly known"
+ },
+ {
+  "id": 9,
+  "measure": "Darkness",
+  "how": "Sky brightness; count of lit fittings",
+  "who": "Visitors",
+  "when": "Any clear night",
+  "direction": "Darker",
+  "state": "Not measured"
+ },
+ {
+  "id": 10,
+  "measure": "Site metabolism",
+  "how": "Water used, rain caught, food grown, compost, energy",
+  "who": "Operator + garden group",
+  "when": "Monthly",
+  "direction": "More closed loops",
+  "state": "Not measured"
+ }
+]

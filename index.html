@@ -1,0 +1,1102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hertenstein Land Record</title>
+<meta name="description" content="The shared record of the land at Stella Matutina, Hertenstein: public records, the landscape architect's proposals, and visitor readings.">
+<style>
+:root {
+  --color-fg: #1f1e1c; --color-fg-muted: #6b6862; --color-panel: #ffffff; --page-bg: #f5f4f0; --color-border-line: #e2dfd8;
+  --color-ok: #2f7d4f; --color-warn: #b7791f; --color-bad: #c0392b;
+  --cds-chart-muted: #a9a59c; --cds-chart-grid: #ebe8e1; --cds-surface-popover: #ffffff; --cds-border: #d8d4cb;
+  --cds-shadow-popover: 0 4px 16px rgba(0,0,0,.12); --cds-text-secondary: #6b6862;
+  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 12px; --cds-gap-lg: 20px;
+  --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 16px; --cds-radius: 8px;
+  --cds-font-size-caption: 12.5px; --cds-font-size-body: 14.5px; --cds-font-size-heading: 16px; --cds-font-size-title: 28px;
+  --cds-font-weight-medium: 600; --cds-dur-slow: .3s;
+  --font-anthropic-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; --font-anthropic-serif: Georgia, "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --color-fg: #ecebe7; --color-fg-muted: #a7a39a; --color-panel: #23221f; --page-bg: #181816; --color-border-line: #3a3833;
+    --color-ok: #5fbf85; --color-warn: #e0a84a; --color-bad: #ef7a6c; --cds-chart-muted: #77736b; --cds-chart-grid: #302e2a;
+    --cds-surface-popover: #2b2a26; --cds-border: #45423c; --cds-text-secondary: #a7a39a; }
+}
+html, body { margin: 0; background: var(--page-bg); color: var(--color-fg); }
+body { padding: 24px 16px 48px; font-family: var(--font-anthropic-sans); }
+a { color: inherit; }
+.dash-skeleton { color: transparent; background: linear-gradient(90deg, var(--cds-chart-grid), transparent, var(--cds-chart-grid)); background-size: 200% 100%; border-radius: 4px; }
+.hl-foot { max-width: 1180px; margin: 32px auto 0; font-size: 12px; color: var(--color-fg-muted); }
+</style>
+<script src="vendor/d3-7.9.0.min.js"></script>
+<script>
+// A small stand-in for the dashboard runtime: loads data/<id>.json on first use.
+(function () {
+  const store = {}, calcs = {}, subs = [];
+  const fire = () => subs.forEach((f) => { try { f(); } catch (e) { console.error(e); } });
+  function load(id) {
+    if (store[id]) return store[id];
+    store[id] = { status: 'loading', data: [] };
+    fetch('data/' + id + '.json').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then((rows) => { store[id] = { status: 'ok', data: rows }; fire(); })
+      .catch(() => { store[id] = { status: 'error', data: [] }; fire(); });
+    return store[id];
+  }
+  window.dash = {
+    colors: ['#3f7d5a', '#c4683b', '#3e6fb0', '#9b4f96', '#a8892c', '#6f7c87', '#3f9a9a', '#8a6d52'],
+    data(id) {
+      const c = calcs[id];
+      if (c) {
+        const ins = c.inputs.map(load);
+        if (ins.some((d) => d.status === 'error')) return { status: 'error', data: [] };
+        if (ins.some((d) => d.status !== 'ok')) return { status: 'loading', data: [] };
+        try { return { status: 'ok', data: c.fn(...ins.map((d) => d.data)) }; } catch (e) { return { status: 'error', data: [] }; }
+      }
+      return load(id);
+    },
+    calc(id, c) { calcs[id] = c; },
+    onData(f) { subs.push(f); },
+    setLink(id) { history.replaceState(null, '', '#' + id); },
+    params() { return {}; },
+  };
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-source]').forEach((el) => dash.data(el.dataset.source));
+    fire();
+  });
+})();
+</script>
+</head>
+<body>
+<style>
+.hl { display: flex; flex-direction: column; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); color: var(--color-fg); max-width: 1180px; margin-inline: auto; }
+.hl-head { display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+.hl-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.15; margin: 0; text-wrap: balance; }
+.hl-take { font-size: var(--cds-font-size-body); color: var(--color-fg-muted); margin: 0; max-width: 70ch; }
+.hl-tabs { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); border-bottom: 1px solid var(--color-border-line); padding-bottom: var(--cds-pad-sm); }
+.hl-tab { font: inherit; font-size: var(--cds-font-size-body); background: transparent; color: var(--color-fg-muted); border: 1px solid transparent; border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); cursor: pointer; }
+.hl-tab:hover { color: var(--color-fg); border-color: var(--color-border-line); }
+.hl-tab[aria-selected="true"] { color: var(--color-fg); background: var(--color-panel); border-color: var(--color-border-line); }
+.hl-tab:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.hl-page { display: flex; flex-direction: column; gap: var(--cds-gap-lg); }
+.hl-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); gap: var(--cds-gap-md); }
+.hl-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+.hl-tile .hl-lab { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.hl-big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.hl-big small { font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-body); color: var(--color-fg-muted); margin-left: .25em; }
+.hl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+.hl-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-width: 0; position: relative; }
+.hl-card h3, .hl-sec { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.hl-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; }
+.hl-sec { margin-top: var(--cds-gap-sm); }
+.hl-scroll { overflow-x: auto; }
+.hl-tbl { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.hl-tbl th { text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); border-bottom: 1px solid var(--color-border-line); padding: var(--cds-pad-xs) var(--cds-pad-sm) var(--cds-pad-xs) 0; white-space: nowrap; }
+.hl-tbl td { border-bottom: 1px solid var(--color-border-line); padding: var(--cds-pad-xs) var(--cds-pad-sm) var(--cds-pad-xs) 0; vertical-align: top; }
+.hl-tbl tr:last-child td { border-bottom: 0; }
+.hl-tbl td.hl-num { text-align: right; }
+.hl-chip { display: inline-flex; align-items: center; gap: .35em; white-space: nowrap; }
+.hl-chip::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--cds-chart-muted); flex: none; }
+.hl-chip[data-s="Checked"]::before, .hl-chip[data-s="Measured"]::before, .hl-chip[data-s="Done"]::before { background: var(--color-ok); }
+.hl-chip[data-s="Inferred"]::before, .hl-chip[data-s="Partly known"]::before, .hl-chip[data-s="Proposed"]::before, .hl-chip[data-s="Provisional"]::before, .hl-chip[data-s="Suggested spot"]::before, .hl-chip[data-s="Proposed"]::before { background: var(--color-warn); }
+.hl-chip[data-s="Unknown"]::before, .hl-chip[data-s="Open"]::before, .hl-chip[data-s="Failed"]::before { background: var(--color-bad); }
+.hl-moves { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.hl-moves li { display: grid; grid-template-columns: 2rem 1fr; gap: var(--cds-gap-sm); }
+.hl-moves .hl-rank { font-family: var(--font-anthropic-serif); font-size: var(--cds-font-size-heading); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.hl-moves b { font-weight: var(--cds-font-weight-medium); }
+.hl-moves p { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.hl-chart { width: 100%; min-height: 240px; position: relative; }
+.hl-chart svg { display: block; }
+.hl-chart text { fill: var(--color-fg-muted); font-size: 11px; font-family: var(--font-anthropic-sans); }
+.hl-chart .hl-strong { fill: var(--color-fg); }
+.hl-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; }
+.hl-tip .hl-k { color: var(--cds-text-secondary); }
+.hl-empty { font-size: var(--cds-font-size-body); color: var(--color-fg-muted); border: 1px dashed var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
+.hl-prose { font-size: var(--cds-font-size-body); max-width: 70ch; margin: 0; }
+.hl-list { margin: 0; padding-left: 1.2em; font-size: var(--cds-font-size-caption); display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+[data-dash-source-state=empty] { color: transparent; }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+.hl-fail { display: flex; align-items: center; justify-content: center; gap: .5em; min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.hl-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+.hl-mapbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--cds-gap-sm) var(--cds-gap-lg); }
+.hl-ctl { display: inline-flex; align-items: center; min-width: 0; max-width: 100%; gap: var(--cds-gap-xs); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.hl-ctl select { min-width: 0; flex: 1 1 auto; text-overflow: ellipsis; }
+.hl-ctl select, .hl-ctl input[type=range] { font: inherit; font-size: var(--cds-font-size-body); color: var(--color-fg); background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 2px 6px; max-width: 100%; }
+.hl-ctl input[type=range] { padding: 0; width: 7rem; accent-color: var(--color-fg); }
+.hl-btn { font: inherit; font-size: var(--cds-font-size-caption); color: var(--color-fg); background: transparent; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 2px 8px; cursor: pointer; }
+.hl-btn:hover { background: color-mix(in srgb, var(--color-fg) 6%, transparent); }
+.hl-btn:focus-visible, .hl-ctl select:focus-visible, .hl-layers input:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.hl-layers { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md); font-size: var(--cds-font-size-caption); }
+.hl-layers label { display: inline-flex; align-items: center; gap: .35em; cursor: pointer; }
+.hl-sw { width: .75rem; height: .75rem; border-radius: 3px; flex: none; }
+.hl-map { width: 100%; min-height: 420px; position: relative; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); overflow: hidden; touch-action: none; }
+.hl-map svg { display: block; cursor: grab; }
+.hl-map svg:active { cursor: grabbing; }
+.hl-map text { font-family: var(--font-anthropic-sans); fill: var(--color-fg); paint-order: stroke; stroke: var(--color-panel); stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
+.hl-map .hl-hit { cursor: pointer; }
+.hl-detail { font-size: var(--cds-font-size-body); border-top: 1px solid var(--color-border-line); padding-top: var(--cds-pad-sm); min-height: 3.2em; display: flex; flex-direction: column; gap: 2px; }
+.hl .hl-detail b { font-weight: var(--cds-font-weight-medium); }
+.hl-detail .hl-note { max-width: 80ch; }
+.hl-tbl tr[data-key] { cursor: default; }
+#proposals tbody tr, #parcels tbody tr { cursor: pointer; }
+#proposals tbody tr:hover td, #parcels tbody tr:hover td { background: color-mix(in srgb, var(--color-fg) 5%, transparent); }
+#proposals tbody tr.hl-on td, #parcels tbody tr.hl-on td { background: color-mix(in srgb, var(--color-fg) 9%, transparent); }
+@media (max-width: 640px) { .hl-hide-sm { display: none; } .hl-map { min-height: 340px; } }
+</style>
+
+<div class="hl" id="land">
+  <header class="hl-head" id="top">
+    <h1 class="hl-title">Hertenstein Land Record</h1>
+    <p class="hl-take" id="takeaway">The shared record of the land at Stella Matutina: what the records say, what we measure, and what we plan to change.</p>
+  </header>
+
+  <nav class="hl-tabs" role="tablist" aria-label="Sections">
+    <button class="hl-tab" role="tab" id="tab-overview" data-page="overview" aria-selected="true">Overview</button>
+    <button class="hl-tab" role="tab" id="tab-map" data-page="map" aria-selected="false">Map</button>
+    <button class="hl-tab" role="tab" id="tab-site" data-page="site" aria-selected="false">Site</button>
+    <button class="hl-tab" role="tab" id="tab-public" data-page="public" aria-selected="false">Public data</button>
+    <button class="hl-tab" role="tab" id="tab-life" data-page="life" aria-selected="false">Life</button>
+    <button class="hl-tab" role="tab" id="tab-measures" data-page="measures" aria-selected="false">Measures</button>
+    <button class="hl-tab" role="tab" id="tab-plan" data-page="plan" aria-selected="false">Plan</button>
+    <button class="hl-tab" role="tab" id="tab-readings" data-page="readings" aria-selected="false">Readings</button>
+    <button class="hl-tab" role="tab" id="tab-record" data-page="record" aria-selected="false">Gaps and log</button>
+  </nav>
+
+  <!-- OVERVIEW -->
+  <section class="hl-page" id="overview" role="tabpanel" aria-labelledby="tab-overview">
+    <div class="hl-tiles" id="headline">
+      <div class="hl-tile"><span class="hl-lab">The land</span><span class="hl-big"><span class="dash-skeleton" data-source="land_summary" data-field="ha" data-row="0">—</span><small>ha</small></span><span class="hl-note"><span data-source="land_summary" data-field="parcels" data-row="0">—</span> parcels, about <span data-source="land_summary" data-field="acres" data-row="0">—</span> acres</span></div>
+      <div class="hl-tile"><span class="hl-lab">Species records nearby</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="records" data-row="0">—</span><span class="hl-note">Within about 2 km, GBIF</span></div>
+      <div class="hl-tile"><span class="hl-lab">Invasive species on record</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="invasive_species" data-row="0">—</span><span class="hl-note">Plants, pests and the lake</span></div>
+      <div class="hl-tile"><span class="hl-lab">Measures with a baseline</span><span class="hl-big"><span class="dash-skeleton" data-source="overview_counts" data-field="measured" data-row="0">—</span><small>of <span data-source="overview_counts" data-field="measures" data-row="0">—</span></small></span><span class="hl-note">Baseline year planned for 2027</span></div>
+      <div class="hl-tile"><span class="hl-lab">Visitor readings</span><span class="hl-big dash-skeleton" data-source="readings_count" data-field="readings" data-row="0">—</span><span class="hl-note" id="readings-note">Form built, not yet live</span></div>
+      <div class="hl-tile"><span class="hl-lab">Open gaps in the record</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="open_gaps" data-row="0">—</span><span class="hl-note">See Gaps and log</span></div>
+    </div>
+
+    <div class="hl-grid">
+      <div class="hl-card" id="card-first-moves">
+        <h3>First moves</h3>
+        <p class="hl-note">The top of the ranked plan. Each waits on the owner side and, for the shore, on permits.</p>
+        <ol class="hl-moves" id="first-moves" data-source="moves"></ol>
+      </div>
+      <div class="hl-card" id="card-siteplan">
+        <h3>The land</h3>
+        <p class="hl-note">The five parcels shaded green on the 2022 land register plan, drawn from the federal cadastral map. The Map tab lays the landscape architect's sheets and the public data over them.</p>
+        <div class="hl-chart dash-skeleton" id="siteplan" data-source="parcels" style="min-height:300px"></div>
+        <div><button type="button" class="hl-btn" id="open-map">Open the map</button></div>
+      </div>
+    </div>
+
+    <div class="hl-card" id="card-what">
+      <h3>What the records say, in short</h3>
+      <ul class="hl-list">
+        <li>A lakeside patchwork of hay meadow, an oak park of more than a hundred trees, small woods, garden and buildings, on ground polished by the last glaciation, inside the federal landscape inventory for Lake Lucerne.</li>
+        <li>Strongest: the oaks, an orchid recorded beside the house, and rich underwater plant beds in the bays the canton names as fish nurseries.</li>
+        <li>Weakest: meadows mapped as over-fertile, a walled shore, several invasive plants, and no public records of amphibians, mammals or bats.</li>
+        <li>The lake is changing fast: quagga mussel since 2024, and a summer surface of 26.3 °C in June 2026.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section class="hl-page" id="map" role="tabpanel" aria-labelledby="tab-map" hidden>
+    <template id="map-tpl">
+    <p class="hl-prose">The land is the five parcels shaded green on the 2022 land register plan. The landscape architect's seven sheets of 29 July 2026 are pinned to real coordinates: pick one to lay over the land. Every proposal is a point, line or area you can click. Drag to move, scroll or pinch to zoom.</p>
+    <div class="hl-card" id="card-map">
+      <div class="hl-mapbar">
+        <label class="hl-ctl">Drawing <select id="map-sheet"></select></label>
+        <label class="hl-ctl">Opacity <input type="range" id="map-op" min="10" max="100" value="80" aria-label="Drawing opacity"></label>
+        <span class="hl-ctl"><button type="button" class="hl-btn" id="map-all">Whole land</button> <button type="button" class="hl-btn" id="map-inst">Institute grounds</button></span>
+      </div>
+      <div class="hl-layers" id="map-layers" data-source="gov_shapes"></div>
+      <div class="hl-map dash-skeleton" id="landmap" data-source="map_sheets"></div>
+      <div class="hl-detail" id="map-detail" aria-live="polite"><span class="hl-note">Click a parcel, a proposal, a post or a public-data shape. Shore sections are coloured by the canton's rating: green near-natural, amber strongly impaired, red unnatural.</span></div>
+      <p class="hl-note">Sheets are pinned to the federal parcel corners, to within about 3 m. Proposal shapes are traced by hand from the sheets and are approximate. Suggested post positions are for the site walk to confirm.</p>
+    </div>
+    <div class="hl-card" id="card-proposals">
+      <h3>Proposals from the landscape architect</h3>
+      <p class="hl-note">From the sheets of 29 July 2026. All are proposals: changes to the ground need the owner's agreement, and some are drawn on neighbouring parcels. Click a row to find it on the map.</p>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="proposals" data-source="proposals" data-row-key="id">
+          <thead><tr><th data-field="title">Proposal</th><th data-field="layer">Sheet</th><th data-field="parcels">Parcels</th><th class="hl-hide-sm" data-field="move">Ranked move</th><th class="hl-hide-sm" data-field="outside_our_land">Outside the land</th><th data-field="status">Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hl-card" id="card-parcels">
+      <h3>Parcels</h3>
+      <p class="hl-note">Areas computed from the federal cadastral outlines. Neighbours are listed because the drawings touch them.</p>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="parcels" data-source="parcels" data-row-key="parcel">
+          <thead><tr><th data-field="parcel">Parcel</th><th data-field="role">What it is</th><th data-field="area_m2">Area (m²)</th><th data-field="in_land">In the land</th><th class="hl-hide-sm" data-field="egrid">EGRID</th><th data-field="status">Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    </template>
+  </section>
+
+  <!-- SITE -->
+  <section class="hl-page" id="site" role="tabpanel" aria-labelledby="tab-site" hidden>
+    <div class="hl-card" id="card-facts">
+      <h3>Site facts</h3>
+      <p class="hl-note">Checked: read from a named public source. Inferred: a reading of the checked facts. Unknown: needs a visit, a survey or a document.</p>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="facts" data-source="site_facts" data-row-key="key">
+          <thead><tr><th data-field="label">Fact</th><th data-field="value">Value</th><th data-field="status">Status</th><th class="hl-hide-sm" data-field="source">Source</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hl-grid">
+      <div class="hl-card" id="card-climate">
+        <h3>Climate, Lucerne 1991–2020</h3>
+        <p class="hl-note">Monthly rain as bars, average daily high and low as lines. The nearest long record; Hertenstein's föhn-warmed shore runs a little milder.</p>
+        <div class="hl-chart dash-skeleton" id="climate" data-source="climate_monthly"></div>
+      </div>
+      <div class="hl-card" id="card-solar">
+        <h3>Roofs around the main building</h3>
+        <p class="hl-note">Federal solar roof data for the roofs within 30 m of the main building.</p>
+        <div class="hl-tiles">
+          <div><span class="hl-note">Roof surfaces</span><div class="hl-big dash-skeleton" data-source="solar_summary" data-field="roofs" data-row="0">—</div></div>
+          <div><span class="hl-note">Rated good or very good</span><div class="hl-big"><span class="dash-skeleton" data-source="solar_summary" data-field="area_good" data-row="0">—</span><small>m²</small></div></div>
+          <div><span class="hl-note">Modelled yield on those</span><div class="hl-big"><span class="dash-skeleton" data-source="solar_summary" data-field="yield_good_mwh" data-row="0">—</span><small>MWh a year</small></div></div>
+        </div>
+        <p class="hl-note">Some roofs already carry green roofs. Heritage rules for the Zinnen ensemble may apply.</p>
+      </div>
+    </div>
+    <div class="hl-card" id="card-protections">
+      <h3>Protections and public plans</h3>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="protections" data-source="protections" data-row-key="name">
+          <thead><tr><th data-field="name">Name</th><th data-field="kind">Kind</th><th data-field="applies">Applies to</th><th class="hl-hide-sm" data-field="detail">What it asks</th><th data-field="status">Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hl-card" id="card-history">
+      <h3>History of the place</h3>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="history" data-source="history" data-row-key="year">
+          <thead><tr><th data-field="year">Year</th><th data-field="event">Event</th><th class="hl-hide-sm" data-field="source">Source</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLIC DATA -->
+  <section class="hl-page" id="public" role="tabpanel" aria-labelledby="tab-public" hidden>
+    <p class="hl-prose" id="public-take">What federal and cantonal public data say about the land, layer by layer. A layer that does not touch the land is a finding too, and is kept.</p>
+    <div class="hl-card" id="card-public-means">
+      <h3>What it means for the drawings</h3>
+      <ul class="hl-list">
+        <li><b>No mapped stream.</b> Neither the federal nor the cantonal water maps show a stream, open or piped, on the land. The overland-flow map does show storm runoff across 292 and 505. Ask the architect what the "re-open stream" line is based on.</li>
+        <li><b>Farm zone.</b> All five parcels are in agricultural zone 1, outside any building zone. The amphitheatre, pond, boardwalks and parking would each need a permit for building outside the zone.</li>
+        <li><b>Legal forest across 292.</b> A band of about 1.3 ha is forest in law. Wood pasture and grazing there need the canton's forest service.</li>
+        <li><b>Crop rotation land.</b> About 0.85 ha on the meadows of 505 and 289 counts towards the canton's protected crop rotation quota. Gardens and orchards keep it; ponds, paths and buildings would use it up.</li>
+        <li><b>A shore the canton wants back.</b> Most of the 50 m shore sections are rated strongly impaired or unnatural, mainly from the wall. Removing the wall and making a wetland fits the canton's revitalisation planning, inside a keep-free water zone.</li>
+        <li><b>Protected buildings and a protected meadow.</b> The school, dorms and chapel are rated worth protecting and the gym worth preserving; 289 sits in a landscape protection zone.</li>
+        <li><b>No federal inventory object on the land</b> (amphibian sites, fens, dry meadows, reserves, corridors), and never soil-mapped.</li>
+      </ul>
+    </div>
+    <div class="hl-card" id="card-public">
+      <div class="hl-mapbar"><label class="hl-ctl">Theme <select id="pub-theme" aria-label="Theme"></select></label></div>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="gov" data-source="gov_layers" data-row-key="layer,label">
+          <thead><tr><th data-field="theme">Theme</th><th data-field="label">Layer</th><th data-field="finding">Finding</th><th class="hl-hide-sm" data-field="parcels">Applies to</th><th data-field="status">Status</th><th class="hl-hide-sm" data-field="source">Source</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="hl-note">Read from the federal geoportal (geo.admin.ch) and other public services on 14 October 2026. Shapes that touch the land are drawn on the Map tab.</p>
+    </div>
+  </section>
+
+  <!-- LIFE -->
+  <section class="hl-page" id="life" role="tabpanel" aria-labelledby="tab-life" hidden>
+    <div class="hl-grid">
+      <div class="hl-card" id="card-groups">
+        <h3>Species records by group</h3>
+        <p class="hl-note">GBIF records in a box of about 2.5 by 2.2 km around the peninsula. Zero is a gap in looking, not proof of absence.</p>
+        <div class="hl-chart dash-skeleton" id="groups" data-source="species_groups"></div>
+      </div>
+      <div class="hl-card" id="card-habitats">
+        <h3>Habitats within 40 m of the main building</h3>
+        <p class="hl-note">Mapped areas in the federal habitat map, by type. The whole holding is not mapped yet.</p>
+        <div class="hl-chart dash-skeleton" id="habitats" data-source="habitats"></div>
+      </div>
+    </div>
+    <div class="hl-card" id="card-notable">
+      <h3>Species that matter here</h3>
+      <p class="hl-note">Sensitive records (orchids, nests) are never published with a location.</p>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="notable" data-source="species_notable" data-row-key="name">
+          <thead><tr><th data-field="common">Species</th><th data-field="name">Latin</th><th data-field="year">Last record</th><th class="hl-hide-sm" data-field="where">Where</th><th data-field="why">Why it matters</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hl-card" id="card-invasives">
+      <h3>Invasive species, in order of priority</h3>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="invasives" data-source="invasives" data-row-key="latin">
+          <thead><tr><th data-field="priority">#</th><th data-field="species">Species</th><th class="hl-hide-sm" data-field="latin">Latin</th><th data-field="last_record">Last record</th><th class="hl-hide-sm" data-field="rule">Status in Switzerland</th><th data-field="action">What to do</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEASURES -->
+  <section class="hl-page" id="measures" role="tabpanel" aria-labelledby="tab-measures" hidden>
+    <p class="hl-prose">Ten measures of ecological health, each one something a designer can act on and a later year can be compared with. Targets come after the baseline year; for now each has a direction.</p>
+    <div class="hl-card" id="card-indicators">
+      <h3>The ten measures</h3>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="indicators" data-source="indicators" data-row-key="id">
+          <thead><tr><th data-field="id">#</th><th data-field="measure">Measure</th><th class="hl-hide-sm" data-field="how">How</th><th data-field="who">Who</th><th class="hl-hide-sm" data-field="when">When</th><th data-field="direction">Better is</th><th data-field="state">State</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hl-card" id="card-calendar">
+      <h3>Baseline survey calendar</h3>
+      <p class="hl-note">When each professional survey runs in the baseline year. None is commissioned yet.</p>
+      <div class="hl-chart dash-skeleton" id="calendar" data-source="surveys"></div>
+    </div>
+  </section>
+
+  <!-- PLAN -->
+  <section class="hl-page" id="plan" role="tabpanel" aria-labelledby="tab-plan" hidden>
+    <p class="hl-prose">The brief for landscape architects and permaculture designers, ranked. Protect what is old first; grow food on ground already worked; keep the best meadows lean; hold water and nutrients on the site.</p>
+    <div class="hl-card" id="card-moves">
+      <h3>Ranked moves</h3>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="moves" data-source="moves" data-row-key="rank">
+          <thead><tr><th data-field="rank">#</th><th data-field="move">Move</th><th data-field="does">What it does</th><th class="hl-hide-sm" data-field="depends">Depends on</th><th data-field="status">Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hl-card" id="card-tensions">
+      <h3>Tensions to settle early</h3>
+      <ul class="hl-list">
+        <li><b>Food and meadow.</b> An edible landscape wants fertile, worked ground; species-rich meadow wants lean ground. Both fit if they are kept apart.</li>
+        <li><b>Path and quiet shore.</b> Weggis wants a public path round the peninsula; the canton wants quiet at the pond. Part of the route may cross the holding.</li>
+        <li><b>Tidy and alive.</b> Deadwood and long grass read as neglect to some guests. Mown paths and a few signs settle most of it.</li>
+        <li><b>Who decides.</b> Stella runs programmes; the land is owned and run by the Hertenstein side. Changes to the ground need their agreement.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- READINGS -->
+  <section class="hl-page" id="readings" role="tabpanel" aria-labelledby="tab-readings" hidden>
+    <p class="hl-prose">Visitors take short readings at ten numbered posts by scanning a QR code. Each reading becomes a row here once the form is live and connected.</p>
+    <div class="hl-card" id="card-readings">
+      <h3>Latest readings</h3>
+      <div class="hl-empty" id="readings-empty" hidden>No readings yet. The form is built and tested, and goes live once Sylvan deploys it from the stella.earth account. Readings then flow in from its Sheet.</div>
+      <div class="hl-scroll" id="readings-wrap">
+        <table class="hl-tbl" id="readings-table" data-source="readings" data-row-key="Received">
+          <thead><tr><th data-field="Received">Received</th><th data-field="Station">Station</th><th data-field="Reading">Reading</th><th data-field="Summary">Summary</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hl-card" id="card-stations">
+      <h3>Stations</h3>
+      <p class="hl-note">Spots are suggested from the parcel map and the architect's concept, and shown on the Map tab. A site walk fixes them, ideally next to the permanent vegetation plots.</p>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="stations" data-source="stations" data-row-key="station">
+          <thead><tr><th data-field="station">Post</th><th data-field="habitat">Habitat</th><th data-field="readings">Readings that suit it</th><th class="hl-hide-sm" data-field="spot">Suggested spot</th><th data-field="status">Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECORD -->
+  <section class="hl-page" id="record" role="tabpanel" aria-labelledby="tab-record" hidden>
+    <div class="hl-card" id="card-gaps">
+      <h3>Gaps in the record</h3>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="gaps" data-source="gaps" data-row-key="gap">
+          <thead><tr><th data-field="gap">Gap</th><th data-field="fill">How to fill it</th><th class="hl-hide-sm" data-field="blocks">What it holds up</th><th data-field="status">Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hl-card" id="card-log">
+      <h3>Land log</h3>
+      <p class="hl-note">Decisions, work and observations on the land, newest first. Kept up to date by the Stella team.</p>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="log" data-source="log" data-row-key="date,entry">
+          <thead><tr><th data-field="date">Date</th><th data-field="kind">Kind</th><th data-field="entry">Entry</th><th data-field="by">By</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hl-card" id="card-docs">
+      <h3>Working documents</h3>
+      <ul class="hl-list">
+        <li><a href="docs/hertenstein-ecology-master-plan-2026-10-13.pdf">Ecological master plan, first draft, 13 October 2026</a> (PDF)</li>
+        <li><a href="docs/visitor-readings-protocol-2026-10-13.pdf">Visitor readings protocol, 13 October 2026</a> (PDF)</li>
+        <li><a href="readings-form/">The readings form</a> (Google Apps Script, with setup notes)</li>
+        <li><a href="data/">The tables behind this page</a> (JSON)</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<script>
+// Pages: one shown at a time; charts draw only when their page is visible.
+(function () {
+  const tabs = Array.from(document.querySelectorAll('.hl-tab'));
+  window.hlShow = function (id) {
+    // The map page's data (sheet scans) loads only when it is first opened.
+    const tpl = document.getElementById(id) && document.getElementById(id).querySelector(':scope > template');
+    if (tpl) tpl.replaceWith(tpl.content.cloneNode(true));
+    tabs.forEach((t) => {
+      const on = t.dataset.page === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      document.getElementById(t.dataset.page).hidden = !on;
+    });
+    if (window.hlDraw) window.hlDraw();
+  };
+  tabs.forEach((t) => t.addEventListener('click', () => { window.hlShow(t.dataset.page); dash.setLink(t.dataset.page); }));
+  const start = location.hash.slice(1);
+  if (tabs.some((t) => t.dataset.page === start)) window.hlShow(start);
+})();
+</script>
+
+<script>
+dash.calc('overview_counts', {
+  inputs: ['species_groups', 'invasives', 'indicators', 'gaps'],
+  title: 'Headline counts',
+  description: 'Totals of species records, invasive species, measures with a baseline and open gaps.',
+  fn: (species_groups, invasives, indicators, gaps) => [{
+    records: species_groups.reduce((s, r) => s + Number(r.records), 0),
+    invasive_species: invasives.length,
+    measured: indicators.filter((r) => r.state === 'Measured').length,
+    measures: indicators.length,
+    open_gaps: gaps.filter((r) => r.status === 'Open').length,
+  }],
+});
+dash.calc('land_summary', {
+  inputs: ['parcels'],
+  title: 'The land',
+  description: 'Parcels inside the green perimeter of the 2022 land register plan, and their total area from the federal outlines.',
+  fn: (parcels) => {
+    const land = parcels.filter((r) => r.in_land !== 'No');
+    const m2 = land.reduce((s, r) => s + Number(r.area_m2), 0);
+    return [{ parcels: land.length, m2: m2, ha: Math.round(m2 / 100) / 100, acres: Math.round(m2 / 4046.86) }];
+  },
+});
+dash.calc('readings_count', {
+  inputs: ['readings'],
+  title: 'Readings so far',
+  description: 'How many visitor readings have come in.',
+  fn: (readings) => [{ readings: readings.length }],
+});
+dash.calc('solar_summary', {
+  inputs: ['solar_roofs'],
+  title: 'Good roofs for solar',
+  description: 'Roof surfaces near the main building, and the area and modelled yield of those rated 3 or 4 (good or very good).',
+  fn: (solar_roofs) => {
+    const good = solar_roofs.filter((r) => Number(r.rating) >= 3);
+    return [{
+      roofs: solar_roofs.length,
+      area_good: Math.round(good.reduce((s, r) => s + Number(r.area_m2), 0)),
+      yield_good_mwh: Math.round(good.reduce((s, r) => s + Number(r.yield_kwh), 0) / 1000),
+    }];
+  },
+});
+</script>
+
+<script>
+(function () {
+  const fmt = d3.format(',');
+  const STATUS_COLS = new Set(['status', 'state']);
+
+
+  // Fill every single-value mark from its source.
+  function fillMarks() {
+    document.querySelectorAll('[data-source][data-field]:not(th)').forEach((el) => {
+      const d = dash.data(el.dataset.source);
+      el.classList.remove('dash-skeleton');
+      if (d.status !== 'ok') { el.textContent = '—'; return; }
+      let row;
+      if (el.dataset.row != null) row = d.data[Number(el.dataset.row)];
+      else if (el.dataset.where) {
+        const [k, v] = el.dataset.where.split('=');
+        row = d.data.find((r) => String(r[k]) === decodeURIComponent(v));
+      }
+      const val = row ? row[el.dataset.field] : null;
+      el.textContent = val == null || val === '' ? '—' : (typeof val === 'number' && Math.abs(val) >= 1000 && el.dataset.field !== 'num' ? fmt(val) : String(val));
+    });
+  }
+
+  // Tables: one row per data row; key cells show the value as is.
+  function fillTable(id, sort, keep) {
+    const table = document.getElementById(id);
+    if (!table) return;
+    const src = table.dataset.source;
+    const keys = table.dataset.rowKey.split(',');
+    const cols = Array.from(table.querySelectorAll('th')).map((th) => ({ f: th.dataset.field, cls: th.className }));
+    const body = table.querySelector('tbody');
+    const d = dash.data(src);
+    body.replaceChildren();
+    if (d.status !== 'ok') {
+      if (d.status === 'error') {
+        const tr = body.insertRow(); const td = tr.insertCell(); td.colSpan = cols.length;
+        const s = document.createElement('div'); s.className = 'hl-fail'; s.textContent = 'Failed to load'; td.appendChild(s);
+      }
+      return;
+    }
+    let rows = d.data.slice();
+    if (keep) rows = rows.filter(keep);
+    if (sort) rows.sort(sort);
+    rows.forEach((r) => {
+      const tr = body.insertRow();
+      tr.dataset.key = keys.map((k) => encodeURIComponent(String(r[k]))).join(',');
+      cols.forEach((c) => {
+        const td = tr.insertCell();
+        if (c.cls) td.className = c.cls;
+        const v = r[c.f];
+        if (STATUS_COLS.has(c.f) && v) {
+          const s = document.createElement('span'); s.className = 'hl-chip'; s.dataset.s = v; s.textContent = v; td.appendChild(s);
+        } else {
+          td.textContent = v == null || v === '' ? '—' : String(v);
+        }
+        if (typeof v === 'number') td.classList.add('hl-num');
+      });
+    });
+  }
+
+  function failBox(el) {
+    el.replaceChildren();
+    const s = document.createElement('div'); s.className = 'hl-fail'; s.textContent = 'Failed to load'; el.appendChild(s);
+  }
+
+  function tipper(box) {
+    let tip = box.querySelector('.hl-tip');
+    if (!tip) { tip = document.createElement('div'); tip.className = 'hl-tip'; tip.hidden = true; box.appendChild(tip); }
+    return {
+      show(ev, lines) {
+        tip.replaceChildren();
+        lines.forEach((l, i) => { const p = document.createElement('div'); if (i === 0) p.className = 'hl-k'; p.textContent = l; tip.appendChild(p); });
+        tip.hidden = false;
+        const b = box.getBoundingClientRect();
+        let x = ev.clientX - b.left + 12, y = ev.clientY - b.top + 12;
+        const w = tip.offsetWidth, h = tip.offsetHeight;
+        if (x + w > b.width) x = Math.max(0, ev.clientX - b.left - w - 12);
+        if (y + h > b.height) y = Math.max(0, ev.clientY - b.top - h - 12);
+        tip.style.left = x + 'px'; tip.style.top = y + 'px';
+      },
+      hide() { tip.hidden = true; },
+    };
+  }
+
+  // Horizontal bars, labels on the left, value at the end.
+  function hbars(id, src, labelKey, valueKey, unit) {
+    const box = document.getElementById(id);
+    if (!box || !box.offsetParent) return;
+    const d = dash.data(src);
+    if (d.status === 'error') { box.classList.remove('dash-skeleton'); return failBox(box); }
+    if (d.status !== 'ok') return;
+    box.classList.remove('dash-skeleton');
+    box.replaceChildren();
+    const rows = d.data.slice().sort((a, b) => Number(b[valueKey]) - Number(a[valueKey]));
+    const W = box.clientWidth, rowH = 26, H = rows.length * rowH + 8;
+    box.style.minHeight = H + 'px';
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const meas = svg.append('g');
+    let lw = 0;
+    rows.forEach((r) => { const t = meas.append('text').text(r[labelKey]); lw = Math.max(lw, t.node().getComputedTextLength()); });
+    meas.remove();
+    lw = Math.min(lw + 10, W * 0.55);
+    let vw = 0;
+    const vt = svg.append('text').text(fmt(d3.max(rows, (r) => Number(r[valueKey])) || 0)); vw = vt.node().getComputedTextLength() + 8; vt.remove();
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => Number(r[valueKey])) || 1], [0, Math.max(10, W - lw - vw)]);
+    const tip = tipper(box);
+    const g = svg.selectAll('g.r').data(rows).join('g').attr('transform', (r, i) => `translate(0,${i * rowH + 4})`);
+    g.append('text').attr('x', lw - 8).attr('y', 13).attr('text-anchor', 'end').text((r) => {
+      const s = String(r[labelKey]); return s.length > 40 ? s.slice(0, 38) + '…' : s;
+    });
+    g.append('rect').attr('x', lw).attr('y', 3).attr('height', 14).attr('rx', 4)
+      .attr('width', (r) => Math.max(Number(r[valueKey]) ? 2 : 0, x(Number(r[valueKey]))))
+      .style('fill', (r, i) => i === 0 ? dash.colors[0] : 'var(--cds-chart-muted)');
+    g.append('text').attr('class', 'hl-strong').attr('x', (r) => lw + x(Number(r[valueKey])) + 6).attr('y', 13).text((r) => fmt(Number(r[valueKey])));
+    g.append('rect').attr('x', 0).attr('y', 0).attr('width', W).attr('height', rowH).style('fill', 'transparent')
+      .on('mousemove', (ev, r) => tip.show(ev, [String(r[labelKey]), fmt(Number(r[valueKey])) + ' ' + unit]))
+      .on('mouseleave', () => tip.hide());
+  }
+
+  function climate() {
+    const box = document.getElementById('climate');
+    if (!box || !box.offsetParent) return;
+    const d = dash.data('climate_monthly');
+    if (d.status === 'error') { box.classList.remove('dash-skeleton'); return failBox(box); }
+    if (d.status !== 'ok') return;
+    box.classList.remove('dash-skeleton');
+    box.replaceChildren();
+    const rows = d.data;
+    const W = box.clientWidth, H = 240, m = { t: 14, r: 40, b: 22, l: 34 };
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const x = d3.scaleBand(rows.map((r) => r.month), [m.l, W - m.r]).padding(0.3);
+    const yR = d3.scaleLinear([0, 200], [H - m.b, m.t]);
+    const yT = d3.scaleLinear([-5, 30], [H - m.b, m.t]);
+    yT.ticks(5).forEach((t) => {
+      svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', yT(t)).attr('y2', yT(t)).style('stroke', 'var(--cds-chart-grid)');
+      svg.append('text').attr('x', m.l - 6).attr('y', yT(t) + 4).attr('text-anchor', 'end').text(t + '°');
+    });
+    [0, 100, 200].forEach((t) => svg.append('text').attr('x', W - m.r + 6).attr('y', yR(t) + 4).text(t + ' mm'));
+    svg.selectAll('rect.b').data(rows).join('rect').attr('x', (r) => x(r.month)).attr('width', x.bandwidth())
+      .attr('y', (r) => yR(Number(r.rain_mm))).attr('height', (r) => yR(0) - yR(Number(r.rain_mm))).attr('rx', 4)
+      .style('fill', 'var(--cds-chart-muted)').style('opacity', 0.6);
+    const cx = (r) => x(r.month) + x.bandwidth() / 2;
+    [['max_c', dash.colors[1] || dash.colors[0]], ['min_c', dash.colors[0]]].forEach(([k, c]) => {
+      svg.append('path').datum(rows).attr('d', d3.line().x(cx).y((r) => yT(Number(r[k])))).style('fill', 'none').style('stroke', c)
+        .style('stroke-width', 2).style('stroke-linecap', 'round').style('stroke-linejoin', 'round');
+      svg.selectAll('circle.' + k).data(rows).join('circle').attr('cx', cx).attr('cy', (r) => yT(Number(r[k]))).attr('r', 2.5).style('fill', c);
+    });
+    const step = W < 420 ? 2 : 1;
+    rows.forEach((r, i) => { if (i % step === 0) svg.append('text').attr('x', cx(r)).attr('y', H - 6).attr('text-anchor', 'middle').text(r.month); });
+    const tip = tipper(box);
+    svg.selectAll('rect.h').data(rows).join('rect').attr('x', (r) => x(r.month) - x.step() * x.paddingInner() / 2).attr('width', x.step())
+      .attr('y', m.t).attr('height', H - m.t - m.b).style('fill', 'transparent')
+      .on('mousemove', (ev, r) => tip.show(ev, [r.month, 'High ' + r.max_c + ' °C', 'Low ' + r.min_c + ' °C', 'Rain ' + r.rain_mm + ' mm']))
+      .on('mouseleave', () => tip.hide());
+  }
+
+  function calendar() {
+    const box = document.getElementById('calendar');
+    if (!box || !box.offsetParent) return;
+    const d = dash.data('surveys');
+    if (d.status === 'error') { box.classList.remove('dash-skeleton'); return failBox(box); }
+    if (d.status !== 'ok') return;
+    box.classList.remove('dash-skeleton');
+    box.replaceChildren();
+    const rows = d.data.slice().sort((a, b) => a.start - b.start || a.end - b.end);
+    const W = box.clientWidth, rowH = 26, top = 22, H = rows.length * rowH + top + 6;
+    box.style.minHeight = H + 'px';
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const meas = svg.append('g'); let lw = 0;
+    rows.forEach((r) => { lw = Math.max(lw, meas.append('text').text(r.survey).node().getComputedTextLength()); });
+    meas.remove(); lw = Math.min(lw + 12, W * 0.45);
+    const months = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
+    const x = d3.scaleLinear([1, 13], [lw, W - 4]);
+    months.forEach((mo, i) => {
+      svg.append('line').attr('x1', x(i + 1)).attr('x2', x(i + 1)).attr('y1', top - 4).attr('y2', H).style('stroke', 'var(--cds-chart-grid)');
+      svg.append('text').attr('x', x(i + 1.5)).attr('y', 12).attr('text-anchor', 'middle').text(mo);
+    });
+    const tip = tipper(box);
+    const fullM = d3.utcFormat('%B');
+    const name = (n) => fullM(new Date(Date.UTC(2027, n - 1, 1)));
+    const g = svg.selectAll('g.r').data(rows).join('g').attr('transform', (r, i) => `translate(0,${top + i * rowH})`);
+    g.append('text').attr('x', lw - 8).attr('y', 15).attr('text-anchor', 'end').text((r) => r.survey);
+    g.append('rect').attr('x', (r) => x(r.start) + 2).attr('width', (r) => Math.max(4, x(r.end + 1) - x(r.start) - 4)).attr('y', 5).attr('height', 14).attr('rx', 4)
+      .style('fill', dash.colors[0])
+      .on('mousemove', (ev, r) => tip.show(ev, [r.survey, name(r.start) + ' to ' + name(r.end), r.who, r.status]))
+      .on('mouseleave', () => tip.hide());
+  }
+
+  // Local metres from LV95: x east from E0, y south from N0 (SVG y runs down).
+  const E0 = 2672700, N0 = 1209450;
+  // A shape is "E,N E,N ..."; several rings or pieces are joined with "|".
+  const parseRings = (txt) => String(txt || '').split('|').map((ring) => ring.trim().split(/\s+/).filter(Boolean).map((p) => { const [e, n] = p.split(',').map(Number); return [e - E0, N0 - n]; })).filter((r) => r.length);
+  const parseShape = (txt) => parseRings(txt).flat();
+
+  function siteplan() {
+    const box = document.getElementById('siteplan');
+    if (!box || !box.offsetParent) return;
+    const d = dash.data('parcels');
+    if (d.status === 'error') { box.classList.remove('dash-skeleton'); return failBox(box); }
+    if (d.status !== 'ok') return;
+    box.classList.remove('dash-skeleton');
+    box.replaceChildren();
+    const rows = d.data.map((r) => ({ r, pts: parseShape(r.shape) }));
+    const land = rows.filter((o) => o.r.in_land !== 'No');
+    const all = land.flatMap((o) => o.pts);
+    const W = box.clientWidth, H = 300, pad = 18;
+    const ex = d3.extent(all, (p) => p[0]), ey = d3.extent(all, (p) => p[1]);
+    const k = Math.min((W - 2 * pad) / (ex[1] - ex[0]), (H - 2 * pad) / (ey[1] - ey[0]));
+    const ox = (W - k * (ex[1] - ex[0])) / 2 - ex[0] * k, oy = (H - k * (ey[1] - ey[0])) / 2 - ey[0] * k;
+    const px = (p) => [ox + p[0] * k, oy + p[1] * k];
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const tip = tipper(box);
+    rows.forEach((o) => {
+      const ours = o.r.in_land !== 'No';
+      svg.append('path').attr('d', 'M' + o.pts.map((p) => px(p).join(',')).join('L') + 'Z')
+        .style('fill', ours ? dash.colors[0] : 'none').style('fill-opacity', 0.16)
+        .style('stroke', ours ? dash.colors[0] : 'var(--cds-chart-muted)').style('stroke-width', ours ? 1.5 : 1).style('stroke-dasharray', ours ? null : '3 3').style('stroke-linejoin', 'round')
+        .on('mousemove', (ev) => tip.show(ev, ['Parcel ' + o.r.parcel, o.r.role, fmt(o.r.area_m2) + ' m²']))
+        .on('mouseleave', () => tip.hide());
+    });
+    land.forEach((o) => {
+      const c = px(d3.polygonCentroid(o.pts));
+      svg.append('text').attr('class', 'hl-strong').attr('x', c[0]).attr('y', c[1] + 4).attr('text-anchor', 'middle').style('pointer-events', 'none').text(o.r.parcel);
+    });
+    svg.append('path').attr('d', `M${W - 22},14 l6,16 l-6,-4 l-6,4 Z`).style('fill', 'var(--color-fg-muted)');
+    svg.append('text').attr('x', W - 22).attr('y', 44).attr('text-anchor', 'middle').text('N');
+    const len = 50 * k;
+    svg.append('line').attr('x1', 12).attr('x2', 12 + len).attr('y1', H - 14).attr('y2', H - 14).style('stroke', 'var(--color-fg-muted)').style('stroke-width', 2);
+    svg.append('text').attr('x', 12 + len + 6).attr('y', H - 10).text('50 m');
+  }
+
+  // ---------- Map ----------
+  const LAYERS = [
+    { id: 'Immediate actions', label: 'Immediate actions', sheet: 'actions', color: () => dash.colors[2] },
+    { id: 'Concept, farm land', label: 'Concept, farm land', sheet: 'concept', color: () => dash.colors[1] },
+    { id: 'Concept, institute grounds', label: 'Concept, institute grounds', sheet: 'concept500', color: () => dash.colors[3] },
+    { id: 'gov:Legal forest', label: 'Legal forest', color: () => dash.colors[4], gov: true },
+    { id: 'gov:Lake shore', label: 'Lake shore rating', color: () => 'var(--color-bad)', gov: true },
+    { id: 'gov:Zoning', label: 'Zoning', color: () => dash.colors[5], gov: true, off: true },
+    { id: 'gov:Crop rotation areas', label: 'Crop rotation areas', color: () => dash.colors[6], gov: true, off: true },
+    { id: 'gov:Slope classes', label: 'Slope classes', color: () => dash.colors[7], gov: true, off: true },
+    { id: 'gov:Natural hazards', label: 'Natural hazards', color: () => 'var(--color-warn)', gov: true, off: true },
+    { id: 'gov:Overland flow', label: 'Overland flow', color: () => dash.colors[2], gov: true, off: true },
+    { id: 'stations', label: 'Reading posts', color: () => 'var(--color-fg)' },
+    { id: 'numbers', label: 'Parcel numbers', color: () => dash.colors[0] },
+  ];
+  const MS = { sheet: 'concept', op: 0.8, on: new Set(LAYERS.filter((l) => !l.off).map((l) => l.id)), sel: null, t: null, built: false, sig: '' };
+
+  function mapControls() {
+    const sel = document.getElementById('map-sheet');
+    const lay = document.getElementById('map-layers');
+    if (!sel || MS.built) return;
+    MS.built = true;
+    sel.addEventListener('change', () => { MS.sheet = sel.value; MS.sig = ''; landmap(); });
+    document.getElementById('map-op').addEventListener('input', (ev) => { MS.op = Number(ev.target.value) / 100; d3.select('#landmap .hl-sheet').attr('opacity', MS.op); });
+    document.getElementById('map-all').addEventListener('click', () => mapFit('all'));
+    document.getElementById('map-inst').addEventListener('click', () => mapFit('inst'));
+    LAYERS.forEach((l) => {
+      const lab = document.createElement('label');
+      const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = MS.on.has(l.id); cb.value = l.id;
+      cb.addEventListener('change', () => { if (cb.checked) MS.on.add(l.id); else MS.on.delete(l.id); MS.sig = ''; landmap(); });
+      const sw = document.createElement('span'); sw.className = 'hl-sw'; sw.style.background = l.color();
+      lab.append(cb, sw, document.createTextNode(l.label)); lay.appendChild(lab);
+    });
+    document.getElementById('proposals').addEventListener('click', (ev) => {
+      const tr = ev.target.closest('tr[data-key]'); if (!tr) return;
+      mapSelect('p', decodeURIComponent(tr.dataset.key), true);
+    });
+    document.getElementById('parcels').addEventListener('click', (ev) => {
+      const tr = ev.target.closest('tr[data-key]'); if (!tr) return;
+      mapSelect('parcel', decodeURIComponent(tr.dataset.key), true);
+    });
+  }
+
+  function fillSheetSelect(sheets) {
+    const sel = document.getElementById('map-sheet');
+    if (!sel) return;
+    const want = ['none'].concat(sheets.map((r) => r.id)).join('|');
+    if (sel.dataset.ids !== want) {
+      sel.replaceChildren(new Option('No drawing', 'none'), ...sheets.slice().sort((a, b) => a.order - b.order).map((r) => new Option(r.title + (r.date ? ' (' + r.date.slice(0, 4) + ')' : ''), r.id)));
+      sel.dataset.ids = want;
+    }
+    if (MS.sheet !== 'none' && !sheets.some((r) => r.id === MS.sheet)) MS.sheet = sheets.length ? 'none' : MS.sheet;
+    sel.value = MS.sheet;
+  }
+
+  function rowsOf(src) { const d = dash.data(src); return d.status === 'ok' ? d.data : []; }
+
+  function landmap() {
+    const box = document.getElementById('landmap');
+    if (!box || !box.offsetParent) return;
+    mapControls();
+    const pd = dash.data('parcels');
+    if (pd.status === 'error') { box.classList.remove('dash-skeleton'); return failBox(box); }
+    if (pd.status !== 'ok') return;
+    const sh = dash.data('map_sheets');
+    const sheets = sh.status === 'ok' ? sh.data : [];
+    fillSheetSelect(sheets);
+    const W = box.clientWidth, H = Math.round(Math.min(680, Math.max(380, W * 0.95)));
+    const sig = [W, MS.sheet, [...MS.on].join(), sh.status, pd.status, dash.data('proposals').status, dash.data('gov_shapes').status, dash.data('gov_layers').status, dash.data('stations').status].join('|');
+    if (sig === MS.sig) return;
+    MS.sig = sig;
+    if (MS.base && MS.base.W !== W) MS.t = null; // a new width starts from the whole land
+    box.classList.remove('dash-skeleton');
+    box.replaceChildren();
+    const parcels = pd.data.map((r) => ({ r, pts: parseShape(r.shape) }));
+    const land = parcels.filter((o) => o.r.in_land !== 'No');
+    const all = land.flatMap((o) => o.pts);
+    const ex = d3.extent(all, (p) => p[0]), ey = d3.extent(all, (p) => p[1]);
+    const k0 = Math.min((W - 40) / (ex[1] - ex[0]), (H - 40) / (ey[1] - ey[0]));
+    const bx = (W - k0 * (ex[1] + ex[0])) / 2, by = (H - k0 * (ey[1] + ey[0])) / 2;
+    MS.base = { k0, bx, by, W, H, land };
+    const svg = d3.select(box).append('svg').attr('width', W).attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Map of the land with the drawings and proposals');
+    const gz = svg.append('g');
+    const g = gz.append('g').attr('transform', `translate(${bx},${by}) scale(${k0})`);
+    const tip = tipper(box);
+    const ns = (sel) => sel.attr('vector-effect', 'non-scaling-stroke');
+    const path = (pts, close) => 'M' + pts.map((p) => p.join(',')).join('L') + (close ? 'Z' : '');
+
+    // 1. the chosen drawing
+    const sheet = sheets.find((r) => r.id === MS.sheet);
+    if (sheet) {
+      const m = String(sheet.m).split(',').map(Number);
+      g.append('image').attr('class', 'hl-sheet').attr('href', sheet.img).attr('width', sheet.width).attr('height', sheet.height)
+        .attr('preserveAspectRatio', 'none').attr('transform', `matrix(${m.join(',')})`).attr('opacity', MS.op).style('pointer-events', 'none');
+    }
+    // 2. parcels
+    parcels.forEach((o) => {
+      const ours = o.r.in_land !== 'No';
+      ns(g.append('path').attr('d', path(o.pts, true)).attr('class', 'hl-hit hl-parcel').attr('data-id', o.r.parcel).attr('data-w', ours ? 2 : 1)
+        .style('fill', ours ? dash.colors[0] : 'transparent').style('fill-opacity', sheet ? 0.05 : 0.14)
+        .style('stroke', ours ? dash.colors[0] : 'var(--cds-chart-muted)').style('stroke-width', ours ? 2 : 1).style('stroke-dasharray', ours ? null : '4 3'))
+        .on('mousemove', (ev) => tip.show(ev, ['Parcel ' + o.r.parcel, o.r.role]))
+        .on('mouseleave', () => tip.hide())
+        .on('click', () => mapSelect('parcel', o.r.parcel));
+    });
+    // 3. public-data shapes, by group; shore sections take the canton's rating
+    const shoreColor = (c) => (Number(c) <= 2 ? 'var(--color-ok)' : Number(c) === 3 ? 'var(--color-warn)' : 'var(--color-bad)');
+    rowsOf('gov_shapes').forEach((r, i) => {
+      const lay = LAYERS.find((l) => l.id === 'gov:' + r.group);
+      if (!lay || !MS.on.has(lay.id)) return;
+      const rings = parseRings(r.shape); if (!rings.length || rings[0].length < 2) return;
+      const area = r.type === 'Polygon';
+      const col = r.group === 'Lake shore' ? shoreColor(r.category) : lay.color();
+      ns(g.append('path').attr('d', rings.map((q) => path(q, area)).join('')).attr('class', 'hl-hit hl-gov').attr('data-id', String(i)).attr('data-w', area ? 1.5 : 5)
+        .style('fill-rule', 'evenodd').style('fill', area ? col : 'none').style('fill-opacity', 0.16)
+        .style('stroke', col).style('stroke-width', area ? 1.5 : 5).style('stroke-dasharray', area ? '6 3' : null).style('stroke-linecap', 'butt'))
+        .on('mousemove', (ev) => tip.show(ev, [r.group, r.label]))
+        .on('mouseleave', () => tip.hide())
+        .on('click', () => mapSelect('gov', String(i)));
+    });
+    // 4. proposals: areas, then lines, then points
+    const props = rowsOf('proposals').filter((r) => MS.on.has(r.layer));
+    const colorOf = (r) => (LAYERS.find((l) => l.id === r.layer) || LAYERS[0]).color();
+    ['area', 'line', 'point'].forEach((kind) => props.filter((r) => r.geom === kind).forEach((r) => {
+      const rings = parseRings(r.shape), pts = rings.flat();
+      let el;
+      if (kind === 'point') {
+        el = g.append('circle').attr('cx', pts[0][0]).attr('cy', pts[0][1]).attr('class', 'hl-hit hl-pt')
+          .attr('data-w', 1.5).style('fill', colorOf(r)).style('stroke', 'var(--color-panel)').style('stroke-width', 1.5);
+      } else {
+        el = g.append('path').attr('d', rings.map((q) => path(q, kind === 'area')).join('')).attr('class', 'hl-hit').attr('data-w', kind === 'line' ? 4 : 1.5)
+          .style('fill', kind === 'area' ? colorOf(r) : 'none').style('fill-opacity', 0.22)
+          .style('stroke', colorOf(r)).style('stroke-width', kind === 'line' ? 4 : 1.5).style('stroke-linecap', 'round').style('stroke-linejoin', 'round');
+      }
+      ns(el.attr('data-id', r.id).classed('hl-prop', true))
+        .on('mousemove', (ev) => tip.show(ev, [r.layer, r.title]))
+        .on('mouseleave', () => tip.hide())
+        .on('click', () => mapSelect('p', r.id));
+    }));
+    // 5. reading posts
+    if (MS.on.has('stations')) {
+      rowsOf('stations').filter((r) => r.e != null && r.n != null && r.e !== '').forEach((r) => {
+        const x = Number(r.e) - E0, y = N0 - Number(r.n);
+        ns(g.append('rect').attr('class', 'hl-hit hl-post').attr('data-id', r.station).attr('data-x', x).attr('data-y', y)
+          .style('fill', 'var(--color-panel)').style('stroke', 'var(--color-fg)').style('stroke-width', 1.5))
+          .on('mousemove', (ev) => tip.show(ev, ['Post ' + r.station, r.habitat]))
+          .on('mouseleave', () => tip.hide())
+          .on('click', () => mapSelect('station', r.station));
+        g.append('text').attr('class', 'hl-lbl hl-postlbl').attr('x', x).attr('y', y).attr('text-anchor', 'middle').attr('dominant-baseline', 'central').text(r.station.replace('S', ''));
+      });
+    }
+    // 6. parcel numbers
+    if (MS.on.has('numbers')) {
+      parcels.forEach((o) => {
+        const c = d3.polygonCentroid(o.pts);
+        g.append('text').attr('class', 'hl-lbl hl-num-lbl').attr('x', c[0]).attr('y', c[1]).attr('text-anchor', 'middle').attr('dominant-baseline', 'central')
+          .style('fill', o.r.in_land !== 'No' ? 'var(--color-fg)' : 'var(--color-fg-muted)').text(o.r.parcel);
+      });
+    }
+    // north arrow and scale (fixed to the frame)
+    const fr = svg.append('g').style('pointer-events', 'none');
+    fr.append('path').attr('d', `M${W - 22},12 l6,16 l-6,-4 l-6,4 Z`).style('fill', 'var(--color-fg-muted)');
+    fr.append('text').attr('x', W - 22).attr('y', 42).attr('text-anchor', 'middle').style('font-size', '11px').text('N');
+    const sb = fr.append('g').attr('class', 'hl-scale');
+
+    const zoom = d3.zoom().scaleExtent([0.7, 14]).on('zoom', (ev) => { MS.t = ev.transform; gz.attr('transform', ev.transform); restyle(); });
+    MS.zoom = zoom; MS.svg = svg;
+    svg.call(zoom).on('dblclick.zoom', null);
+    svg.call(zoom.transform, MS.t || d3.zoomIdentity);
+
+    function restyle() {
+      const k = k0 * (MS.t ? MS.t.k : 1);
+      g.selectAll('.hl-pt').attr('r', (Math.max(4, Math.min(7, 2.2 * Math.sqrt(k)))) / k);
+      g.selectAll('.hl-num-lbl').style('font-size', (12 / k) + 'px').style('stroke-width', (3 / k) + 'px');
+      g.selectAll('.hl-postlbl').style('font-size', (10 / k) + 'px').style('stroke-width', 0);
+      const s = 16 / k;
+      g.selectAll('.hl-post').each(function () { const el = d3.select(this); el.attr('x', el.attr('data-x') - s / 2).attr('y', el.attr('data-y') - s / 2).attr('width', s).attr('height', s).attr('rx', 3 / k); });
+      // scale bar: a round length near 80 px
+      const m = [5, 10, 20, 25, 50, 100, 200].find((v) => v * k >= 60) || 200;
+      sb.selectAll('*').remove();
+      sb.append('line').attr('x1', 12).attr('x2', 12 + m * k).attr('y1', H - 14).attr('y2', H - 14).style('stroke', 'var(--color-fg)').style('stroke-width', 2);
+      sb.append('text').attr('x', 18 + m * k).attr('y', H - 10).style('font-size', '11px').text(m + ' m');
+    }
+    MS.restyle = restyle;
+    restyle();
+    highlight();
+  }
+
+  function mapFit(which, pts) {
+    if (!MS.svg || !MS.base) return;
+    const { k0, bx, by, W, H, land } = MS.base;
+    let P = pts;
+    if (!P) {
+      const ps = which === 'inst' ? land.filter((o) => o.r.parcel === '286') : land;
+      P = ps.flatMap((o) => o.pts);
+    }
+    const xs = d3.extent(P, (p) => bx + p[0] * k0), ys = d3.extent(P, (p) => by + p[1] * k0);
+    const w = Math.max(xs[1] - xs[0], 120 * k0 / 4), h = Math.max(ys[1] - ys[0], 120 * k0 / 4);
+    if (which === 'all' && !pts) { MS.svg.transition().duration(300).call(MS.zoom.transform, d3.zoomIdentity); return; }
+    const k = Math.min(14, 0.85 * Math.min(W / w, H / h));
+    const cx = (xs[0] + xs[1]) / 2, cy = (ys[0] + ys[1]) / 2;
+    MS.svg.transition().duration(300).call(MS.zoom.transform, d3.zoomIdentity.translate(W / 2 - k * cx, H / 2 - k * cy).scale(k));
+  }
+
+  function line(label, text) {
+    const p = document.createElement('div');
+    if (label) { const b = document.createElement('span'); b.className = 'hl-note'; b.textContent = label + ': '; p.appendChild(b); }
+    p.appendChild(document.createTextNode(text));
+    return p;
+  }
+
+  function mapSelect(kind, id, fromTable) {
+    MS.sel = { kind, id };
+    const det = document.getElementById('map-detail');
+    if (!det) return;
+    det.replaceChildren();
+    let pts = null;
+    if (kind === 'p') {
+      const r = rowsOf('proposals').find((x) => x.id === id); if (!r) return;
+      const lay = LAYERS.find((l) => l.id === r.layer);
+      if (fromTable) {
+        if (!MS.on.has(r.layer)) { MS.on.add(r.layer); document.querySelectorAll('#map-layers input').forEach((cb) => { if (cb.value === r.layer) cb.checked = true; }); }
+        if (lay && lay.sheet && rowsOf('map_sheets').some((s) => s.id === lay.sheet)) MS.sheet = lay.sheet;
+        MS.sig = ''; landmap();
+      }
+      const t = document.createElement('b'); t.textContent = r.title; det.appendChild(t);
+      det.appendChild(line(null, r.what));
+      det.appendChild(line('Parcels', r.parcels + (r.outside_our_land && r.outside_our_land !== 'No' ? '. Outside the land: ' + r.outside_our_land : '')));
+      if (r.move) det.appendChild(line('Ranked move', r.move));
+      if (r.checks) det.appendChild(line('Public data to check', r.checks));
+      det.appendChild(line('Source', r.source + '. ' + r.status + '.'));
+      pts = parseShape(r.shape);
+    } else if (kind === 'parcel') {
+      const r = rowsOf('parcels').find((x) => x.parcel === id); if (!r) return;
+      const t = document.createElement('b'); t.textContent = 'Parcel ' + r.parcel + ', Weggis'; det.appendChild(t);
+      det.appendChild(line(null, r.role));
+      det.appendChild(line('Area', fmt(r.area_m2) + ' m² (' + r.area_ha + ' ha)'));
+      det.appendChild(line('In the land', r.in_land));
+      det.appendChild(line('EGRID', r.egrid));
+      const touching = rowsOf('gov_layers').filter((g) => String(g.parcels || '').split(/[^0-9]+/).includes(r.parcel));
+      if (touching.length) det.appendChild(line('Public data on this parcel', touching.map((g) => g.label).join('; ')));
+      if (fromTable) pts = parseShape(r.shape);
+    } else if (kind === 'gov') {
+      const r = rowsOf('gov_shapes')[Number(id)]; if (!r) return;
+      const t = document.createElement('b'); t.textContent = r.group; det.appendChild(t);
+      det.appendChild(line(null, r.label));
+      const L = rowsOf('gov_layers').find((g) => g.layer === r.layer);
+      if (L) { det.appendChild(line('Across the site', L.finding)); det.appendChild(line('Source', L.source + ', layer ' + r.layer)); }
+    } else if (kind === 'station') {
+      const r = rowsOf('stations').find((x) => x.station === id); if (!r) return;
+      const t = document.createElement('b'); t.textContent = 'Post ' + r.station + ', ' + r.habitat; det.appendChild(t);
+      det.appendChild(line('Readings that suit it', r.readings));
+      if (r.spot) det.appendChild(line('Suggested spot', r.spot));
+      det.appendChild(line('Status', r.status));
+    }
+    highlight();
+    if (fromTable) {
+      if (pts && pts.length) mapFit('sel', pts);
+      const card = document.getElementById('card-map'); if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function highlight() {
+    const s = MS.sel;
+    const is = (kind, el) => s && s.kind === kind && el.dataset.id === s.id;
+    d3.selectAll('#landmap .hl-prop').each(function () {
+      const on = is('p', this), w = Number(this.dataset.w);
+      d3.select(this).style('stroke-width', on ? w + 2.5 : w);
+      if (this.tagName === 'circle') d3.select(this).style('stroke', on ? 'var(--color-fg)' : 'var(--color-panel)');
+      if (on) this.parentNode.appendChild(this);
+    });
+    d3.selectAll('#landmap .hl-gov').each(function () { d3.select(this).style('stroke-width', is('gov', this) ? Number(this.dataset.w) + 2.5 : Number(this.dataset.w)); });
+    d3.selectAll('#landmap .hl-parcel').each(function () { d3.select(this).style('stroke-width', is('parcel', this) ? 4 : Number(this.dataset.w)); });
+    document.querySelectorAll('#proposals tbody tr, #parcels tbody tr').forEach((tr) => {
+      const key = decodeURIComponent(tr.dataset.key || '');
+      const on = s && ((s.kind === 'p' && tr.closest('#proposals') && key === s.id) || (s.kind === 'parcel' && tr.closest('#parcels') && key === s.id));
+      tr.classList.toggle('hl-on', !!on);
+    });
+  }
+
+  function publicTable() {
+    const sel = document.getElementById('pub-theme');
+    const d = dash.data('gov_layers');
+    if (sel && d.status === 'ok') {
+      const themes = Array.from(new Set(d.data.map((r) => r.theme))).sort();
+      const want = themes.join('|');
+      if (sel.dataset.ids !== want) {
+        const cur = sel.value;
+        sel.replaceChildren(new Option('All themes', ''), ...themes.map((t) => new Option(t, t)));
+        sel.dataset.ids = want; sel.value = themes.includes(cur) ? cur : '';
+        if (!sel.dataset.wired) { sel.dataset.wired = '1'; sel.addEventListener('change', publicTable); }
+      }
+      const order = { Checked: 0, 'Not present': 1, Failed: 2 };
+      fillTable('gov', (a, b) => (a.theme < b.theme ? -1 : a.theme > b.theme ? 1 : (order[a.status] ?? 3) - (order[b.status] ?? 3)), (r) => !sel.value || r.theme === sel.value);
+      return;
+    }
+    fillTable('gov');
+  }
+
+  function firstMoves() {
+    const ol = document.getElementById('first-moves');
+    const d = dash.data('moves');
+    ol.replaceChildren();
+    if (d.status === 'error') return failBox(ol);
+    if (d.status !== 'ok') return;
+    d.data.slice().sort((a, b) => a.rank - b.rank).slice(0, 5).forEach((r) => {
+      const li = document.createElement('li');
+      const n = document.createElement('span'); n.className = 'hl-rank'; n.textContent = r.rank;
+      const t = document.createElement('div');
+      const b = document.createElement('b'); b.textContent = r.move;
+      const p = document.createElement('p'); p.textContent = r.does;
+      t.append(b, p); li.append(n, t); ol.appendChild(li);
+    });
+  }
+
+  function takeaway() {
+    const c = dash.data('overview_counts');
+    const el = document.getElementById('takeaway');
+    if (c.status !== 'ok' || !c.data.length) return;
+    const r = c.data[0];
+    el.textContent = r.measured === 0
+      ? 'Nothing is measured on the land yet. The land is now mapped with the landscape architect\'s proposals; next come the owner side\'s agreement on what to change and a baseline survey year.'
+      : r.measured + ' of ' + r.measures + ' measures have a baseline.';
+    const rd = document.getElementById('readings-empty');
+    const rw = document.getElementById('readings-wrap');
+    const rs = dash.data('readings');
+    const none = rs.status === 'ok' && rs.data.length === 0;
+    rd.hidden = !none; rw.hidden = none;
+  }
+
+  window.hlDraw = function () {
+    fillMarks();
+    ['facts', 'protections', 'notable', 'invasives', 'indicators', 'moves', 'stations', 'gaps'].forEach((id) => fillTable(id));
+    fillTable('history', (a, b) => a.year - b.year);
+    fillTable('log', (a, b) => (a.date < b.date ? 1 : -1));
+    fillTable('readings-table', (a, b) => (a.Received < b.Received ? 1 : -1));
+    firstMoves();
+    takeaway();
+    siteplan();
+    fillTable('proposals', (a, b) => (a.layer < b.layer ? -1 : a.layer > b.layer ? 1 : 0));
+    fillTable('parcels', (a, b) => (a.in_land === 'No') - (b.in_land === 'No') || b.area_m2 - a.area_m2);
+    publicTable();
+    landmap();
+    highlight();
+    climate();
+    calendar();
+    hbars('groups', 'species_groups', 'group', 'records', 'records');
+    hbars('habitats', 'habitats', 'habitat', 'polygons', 'mapped areas');
+  };
+  dash.onData(window.hlDraw);
+  window.addEventListener('resize', () => { MS.sig = ''; landmap(); });
+  document.getElementById('open-map').addEventListener('click', () => { window.hlShow('map'); dash.setLink('map'); });
+})();
+</script>
+
+<p class="hl-foot">Stella Matutina, Hertenstein. Built from public federal and cantonal records, GBIF, and the landscape architect's sheets of 29 July 2026. Proposals are proposals: changes to the ground need the owner's agreement.</p>
+</body>
+</html>

@@ -1,0 +1,72 @@
+[
+ {
+  "survey": "Veteran tree survey",
+  "start": 1,
+  "end": 3,
+  "who": "Arborist",
+  "status": "Not commissioned"
+ },
+ {
+  "survey": "Breeding birds",
+  "start": 3,
+  "end": 6,
+  "who": "Ornithologist",
+  "status": "Not commissioned"
+ },
+ {
+  "survey": "Amphibians and reptiles",
+  "start": 3,
+  "end": 6,
+  "who": "Herpetologist",
+  "status": "Not commissioned"
+ },
+ {
+  "survey": "Soil sampling and pits",
+  "start": 3,
+  "end": 5,
+  "who": "Soil lab",
+  "status": "Not commissioned"
+ },
+ {
+  "survey": "Habitat map of the holding",
+  "start": 5,
+  "end": 6,
+  "who": "Landscape ecologist",
+  "status": "Not commissioned"
+ },
+ {
+  "survey": "Vegetation plots",
+  "start": 5,
+  "end": 8,
+  "who": "Botanist",
+  "status": "Not commissioned"
+ },
+ {
+  "survey": "Bats",
+  "start": 5,
+  "end": 9,
+  "who": "Bat specialist",
+  "status": "Not commissioned"
+ },
+ {
+  "survey": "Butterflies and grasshoppers",
+  "start": 5,
+  "end": 9,
+  "who": "Entomologist",
+  "status": "Not commissioned"
+ },
+ {
+  "survey": "Invasive species map",
+  "start": 6,
+  "end": 9,
+  "who": "Garden group + expert day",
+  "status": "Not commissioned"
+ },
+ {
+  "survey": "Shore and underwater plants",
+  "start": 7,
+  "end": 8,
+  "who": "Aquatic ecologist",
+  "status": "Not commissioned"
+ }
+]

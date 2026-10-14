@@ -1,0 +1,72 @@
+[
+ {
+  "rank": 1,
+  "move": "Oak protection zones",
+  "does": "No parking, trenching or storage in veteran oaks' root zones; deadwood kept; successor oaks planted",
+  "depends": "Tree survey; owner agreement",
+  "status": "Proposed"
+ },
+ {
+  "rank": 2,
+  "move": "Lean meadows",
+  "does": "No fertiliser; two late cuts with clippings removed; strips left as refuge; regional seed where needed",
+  "depends": "Which meadows are in the holding; any farm lease",
+  "status": "Proposed"
+ },
+ {
+  "rank": 3,
+  "move": "Edible landscape on worked ground",
+  "does": "Kitchen garden, food-forest edge and high-stem orchard near the buildings, off the meadows",
+  "depends": "Garden group's beds; old orchard sites on historical maps",
+  "status": "Proposed"
+ },
+ {
+  "rank": 4,
+  "move": "Invasive removal",
+  "does": "Ragwort first, then cherry laurel, blackberry, black locust",
+  "depends": "Invasive map",
+  "status": "Proposed"
+ },
+ {
+  "rank": 5,
+  "move": "Softer shore",
+  "does": "One stretch of wall stepped to gravel and reed; boats kept off plant beds; boat cleaning rule",
+  "depends": "Shore length; permits; Postunentäli and pond question",
+  "status": "Proposed"
+ },
+ {
+  "rank": 6,
+  "move": "New small pond",
+  "does": "Fish-free pond and wet ground for newts and dragonflies",
+  "depends": "Soil and water survey",
+  "status": "Proposed"
+ },
+ {
+  "rank": 7,
+  "move": "Hedges and small structures",
+  "does": "Native hedges, stone and log piles, nest and bat boxes",
+  "depends": "Bird and bat surveys first",
+  "status": "Proposed"
+ },
+ {
+  "rank": 8,
+  "move": "Lighting rule",
+  "does": "Warm, shielded, timed light; nothing lit toward trees, meadow or water",
+  "depends": "Operator agreement",
+  "status": "Proposed"
+ },
+ {
+  "rank": 9,
+  "move": "Water and nutrient loops",
+  "does": "Roof water to tanks; kitchen compost; study lake-water heat",
+  "depends": "Technical study; permits",
+  "status": "Proposed"
+ },
+ {
+  "rank": 10,
+  "move": "Solar on the good roofs",
+  "does": "Panels on roofs rated good or very good, beside the existing green roofs",
+  "depends": "Heritage rules; roof condition",
+  "status": "Proposed"
+ }
+]

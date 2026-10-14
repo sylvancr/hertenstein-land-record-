@@ -1,0 +1,101 @@
+[
+ {
+  "name": "Cephalanthera damasonium",
+  "common": "White helleborine",
+  "group": "Orchid",
+  "year": 2019,
+  "where": "Within metres of the main building",
+  "why": "Woodland orchid on calcareous, undisturbed soil",
+  "sensitive": true
+ },
+ {
+  "name": "Cypripedium calceolus",
+  "common": "Lady's slipper",
+  "group": "Orchid",
+  "year": 2021,
+  "where": "Blurred by the recording platform",
+  "why": "Protected across Europe",
+  "sensitive": true
+ },
+ {
+  "name": "Anacamptis morio",
+  "common": "Green-winged orchid",
+  "group": "Orchid",
+  "year": 2023,
+  "where": "Blurred by the recording platform",
+  "why": "Lean meadow species",
+  "sensitive": true
+ },
+ {
+  "name": "Ophrys apifera",
+  "common": "Bee orchid",
+  "group": "Orchid",
+  "year": 2024,
+  "where": "Blurred by the recording platform",
+  "why": "Lean, dry grassland",
+  "sensitive": true
+ },
+ {
+  "name": "Spiranthes aestivalis",
+  "common": "Summer lady's tresses",
+  "group": "Orchid",
+  "year": 1983,
+  "where": "Around Weggis, coarse",
+  "why": "Wet-meadow orchid, protected across Europe; not seen since",
+  "sensitive": true
+ },
+ {
+  "name": "Ophrys holosericea",
+  "common": "Late spider orchid",
+  "group": "Orchid",
+  "year": 1960,
+  "where": "Around Weggis, coarse",
+  "why": "Named in the BLN sheet for the Rigi slopes",
+  "sensitive": true
+ },
+ {
+  "name": "Milvus milvus",
+  "common": "Red kite",
+  "group": "Bird",
+  "year": 2025,
+  "where": "Peninsula",
+  "why": "Raptor over the site",
+  "sensitive": false
+ },
+ {
+  "name": "Milvus migrans",
+  "common": "Black kite (probably)",
+  "group": "Bird",
+  "year": null,
+  "where": "Over the site, back each 19 March",
+  "why": "The Sisters' own record of the place",
+  "sensitive": false
+ },
+ {
+  "name": "Ephemera danica",
+  "common": "Green drake mayfly",
+  "group": "Insect",
+  "year": 2024,
+  "where": "Shore",
+  "why": "Lives in clean gravel shores",
+  "sensitive": false
+ },
+ {
+  "name": "Acherontia atropos",
+  "common": "Death's-head hawkmoth",
+  "group": "Insect",
+  "year": 2024,
+  "where": "Peninsula",
+  "why": "Large migrant moth",
+  "sensitive": false
+ },
+ {
+  "name": "Elodea nuttallii",
+  "common": "Nuttall's waterweed",
+  "group": "Water plant",
+  "year": 2021,
+  "where": "Near shore",
+  "why": "Invasive in the lake",
+  "sensitive": false
+ }
+]

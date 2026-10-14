@@ -1,0 +1,56 @@
+[
+ {
+  "habitat": "Grassland, type not given",
+  "code": "4",
+  "polygons": 9,
+  "confidence": "Unknown"
+ },
+ {
+  "habitat": "Fertile hay meadow (Fromental)",
+  "code": "4.5.1",
+  "polygons": 7,
+  "confidence": "High"
+ },
+ {
+  "habitat": "Buildings",
+  "code": "9.2",
+  "polygons": 3,
+  "confidence": "Unknown"
+ },
+ {
+  "habitat": "Green roof",
+  "code": "9221",
+  "polygons": 3,
+  "confidence": "Unknown"
+ },
+ {
+  "habitat": "Sealed ground",
+  "code": "9.0.2",
+  "polygons": 3,
+  "confidence": "Unknown"
+ },
+ {
+  "habitat": "Trampled lawn and ruderal ground",
+  "code": "7.1",
+  "polygons": 2,
+  "confidence": "Unknown"
+ },
+ {
+  "habitat": "Black locust wood",
+  "code": "6.3.9",
+  "polygons": 1,
+  "confidence": "Medium"
+ },
+ {
+  "habitat": "Asphalt road",
+  "code": "9.3.2",
+  "polygons": 1,
+  "confidence": "Unknown"
+ },
+ {
+  "habitat": "Rock and scree",
+  "code": "3",
+  "polygons": 1,
+  "confidence": "Unknown"
+ }
+]

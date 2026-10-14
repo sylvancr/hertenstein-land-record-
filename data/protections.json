@@ -1,0 +1,58 @@
+[
+ {
+  "name": "BLN 1606, subarea 5",
+  "kind": "Federal landscape inventory",
+  "applies": "The site lies inside it",
+  "detail": "Keep the small-scale shore landscape, natural underwater habitats and near-natural shores, and the rib landscape",
+  "status": "Checked"
+ },
+ {
+  "name": "Shoreline landscape protection, Zinnen",
+  "kind": "Canton shore plan",
+  "applies": "Shore in front of Zinnen",
+  "detail": "Shore protection along Postunen, Zinnen and Hertenstein",
+  "status": "Checked"
+ },
+ {
+  "name": "Zinnen ensemble",
+  "kind": "Canton shore plan",
+  "applies": "Neighbouring buildings and trees",
+  "detail": "19th-century houses and boathouses with notable trees",
+  "status": "Checked"
+ },
+ {
+  "name": "Hertenstein bay shallow water",
+  "kind": "Canton shore plan",
+  "applies": "Lake near the peninsula",
+  "detail": "Stoneworts and pondweeds; fish nursery; bird resting",
+  "status": "Checked"
+ },
+ {
+  "name": "Hertenstein pond (LRI F 1)",
+  "kind": "Cantonal wetland inventory",
+  "applies": "Peninsula; distance to the site not known",
+  "detail": "Silting and nutrient run-off; buffer of extensive farming proposed",
+  "status": "Checked"
+ },
+ {
+  "name": "Postunentäli renaturation",
+  "kind": "Canton shore plan",
+  "applies": "Whether it is in the holding is not known",
+  "detail": "One of the best shore renaturation sites in the canton",
+  "status": "Checked"
+ },
+ {
+  "name": "Peninsula round path",
+  "kind": "Municipal path priority",
+  "applies": "Route may cross the holding",
+  "detail": "Weggis's top path priority; needs rights of way",
+  "status": "Checked"
+ },
+ {
+  "name": "Zoning, hazards, groundwater for parcel 286",
+  "kind": "Land-register restrictions",
+  "applies": "Parcel 286",
+  "detail": "Not read yet",
+  "status": "Unknown"
+ }
+]

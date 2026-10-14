@@ -1,0 +1,112 @@
+[
+ {
+  "station": "S1",
+  "habitat": "Oak park",
+  "readings": "Birds, first of the year, anything else",
+  "lat": 47.030635,
+  "lon": 8.400424,
+  "status": "Suggested spot",
+  "e": 2673107.0,
+  "n": 1209292.0,
+  "spot": "Among the oaks on the east lawn of 286, where the concept keeps oak trees"
+ },
+ {
+  "station": "S2",
+  "habitat": "Best meadow",
+  "readings": "Flowers, pollinators, birds",
+  "lat": 47.029947,
+  "lon": 8.398943,
+  "status": "Suggested spot",
+  "e": 2672995.4,
+  "n": 1209214.2,
+  "spot": "Middle of the hay meadow on 289"
+ },
+ {
+  "station": "S3",
+  "habitat": "Hay meadow",
+  "readings": "Flowers, pollinators, soil",
+  "lat": 47.029061,
+  "lon": 8.398269,
+  "status": "Suggested spot",
+  "e": 2672945.4,
+  "n": 1209115.1,
+  "spot": "Upper slope of 292, in the proposed wood pasture"
+ },
+ {
+  "station": "S4",
+  "habitat": "Kitchen garden",
+  "readings": "Soil, pollinators, weather",
+  "lat": 47.030314,
+  "lon": 8.397422,
+  "status": "Suggested spot",
+  "e": 2672879.3,
+  "n": 1209253.6,
+  "spot": "Sunny ground of 505, where the community garden is proposed"
+ },
+ {
+  "station": "S5",
+  "habitat": "Woodland edge",
+  "readings": "Birds, invasives, anything else",
+  "lat": 47.02875,
+  "lon": 8.397732,
+  "status": "Suggested spot",
+  "e": 2672905.0,
+  "n": 1209080.0,
+  "spot": "Upper edge of 292, by the oak woodland band"
+ },
+ {
+  "station": "S6",
+  "habitat": "Hedge or orchard",
+  "readings": "Birds, pollinators, first of the year",
+  "lat": 47.029771,
+  "lon": 8.397159,
+  "status": "Suggested spot",
+  "e": 2672860.0,
+  "n": 1209193.0,
+  "spot": "Lower 505, among the proposed fruit and nut trees"
+ },
+ {
+  "station": "S7",
+  "habitat": "Shore and landing",
+  "readings": "Lake, birds, invasives",
+  "lat": 47.030159,
+  "lon": 8.39706,
+  "status": "Suggested spot",
+  "e": 2672852.0,
+  "n": 1209236.0,
+  "spot": "Shore of 505 at the swimming place"
+ },
+ {
+  "station": "S8",
+  "habitat": "Wet ground",
+  "readings": "Anything else, first of the year",
+  "lat": 47.028124,
+  "lon": 8.396325,
+  "status": "Suggested spot",
+  "e": 2672798.9,
+  "n": 1209009.1,
+  "spot": "Lake end of 292, where the stream would meet the proposed wetland"
+ },
+ {
+  "station": "S9",
+  "habitat": "Night sky spot",
+  "readings": "Night, weather",
+  "lat": 47.029462,
+  "lon": 8.398666,
+  "status": "Suggested spot",
+  "e": 2672975.0,
+  "n": 1209160.0,
+  "spot": "Open slope of 292 above the pond, away from building lights"
+ },
+ {
+  "station": "S10",
+  "habitat": "Courtyard",
+  "readings": "Weather, birds, first of the year",
+  "lat": 47.030713,
+  "lon": 8.399378,
+  "status": "Suggested spot",
+  "e": 2673027.4,
+  "n": 1209299.7,
+  "spot": "The summer courtyard between chapel and dorms"
+ }
+]

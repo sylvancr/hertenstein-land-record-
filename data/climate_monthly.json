@@ -1,0 +1,74 @@
+[
+ {
+  "month": "Jan",
+  "max_c": 4,
+  "min_c": -2,
+  "rain_mm": 55
+ },
+ {
+  "month": "Feb",
+  "max_c": 6,
+  "min_c": -2,
+  "rain_mm": 60
+ },
+ {
+  "month": "Mar",
+  "max_c": 11,
+  "min_c": 2,
+  "rain_mm": 75
+ },
+ {
+  "month": "Apr",
+  "max_c": 15,
+  "min_c": 5,
+  "rain_mm": 95
+ },
+ {
+  "month": "May",
+  "max_c": 19,
+  "min_c": 9,
+  "rain_mm": 150
+ },
+ {
+  "month": "Jun",
+  "max_c": 23,
+  "min_c": 13,
+  "rain_mm": 165
+ },
+ {
+  "month": "Jul",
+  "max_c": 25,
+  "min_c": 15,
+  "rain_mm": 165
+ },
+ {
+  "month": "Aug",
+  "max_c": 24,
+  "min_c": 14,
+  "rain_mm": 170
+ },
+ {
+  "month": "Sep",
+  "max_c": 20,
+  "min_c": 11,
+  "rain_mm": 110
+ },
+ {
+  "month": "Oct",
+  "max_c": 14,
+  "min_c": 7,
+  "rain_mm": 90
+ },
+ {
+  "month": "Nov",
+  "max_c": 8,
+  "min_c": 2,
+  "rain_mm": 80
+ },
+ {
+  "month": "Dec",
+  "max_c": 5,
+  "min_c": -1,
+  "rain_mm": 80
+ }
+]

@@ -1,0 +1,972 @@
+[
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.bundesinventare-amphibien",
+"label": "Amphibian spawning sites of national importance",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.bundesinventare-amphibien&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.bundesinventare-amphibien_wanderobjekte",
+"label": "Amphibian migration objects (national inventory)",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.bundesinventare-amphibien_wanderobjekte&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.bundesinventare-flachmoore",
+"label": "Fens of national importance",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.bundesinventare-flachmoore&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.bundesinventare-hochmoore",
+"label": "Raised bogs of national importance",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.bundesinventare-hochmoore&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.bundesinventare-moorlandschaften",
+"label": "Mire landscapes of national importance",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.bundesinventare-moorlandschaften&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.bundesinventare-auen",
+"label": "Floodplains of national importance",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.bundesinventare-auen&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.bundesinventare-trockenwiesen_trockenweiden",
+"label": "Dry meadows and pastures of national importance (TWW)",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.bundesinventare-trockenwiesen_trockenweiden&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.bundesinventare-vogelreservate",
+"label": "Water and migratory bird reserves (WZVV)",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.bundesinventare-vogelreservate&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.bundesinventare-jagdbanngebiete",
+"label": "Federal hunting ban areas",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.bundesinventare-jagdbanngebiete&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.schutzgebiete-smaragd",
+"label": "Emerald network sites",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.schutzgebiete-smaragd&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.schutzgebiete-ramsar",
+"label": "Ramsar sites",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.schutzgebiete-ramsar&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.fauna-wildtierkorridor_national",
+"label": "Wildlife corridors of national importance",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.fauna-wildtierkorridor_national&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.waldreservate",
+"label": "Forest reserves",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.waldreservate&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.wrz-wildruhezonen_portal",
+"label": "Wildlife rest zones",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.wrz-wildruhezonen_portal&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.schutzgebiete-aulav_uebrige",
+"label": "Other protected areas (AuLaV)",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.schutzgebiete-aulav_uebrige&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.schutzgebiete-paerke_nationaler_bedeutung",
+"label": "Parks of national importance",
+"parcels": "none",
+"finding": "No object of this inventory intersects the site envelope (identify returned an empty result list).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.schutzgebiete-paerke_nationaler_bedeutung&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.ren-wald",
+"label": "National ecological network (REN): wald",
+"parcels": "unknown",
+"finding": "Layer exists (found via SearchServer) but the identify call returned a client error; REN layers appear to be display-only (not queryable) on geo.admin.ch. View manually on map.geo.admin.ch.",
+"status": "Failed",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.ren-wald&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.ren-fliessgewaesser_seen",
+"label": "National ecological network (REN): fliessgewaesser seen",
+"parcels": "unknown",
+"finding": "Layer exists (found via SearchServer) but the identify call returned a client error; REN layers appear to be display-only (not queryable) on geo.admin.ch. View manually on map.geo.admin.ch.",
+"status": "Failed",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.ren-fliessgewaesser_seen&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.ren-extensive_landwirtschaftsgebiete",
+"label": "National ecological network (REN): extensive landwirtschaftsgebiete",
+"parcels": "unknown",
+"finding": "Layer exists (found via SearchServer) but the identify call returned a client error; REN layers appear to be display-only (not queryable) on geo.admin.ch. View manually on map.geo.admin.ch.",
+"status": "Failed",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.ren-extensive_landwirtschaftsgebiete&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.ren-trockenstandorte",
+"label": "National ecological network (REN): trockenstandorte",
+"parcels": "unknown",
+"finding": "Layer exists (found via SearchServer) but the identify call returned a client error; REN layers appear to be display-only (not queryable) on geo.admin.ch. View manually on map.geo.admin.ch.",
+"status": "Failed",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.ren-trockenstandorte&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.ren-feuchtgebiete",
+"label": "National ecological network (REN): feuchtgebiete",
+"parcels": "unknown",
+"finding": "Layer exists (found via SearchServer) but the identify call returned a client error; REN layers appear to be display-only (not queryable) on geo.admin.ch. View manually on map.geo.admin.ch.",
+"status": "Failed",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.ren-feuchtgebiete&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ecological infrastructure",
+"label": "Ecological infrastructure (federal)",
+"parcels": "unknown",
+"finding": "SearchServer for 'ecological infrastructure' returned only ch.agroscope.fokuskarte-voegel (Focus map birds); no published federal ecological-infrastructure layer found. Not queried further.",
+"status": "Failed",
+"source": "geo.admin.ch SearchServer",
+"url": "https://api3.geo.admin.ch/rest/services/api/SearchServer?searchText=ecological%20infrastructure&type=layers&lang=en"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.swisstopo.geologie-geotope",
+"label": "Geotopes of Switzerland",
+"parcels": "none",
+"finding": "No geotope intersects the site envelope.",
+"status": "Not present",
+"source": "swisstopo via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.swisstopo.geologie-geotope&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Nature inventories",
+"layer": "ch.bafu.biogeographische_regionen",
+"label": "Biogeographic region",
+"parcels": "whole site",
+"finding": "Envelope straddles two subregions of 'Alpennordflanke' (Versant nord des Alpes): objnummer 6 'Voralpen' and objnummer 7 'Nordalpen'. Which applies to each parcel was not resolved.",
+"status": "Checked",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.biogeographische_regionen&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Water",
+"layer": "ch.swisstopo.swisstlm3d-gewaessernetz",
+"label": "Hydrography swissTLM3D (stream network)",
+"parcels": "none (lake only)",
+"finding": "Only one feature in the envelope: the lake itself, 'Vierwaldstättersee' (objektart 101, gwl_nr CH0091790000). No stream (open or underground) segment from swissTLM3D intersects the site envelope.",
+"status": "Checked",
+"source": "swisstopo via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.swisstopo.swisstlm3d-gewaessernetz&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Water",
+"layer": "ch.swisstopo.vec25-gewaessernetz_referenz",
+"label": "Hydrological network VECTOR25",
+"parcels": "none (lake only)",
+"finding": "Only the lake: name 'Vierwaldstättersee', gewissnr 9179, gwlnr CH0091790000, objectval 'See'. No stream in the envelope.",
+"status": "Checked",
+"source": "swisstopo via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.swisstopo.vec25-gewaessernetz_referenz&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Water",
+"layer": "FLIESGEW_COL_V3_MP/170",
+"label": "Canton LU stream network (Gewässernetz, lines)",
+"parcels": "none",
+"finding": "0 features in the site envelope; layer 169 ('Keine Gewässer im rechtlichen Sinn') also 0. The cantonal network shows no watercourse - open or culverted - on parcels 292/505 or anywhere in the envelope.",
+"status": "Not present",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/FLIESGEW_COL_V3_MP/MapServer/170/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Water",
+"layer": "ch.bafu.oekomorphologie-f_abschnitte",
+"label": "Stream ecomorphology - river reaches",
+"parcels": "none",
+"finding": "No assessed stream reach in the envelope (consistent with no streams).",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.oekomorphologie-f_abschnitte&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Water",
+"layer": "ch.bafu.oekomorphologie-f_bauwerke",
+"label": "Stream ecomorphology - structures",
+"parcels": "none",
+"finding": "No structures recorded in the envelope.",
+"status": "Not present",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.oekomorphologie-f_bauwerke&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Water",
+"layer": "ch.bafu.gewaesser-uferbestockung_vegetation",
+"label": "Riparian stocking map",
+"parcels": "unknown",
+"finding": "Identify returned a client error (layer likely not queryable).",
+"status": "Failed",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.gewaesser-uferbestockung_vegetation&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Water",
+"layer": "SEEINXXX_COL_V2_MP/77",
+"label": "Lake-shore assessment (Seeuferbewertung, Gesamtbewertung) - lake-shore ecomorphology",
+"parcels": "288, 505, 292 (shoreline) and neighbouring shore",
+"finding": "19 shore sections of 50 m (LU_42.55-LU_42.7 and LU_43.05-LU_43.75, Weggis) touch the envelope. Index scale: <=1.8 naturnah, <=2.6 wenig beeinträchtigt, <=3.4 stark beeinträchtigt, <=4.2 naturfremd, <=5 künstlich. Only LU_43.3 (1.68) and LU_43.05 (1.79) are 'naturnah'; the rest score 3.15-4.08 (stark beeinträchtigt or naturfremd), mostly with U_VERBAU (bank armouring) code 5. Data are the basis for revitalisation planning of Lucerne's lakes.",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/SEEINXXX_COL_V2_MP/MapServer/77/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Water",
+"layer": "SEEINXXX_COL_V2_MP/8",
+"label": "Lake-shore target-achievement grades (BAFU) - overall",
+"parcels": "none",
+"finding": "0 features in envelope.",
+"status": "Not present",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/SEEINXXX_COL_V2_MP/MapServer/8/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Water",
+"layer": "GWSXXXXX_COL_V3_MP/3",
+"label": "Water protection areas Au/Ao (cantonal Gewässerschutzkarte 2024)",
+"parcels": "whole site (land); lake = Ao",
+"finding": "Two features: OBJECTID 719 TYP 3 'übriger Bereich' (üB, no special protection area) covers the land - confirmed at parcel 289 centroid; OBJECTID 658 TYP 2 / TYPZUS 3 = 'Gewässerschutzbereich Ao' on the lake surface. Basis: 'Überarbeitung Gewässerschutzkarte Kanton Luzern 2024' (Dr. von Moos AG).",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/GWSXXXXX_COL_V3_MP/MapServer/3/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Water",
+"layer": "ch.bafu.gewaesserschutz-bereiche",
+"label": "Water protection areas (federal aggregate)",
+"parcels": "unknown",
+"finding": "Identify returned a client error; cantonal layer GWSXXXXX used instead.",
+"status": "Failed",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.gewaesserschutz-bereiche&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Water",
+"layer": "GWSXXXXX_COL_V3_MP/2",
+"label": "Groundwater protection zones (S zones)",
+"parcels": "none",
+"finding": "0 features in the envelope; Zuströmbereiche Zu/Zo (layer 1) also 0.",
+"status": "Not present",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/GWSXXXXX_COL_V3_MP/MapServer/2/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Water",
+"layer": "ch.bafu.gewaesserschutz-badewasserqualitaet",
+"label": "Bathing water quality (nearest stations)",
+"parcels": "none (off-site)",
+"finding": "None in envelope. Nearest: CH03001 'Strandbad-Lido, Weggis' at E 2674610, N 1209110 (~1.7 km east), Vierwaldstättersee, year_bw 2025, qualitaet '1' (EU Bathing Water Directive 2006 classes; the legend text does not define code 1, which is presumably the top class). Next: CH03004 'Ufschötti, Luzern' (2667081/1210989), 2025, qualitaet '1'.",
+"status": "Checked",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2666000,1204000,2680000,1214000&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.gewaesserschutz-badewasserqualitaet&tolerance=0&sr=2056&returnGeometry=true"
+},
+{
+"theme": "Water",
+"layer": "ch.bafu.hydrologie-hydromessstationen",
+"label": "Hydrological gauging stations",
+"parcels": "none (off-site)",
+"finding": "None in envelope. Lake Lucerne gauge: id 2207 'Vierwaldstättersee-Luzern'. Other stations whose catchments intersect a 22x14 km box: 2152 'Reuss-Luzern, Geissmattbrücke', 2634 'Kleine Emme-Emmen', 2481 'Engelberger Aa-Buochs, Flugplatz'. Station coordinates were not returned.",
+"status": "Checked",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2662000,1202000,2684000,1216000&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.hydrologie-hydromessstationen&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Water",
+"layer": "OFLABKAR_DS_V1_MP/0",
+"label": "Overland flow map (surface runoff hazard indication)",
+"parcels": "whole site",
+"finding": "86 runoff polygons in the envelope (100-year thunderstorm scenario, modelled from DTM): flow depth class 1 (0-0.10 m) 20, class 2 (0.10-0.25 m) 39, class 3 (>0.25 m) 26, 'Gewässer' 1. Largest >0.25 m patches: 1367 m2 at ~2672940/1209360 (north, below road) and 1151 m2 running diagonally across parcel 292/505 (~2672850-2672935, 1209100-1209190).",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/OFLABKAR_DS_V1_MP/MapServer/0/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Water",
+"layer": "ch.bafu.gefaehrdungskarte-oberflaechenabfluss",
+"label": "Overland flow map (federal)",
+"parcels": "unknown",
+"finding": "Correct id found via SearchServer (old guess ch.bafu.gefahren-oberflaechenabfluss also tried); both point (tolerance 10) and envelope identify returned a client error - raster, not queryable. Cantonal OFLABKAR layer used instead.",
+"status": "Failed",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.gefaehrdungskarte-oberflaechenabfluss&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Water",
+"layer": "ch.bafu.aquaprotect_100 / _500",
+"label": "Flood areas Aquaprotect",
+"parcels": "unknown",
+"finding": "Identify returned a client error for aquaprotect_100 and aquaprotect_500 (raster, not queryable).",
+"status": "Failed",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.aquaprotect_100&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Water",
+"layer": "GWRMBRXX_COL_V1_MP/3",
+"label": "Theoretical Gewässerraum of standing waters",
+"parcels": "shoreline (288, 505, 292)",
+"finding": "One feature: BEZ_GEW 'Vierwaldstättersee', ZP_STATUS 1, BEMERKUNG 'Nachgeführt 7.2.18' (237654 m2 along the shore).",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/GWRMBRXX_COL_V1_MP/MapServer/3/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Land and soil",
+"layer": "ch.are.bauzonen",
+"label": "Building zones Switzerland (harmonised)",
+"parcels": "none",
+"finding": "No building zone intersects the envelope or parcel 286 centroid; layer confirmed queryable (16 Weggis building zones returned for a test box 1.3 km east). The whole site is outside the building zone.",
+"status": "Not present",
+"source": "ARE via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.are.bauzonen&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Land and soil",
+"layer": "ZONPLANX_COL_V3_MP/19",
+"label": "Weggis zoning plan - basic use (Grundnutzung)",
+"parcels": "286, 289, 292, 505, 288 (centroids)",
+"finding": "All five parcel centroids lie in OBJECTID 27367 'Landwirtschaftszone 1' (ZONTYP_GDE 6001, noise sensitivity 3). Envelope also contains six 'Wald' polygons (6851; 219-13690 m2), 'Landwirtschaftszone 3' (6009, 24515 m2, north), 'Übriges Gebiet A' (lake) and a 'Naturschutzzone' (6901, 12199 m2) immediately east of the envelope. Source file b_wegg_zopla.itf; RECHTSTAT 4.",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/ZONPLANX_COL_V3_MP/MapServer/19/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Land and soil",
+"layer": "WALDFLAE_DS_V1_MP/0",
+"label": "Forest areas (legal forest)",
+"parcels": "292 (diagonal strip), 288/505 lakeshore, north shore",
+"finding": "4 forest polygons in the envelope: OBJECTID 4601 (13166 m2) - a band running diagonally from the lakeshore at ~2672805/1208935 NE to ~2673148/1209319 through parcel 292; 2272 (3722 m2) along the north-west shore; 4600 (220 m2) at the shore by parcel 288; 2274 (26727 m2) east of the site. Mirrors the 'Wald' zones in the zoning plan.",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/WALDFLAE_DS_V1_MP/MapServer/0/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Land and soil",
+"layer": "ZONPLANX_COL_V3_MP/0",
+"label": "Static forest boundaries (Statische Waldgrenzen)",
+"parcels": "none",
+"finding": "0 features - no static forest boundary fixed here, so forest extent can change with growth.",
+"status": "Not present",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/ZONPLANX_COL_V3_MP/MapServer/0/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Land and soil",
+"layer": "ch.swisstopo.swisstlm3d-wald",
+"label": "Forest swissTLM3D",
+"parcels": "unknown",
+"finding": "Identify (envelope and point) returned client errors. Cantonal WALDFLAE used instead.",
+"status": "Failed",
+"source": "swisstopo via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.swisstopo.swisstlm3d-wald&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Land and soil",
+"layer": "SWLDXXXX_COL_V3_MP/4",
+"label": "Protective forest (Schutzwald, cantonal)",
+"parcels": "none",
+"finding": "0 features in the envelope - the site's forest is not designated protective forest.",
+"status": "Not present",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/SWLDXXXX_COL_V3_MP/MapServer/4/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Land and soil",
+"layer": "ch.bafu.silvaprotect-sturz / -hangmuren",
+"label": "SilvaProtect-CH (protective-forest hazard processes)",
+"parcels": "unknown",
+"finding": "Identify returned client errors (not queryable).",
+"status": "Failed",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.silvaprotect-sturz&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Land and soil",
+"layer": "ch.bafu.landesforstinventar-schutzwaldregionen",
+"label": "NFI protective forest region",
+"parcels": "whole site",
+"finding": "Region 1: name_en 'Jura + Plateau' (name_de 'Jura + Mittelland').",
+"status": "Checked",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.landesforstinventar-schutzwaldregionen&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Land and soil",
+"layer": "FFFHNGKL_DS_V1_MP/0",
+"label": "Slope classes (cantonal, for crop rotation areas)",
+"parcels": "289: 18-25%; 292: >25%",
+"finding": "21 polygons in envelope: <18% (5 features), 18-25% (8), >25% (8). Point checks: parcel 289 centroid in 18-25% (OBJECTID 83309); parcel 292 centroid in >25% (OBJECTID 84652, 91304 m2 polygon covering most of the slope); 286/505/288 centroids not in any classified polygon (the forest strip appears as a hole).",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/FFFHNGKL_DS_V1_MP/MapServer/0/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Land and soil",
+"layer": "ch.blw.hang_steillagen",
+"label": "Hillside and steep slopes (federal direct-payment slopes)",
+"parcels": "unknown",
+"finding": "Identify returned a client error (envelope and point with mapExtent/imageDisplay). Legend says classes <18, 18-35, 35-50, >50%. Cantonal FFFHNGKL used instead.",
+"status": "Failed",
+"source": "BLW via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.blw.hang_steillagen&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Land and soil",
+"layer": "FFFXXXXX_COL_V4_MP/308",
+"label": "Crop rotation areas (Fruchtfolgeflächen, Kontingentsflächen)",
+"parcels": "505, 289 (meadow belt)",
+"finding": "4 FFF polygons totalling ~8533 m2 (473, 1327, 1919, 4814 m2) on the meadows between the road and the forest strip; parcel 505 centroid inside OBJECTID 8016. All HERKUNFT 1 'Potentielle FFF, Kartierung aus 1992', GES_TYP 3 'knapp geeignet', NEK 99 'unbekannt', FFF_ANRECH 100 'zu 100% anrechenbar'. No new survey since 2009 (layer 0: 0 features).",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/FFFXXXXX_COL_V4_MP/MapServer/308/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Land and soil",
+"layer": "LWKLIZON_DS_V2_MP/0",
+"label": "Agricultural climate zones (canton LU)",
+"parcels": "whole site",
+"finding": "Zone 'A5': Klimaeignung 'Dauergrünland bevorzugt oder begünstigt'; Futterbau 'sehr günstig bis günstig'; Getreidebau 'wenig bis begrenzt geeignet'; Kartoffeln 'geeignet bis begrenzt geeignet'; Körnermais 'günstig bis geeignet'; Spezialkulturen 'geeignet'; Vegetationszeit '210-220 Tage'; Wärmestufe 'ziemlich mild bis mild'; Niederschlag 'sehr feucht'.",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/LWKLIZON_DS_V2_MP/MapServer/0/query?geometry=2672995.4,1209214.2&geometryType=esriGeometryPoint&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Land and soil",
+"layer": "ch.blw.klimaeignung-*",
+"label": "Agricultural climate suitability (federal)",
+"parcels": "unknown",
+"finding": "SearchServer 'climatic suitability' returned no layers; cantonal LWKLIZON used instead.",
+"status": "Failed",
+"source": "BLW via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/SearchServer?searchText=climatic%20suitability&type=layers&lang=en"
+},
+{
+"theme": "Land and soil",
+"layer": "ch.blw.erosion",
+"label": "Erosion risk cropland (qualitative)",
+"parcels": "unknown",
+"finding": "Identify returned a client error (not queryable).",
+"status": "Failed",
+"source": "BLW via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.blw.erosion&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Land and soil",
+"layer": "ch.blw.feldblockkarte",
+"label": "Field block map",
+"parcels": "unknown",
+"finding": "Identify returned a client error (not queryable).",
+"status": "Failed",
+"source": "BLW via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.blw.feldblockkarte&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Land and soil",
+"layer": "ch.blw.bodeneignungskarte",
+"label": "Soil suitability map (federal)",
+"parcels": "unknown",
+"finding": "Retried with envelope: client error again.",
+"status": "Failed",
+"source": "BLW via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.blw.bodeneignungskarte&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Land and soil",
+"layer": "ch.blw.landwirtschaftliche-zonengrenzen",
+"label": "Agricultural zone boundaries (federal)",
+"parcels": "unknown",
+"finding": "Retried with envelope: client error again. Agricultural zoning came from the cantonal zoning plan instead (Landwirtschaftszone 1).",
+"status": "Failed",
+"source": "BLW via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.blw.landwirtschaftliche-zonengrenzen&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Land and soil",
+"layer": "BODKAXXX_COL_V3_MP/11,12,4,38",
+"label": "Soil map canton LU (1:5000/1:10000/1:25000)",
+"parcels": "none",
+"finding": "0 features in all checked soil layers - the site is not soil-mapped.",
+"status": "Not present",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/BODKAXXX_COL_V3_MP/MapServer/11/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Land and soil",
+"layer": "ch.are.landschaftstypen",
+"label": "Landscape typology of Switzerland",
+"parcels": "whole site",
+"finding": "Two types: 20 'Kalkberglandschaft der Nordalpen' (region 'Alpenraum'), and 39 'Seefläche' (lake). Stand 31.08.2010.",
+"status": "Checked",
+"source": "ARE via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.are.landschaftstypen&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Land and soil",
+"layer": "ch.swisstopo.vec25-primaerflaechen",
+"label": "Primary surfaces VECTOR25",
+"parcels": "whole site",
+"finding": "10 polygons returned but without land-cover class attributes (only area/perimeter) - not informative.",
+"status": "Checked",
+"source": "swisstopo via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.swisstopo.vec25-primaerflaechen&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Climate and environment",
+"layer": "ch.meteoschweiz.klimanormwerte-temperatur_aktuelle_periode",
+"label": "Climate normals 1991-2020: temperature",
+"parcels": "unknown",
+"finding": "Layer is a raster grid (NetCDF/GeoTIFF download, data status 01.07.2026); identify returned a client error, so no value at the site could be read. Frost-day normals: no such layer found.",
+"status": "Failed",
+"source": "MeteoSwiss via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=662000,202000,684000,216000&geometryType=esriGeometryEnvelope&layers=all:ch.meteoschweiz.klimanormwerte-temperatur_aktuelle_periode&tolerance=0"
+},
+{
+"theme": "Climate and environment",
+"layer": "ch.meteoschweiz.klimanormwerte-niederschlag_aktuelle_periode",
+"label": "Climate normals 1991-2020: precipitation",
+"parcels": "unknown",
+"finding": "Layer is a raster grid (NetCDF/GeoTIFF download, data status 01.07.2026); identify returned a client error, so no value at the site could be read. Frost-day normals: no such layer found.",
+"status": "Failed",
+"source": "MeteoSwiss via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=662000,202000,684000,216000&geometryType=esriGeometryEnvelope&layers=all:ch.meteoschweiz.klimanormwerte-niederschlag_aktuelle_periode&tolerance=0"
+},
+{
+"theme": "Climate and environment",
+"layer": "ch.meteoschweiz.klimanormwerte-sonnenscheindauer_aktuelle_periode",
+"label": "Climate normals 1991-2020: sunshine",
+"parcels": "unknown",
+"finding": "Layer is a raster grid (NetCDF/GeoTIFF download, data status 01.07.2026); identify returned a client error, so no value at the site could be read. Frost-day normals: no such layer found.",
+"status": "Failed",
+"source": "MeteoSwiss via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=662000,202000,684000,216000&geometryType=esriGeometryEnvelope&layers=all:ch.meteoschweiz.klimanormwerte-sonnenscheindauer_aktuelle_periode&tolerance=0"
+},
+{
+"theme": "Climate and environment",
+"layer": "ch.meteoschweiz.ogd-smn (STAC)",
+"label": "Nearest MeteoSwiss stations",
+"parcels": "none (off-site)",
+"finding": "Identify on the station layers failed, so the OGD station metadata was used. Nearest SwissMetNet station: LUZ 'Luzern (LUZ)' at 8.301022 E, 47.036439 N (about 7.4 km west, computed). Others: GES Gersau, 521 m, 2682510/1205572 (about 10.3 km ESE); CHZ Cham 443 m; ALT Altdorf 438 m; ENG Engelberg 1036 m.",
+"status": "Checked",
+"source": "MeteoSwiss via data.geo.admin.ch",
+"url": "https://data.geo.admin.ch/api/stac/v1/collections/ch.meteoschweiz.ogd-smn/items/luz"
+},
+{
+"theme": "Climate and environment",
+"layer": "ch.bafu.laerm-strassenlaerm_tag / _nacht",
+"label": "Road noise day/night",
+"parcels": "unknown",
+"finding": "Identify returned a client error (raster, not queryable).",
+"status": "Failed",
+"source": "BAFU via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bafu.laerm-strassenlaerm_tag&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Climate and environment",
+"layer": "ch.bag.radonkarte",
+"label": "Radon map",
+"parcels": "whole site",
+"finding": "Four cells: probability_prozent 2, 2, 2 and 4 (probability that indoor radon exceeds the 300 Bq/m3 reference value). Confidence values 3530-4254.",
+"status": "Checked",
+"source": "BAG via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bag.radonkarte&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Climate and environment",
+"layer": "ch.bazl.landschaftsruhezonen",
+"label": "Sanctuaries for silence and nature (aviation)",
+"parcels": "none",
+"finding": "No zone intersects the envelope.",
+"status": "Not present",
+"source": "BAZL via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bazl.landschaftsruhezonen&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Climate and environment",
+"layer": "light pollution",
+"label": "Light emissions",
+"parcels": "unknown",
+"finding": "SearchServer 'light emissions' returned no layer.",
+"status": "Failed",
+"source": "geo.admin.ch SearchServer",
+"url": "https://api3.geo.admin.ch/rest/services/api/SearchServer?searchText=light%20emissions&type=layers&lang=en"
+},
+{
+"theme": "Climate and environment",
+"layer": "NEOBIOTA_DS_V3_MP/78",
+"label": "Invasive neophytes (canton LU)",
+"parcels": "near 292 / east boundary",
+"finding": "4 records in envelope: Prunus laurocerasus (Kirschlorbeer), 2012, 'Wald, Waldbestand' at 2673074/1209129 (>1000 m2, 75-100% cover, the woodland understorey consists only of cherry laurel - 'Instruktives Beispiel für Konsequenzen des zu späten Eingreifens'); Cotoneaster horizontalis, 2023, 'Tanzenberg' (2673026/1208999); Elodea nuttallii, 2025, 'Weggis, Hertenstein 2025' (AquaPlus AG; 2 points in the lake at ~2673066-2673096/1208966).",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/NEOBIOTA_DS_V3_MP/MapServer/78/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Climate and environment",
+"layer": "EINZBAUM_DS_V1_MP/0",
+"label": "Single trees (canton LU, from surface models)",
+"parcels": "whole site",
+"finding": "1128 detected tree crowns in the envelope, 423 of them with REL_BAUMHOEHE >25 m. Attributes per tree: crown axes, crown area, terrain and surface heights.",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/EINZBAUM_DS_V1_MP/MapServer/0/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "History",
+"layer": "ch.swisstopo.zeitreihen",
+"label": "Journey through time - map editions",
+"parcels": "whole site",
+"finding": "Point at 2672950/1209200 is covered by: LK25 sheet 1151 'Rigi' (editions 2021, 2013, 2007, 2000, 1994, 1987, 1982, 1976, 1971, 1965, 1956, 1954); LK50 sheet 235 'Rotkreuz' (2017 ... 1952); LK100 sheet 32 'Beromünster' (2020 ... 1959); Siegfried TA50 sheet 209_BIS 'Rigi' (1932, 1919, 1908, 1907); Dufour TK100 sheet 8 'Aarau, Luzern, Zug, Zürich' (1933 back to 1861). The response was truncated, so the list may be incomplete.",
+"status": "Checked",
+"source": "swisstopo via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672950,1209200&geometryType=esriGeometryPoint&layers=all:ch.swisstopo.zeitreihen&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "History",
+"layer": "ch.swisstopo.hiks-siegfried.metadata",
+"label": "Siegfried map sheet index",
+"parcels": "whole site",
+"finding": "Siegfried sheet 208 'Weggis' (1:25,000), 61 editions with release keys 1889, 1897, 1904, 1907, 1919, 1932 and 1941 (years 1889-1949).",
+"status": "Checked",
+"source": "swisstopo via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672950,1209200&geometryType=esriGeometryPoint&layers=all:ch.swisstopo.hiks-siegfried.metadata&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "History",
+"layer": "ch.swisstopo.lubis-luftbilder_schwarzweiss",
+"label": "Historical aerial photos, black and white",
+"parcels": "whole site",
+"finding": "14 image centres within a 2.1 km box around the site: 08.06.1946 (000-002-487), 12.08.1932 (000-315-482, centre 2673188/1209272, closest to the site), 28.08.1951 (000-178-580, 000-178-581), 07.07.1965 (000-209-133), 11.07.1994 (000-264-619, 000-527-699), 15.04.1996 (000-080-008 to 000-080-014). The 1932/1946/1951/1965/1994 images have orthophotos.",
+"status": "Checked",
+"source": "swisstopo via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2671900,1208100,2674000,1210200&geometryType=esriGeometryEnvelope&layers=all:ch.swisstopo.lubis-luftbilder_schwarzweiss&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "History",
+"layer": "ch.swisstopo.lubis-luftbilder_farbe",
+"label": "Historical aerial photos, colour",
+"parcels": "whole site",
+"finding": "9 images: 02.07.1982 (000-556-166 to 000-556-172; 000-556-168 centred at 2672997/1209349 and 000-556-171 at 2673170/1209175, over the site) and 08.07.1982 (000-566-396 at 2673076/1209054, 000-566-397).",
+"status": "Checked",
+"source": "swisstopo via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2671900,1208100,2674000,1210200&geometryType=esriGeometryEnvelope&layers=all:ch.swisstopo.lubis-luftbilder_farbe&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "History",
+"layer": "ch.swisstopo.lubis-luftbilder_infrarot",
+"label": "Historical aerial photos, infrared",
+"parcels": "none",
+"finding": "No infrared images within 2.1 km box.",
+"status": "Not present",
+"source": "swisstopo via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2671900,1208100,2674000,1210200&geometryType=esriGeometryEnvelope&layers=all:ch.swisstopo.lubis-luftbilder_infrarot&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "History",
+"layer": "ch.bfs.gebaeude_wohnungs_register",
+"label": "Federal building register (GWR) - construction years",
+"parcels": "286 and neighbours",
+"finding": "Institute buildings (Zinnenstrasse 7): 'Bildungshaus' EGID 219443 built 1930 (817 m2, 5 floors); 'Wohnheim' 7.4 (1965, 728 m2, 4 floors); 'Turnhalle' 7.1 EGID 3083830 (1965); 'Kirche' 7.3 (1965, 385 m2); garage 7.2 (1964); 'Trafostation Postunen TST3525' 7.5 (1995). 38 buildings in envelope in total, including neighbouring Villa Senar (Rachmaninoff, Zinnenstrasse 8, 1934).",
+"status": "Checked",
+"source": "BFS via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bfs.gebaeude_wohnungs_register&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "History",
+"layer": "ch.babs.kulturgueter",
+"label": "Swiss inventory of cultural property (KGS)",
+"parcels": "none (neighbour)",
+"finding": "One object in envelope, on the neighbouring property: KGS_NR16914 'Villa Senar mit Gartenanlage, Gärtner- und Gerätehaus', Zinnenstrasse 8, kgs_kategorie 'A.A'. The institute itself is not in the KGS inventory.",
+"status": "Checked",
+"source": "BABS via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.babs.kulturgueter&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "History",
+"layer": "ch.bak.bundesinventar-schuetzenswerte-ortsbilder",
+"label": "ISOS (federal townscape inventory)",
+"parcels": "none",
+"finding": "No ISOS object intersects the envelope (cantonal ISOSINVE also 0).",
+"status": "Not present",
+"source": "BAK via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.bak.bundesinventar-schuetzenswerte-ortsbilder&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "History",
+"layer": "ch.astra.ivs-nat",
+"label": "Historic traffic routes of national importance (IVS)",
+"parcels": "none",
+"finding": "No IVS route intersects the envelope.",
+"status": "Not present",
+"source": "ASTRA via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.astra.ivs-nat&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Canton",
+"layer": "ZONPLANX_COL_V3_MP/15",
+"label": "Weggis zoning plan - overlay zones (Überlagerungen, polygons)",
+"parcels": "286 (Kulturobjekte), 289 (Landschaftsschutzzone), shoreline (Gewässerraum)",
+"finding": "16 overlays in envelope: 'Erhaltenswerte Kulturobjekte' (several, incl. OBJECTID 10633, 7832 m2, covering parcel 286 = the Stella Matutina building group); 'Landschaftsschutzzone' OBJECTID 10956 (22349 m2, contains the parcel 289 centroid) and 11075 (386020 m2); 'Naturschutzzone Wald' 11038 (13037 m2, east of the meadow); 5 'Freihaltezone Gewässerraum' polygons along the lake shore (decided 24.11.2024, valid 20.05.2025).",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/ZONPLANX_COL_V3_MP/MapServer/15/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Canton",
+"layer": "ZONPLANX_COL_V3_MP/14 and /13",
+"label": "Weggis zoning plan - overlay lines and points",
+"parcels": "shoreline / 286 area",
+"finding": "Line: OBJECTID 7852 'Seehochstand' (ZONTYP_GDE 8147, lake high-water line). Point: OBJECTID 3605 'Erhaltenswerte Kulturobjekte' (7055).",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/ZONPLANX_COL_V3_MP/MapServer/14/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Canton",
+"layer": "ZONPLANX_COL_V3_MP/9",
+"label": "Weggis zoning plan - natural hazard overlay",
+"parcels": "none",
+"finding": "0 features in the envelope.",
+"status": "Not present",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/ZONPLANX_COL_V3_MP/MapServer/9/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Canton",
+"layer": "GKXXXXXX_COL_V1_MP/4",
+"label": "Cantonal natural hazard map (all processes, synoptic)",
+"parcels": "east part of 286 / 289 (strip 2673008-2673144, 1209204-1209333)",
+"finding": "One hazard area, OBJECTID 36730 (6179 m2): GS_R 1 'geringe Gefährdung' (low landslide hazard); water, rockfall and avalanche 0; resultant GS_RES 1 'geringe Gefährdung'. DAT_INS 20260925. No parcel centroid falls inside it. The rest of the site is inside the mapped perimeter with no hazard area.",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/GKXXXXXX_COL_V1_MP/MapServer/4/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Canton",
+"layer": "GHKXXXXX_COL_V1_MP/5",
+"label": "Hazard indication map - spontaneous landslides / hillslope debris flows",
+"parcels": "289, 292 (centroids) and slope strips",
+"finding": "3 indication polygons in envelope (24035, 18910, 3922 m2) along the steep slope bands; parcel 289 and 292 centroids lie inside OBJECTID 1890. This is an indication map (it shows where hazard is possible, not its level) - see hazard map above for assessed levels.",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/GHKXXXXX_COL_V1_MP/MapServer/5/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Canton",
+"layer": "NATKPUBL_COL_V2_MP",
+"label": "Natural events cadastre (Naturereigniskataster)",
+"parcels": "unknown",
+"finding": "Service listing obtained (layers 401-905: damage, process areas water/avalanche/landslide/rockfall); individual layers not queried.",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/NATKPUBL_COL_V2_MP/MapServer?f=json"
+},
+{
+"theme": "Canton",
+"layer": "SVOXXXXX_COL_V2_MP/2",
+"label": "Cantonal protection ordinances (Schutzverordnungen) - perimeter",
+"parcels": "none",
+"finding": "0 features in the envelope.",
+"status": "Not present",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/SVOXXXXX_COL_V2_MP/MapServer/2/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Canton",
+"layer": "INRINVEX_DS_V2_MP/2",
+"label": "Inventory of natural objects of regional importance (INR)",
+"parcels": "lake adjacent (not on land parcels)",
+"finding": "2 regional polygons (S_BED 2), both INR_TYP 'GS' = 'Stehende Gewässer' (standing water): INR_NR 1069.008 (349254 m2) and 1056.005 (403779 m2), inventoried 1997. Neither covers the 292 or 286 centroid, so they are taken to be the lake/shallow-water zone. INR lines (layer 1): 0.",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/INRINVEX_DS_V2_MP/MapServer/2/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Canton",
+"layer": "WTKORXXX_COL_V1_MP/6",
+"label": "Cantonal wildlife corridors - perimeter",
+"parcels": "none",
+"finding": "0 features.",
+"status": "Not present",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/WTKORXXX_COL_V1_MP/MapServer/6/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Canton",
+"layer": "JAGDREVX_COL_V1_MP/1",
+"label": "Hunting districts",
+"parcels": "whole site",
+"finding": "Revier REV_NR 115 'Weggis'.",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/JAGDREVX_COL_V1_MP/MapServer/1/query?geometry=2672995.4,1209214.2&geometryType=esriGeometryPoint&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Canton",
+"layer": "BILUKDVX_COL_V4_MP/12 and /13",
+"label": "Cantonal building inventory (Bauinventar) - buildings and groups",
+"parcels": "286",
+"finding": "Building group OBJECTID 147 '[B] Stella Matutina' (7832 m2). Members: 'Bildungshaus Stella Matutina' Schulhaus no. 233 (EGID 219443), Schulhaus 233 a, Kirche 233 b - all BEWERTUNG 3 'schützenswert'; Turnhalle 233 c BEWERTUNG 2 'erhaltenswert'. Neighbours: Villa Senar (schützenswert), boathouses 33 b and 854 a (erhaltenswert), Bildstock (erhaltenswert, 2672840/1208995). The municipality is the responsible authority; the cantonal heritage office advises.",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/BILUKDVX_COL_V4_MP/MapServer/12/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Canton",
+"layer": "BILUKDVX_COL_V4_MP/17 and /8",
+"label": "Cantonal register of monuments (Denkmalverzeichnis)",
+"parcels": "none (neighbour)",
+"finding": "Listed monuments in envelope are all on the neighbouring Villa Senar property: 'Villa Senar', 'Villa Senar, Gärtnerhaus', 'Villa Senar, Gerätehaus', and the garden 'Villa Senar, Gartenanlage' (19523 m2). Point layer 16: 0. No Stella Matutina building is in the register of monuments.",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/BILUKDVX_COL_V4_MP/MapServer/17/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Canton",
+"layer": "KBSTANDO_DS_V3_MP/1 and /2",
+"label": "Register of contaminated sites (KbS) - deposits and industrial sites",
+"parcels": "none",
+"finding": "0 features in both layers.",
+"status": "Not present",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/KBSTANDO_DS_V3_MP/MapServer/2/query?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Canton",
+"layer": "LANDWERT_DS_V2_MP/0",
+"label": "Land value zones outside building zone",
+"parcels": "none",
+"finding": "0 features at parcel 289 centroid.",
+"status": "Not present",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://public.geo.lu.ch/ogd/rest/services/managed/LANDWERT_DS_V2_MP/MapServer/0/query?geometry=2672995.4,1209214.2&geometryType=esriGeometryPoint&outFields=*&returnGeometry=false&f=json"
+},
+{
+"theme": "Canton",
+"layer": "ch.swisstopo-vd.stand-oerebkataster",
+"label": "ÖREB cadastre availability and EGRIDs",
+"parcels": "all",
+"finding": "ÖREB cadastre is in force ('ÖREB-Kataster eingeführt'), provider Kanton Luzern rawi. EGRIDs: 286 CH382650357255, 288 CH307235265033, 289 CH313526507265, 292 CH343550722671, 505 CH613538507249. Extract URL pattern https://svc.geo.lu.ch/oereb/extract/pdf/?EGRID=...",
+"status": "Checked",
+"source": "swisstopo via geo.admin.ch",
+"url": "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometry=2672740,1208960,2673150,1209430&geometryType=esriGeometryEnvelope&layers=all:ch.swisstopo-vd.stand-oerebkataster&tolerance=0&sr=2056&returnGeometry=false"
+},
+{
+"theme": "Canton",
+"layer": "svc.geo.lu.ch/oereb",
+"label": "ÖREB extract (cantonal web service)",
+"parcels": "all",
+"finding": "Blocked: WebFetch reports ROBOTS_DISALLOWED for svc.geo.lu.ch, so the official ÖREB extracts could not be retrieved. Open the PDF links manually.",
+"status": "Failed",
+"source": "Kanton Luzern ÖREB web service",
+"url": "https://svc.geo.lu.ch/oereb/getegrid/json/?EN=2673047,1209295"
+},
+{
+"theme": "Canton",
+"layer": "map.geo.lu.ch",
+"label": "Cantonal geoportal (map viewer)",
+"parcels": "n/a",
+"finding": "JavaScript app only, nothing readable. Services found instead via geoportal.lu.ch/Geodaten/Geodienste (public.geo.lu.ch ArcGIS REST, about 230 services).",
+"status": "Checked",
+"source": "Kanton Luzern geoportal (public.geo.lu.ch ArcGIS REST)",
+"url": "https://geoportal.lu.ch/Geodaten/Geodienste"
+}
+]

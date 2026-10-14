@@ -1,0 +1,66 @@
+[
+ {
+  "species": "Narrow-leaved ragwort",
+  "latin": "Senecio inaequidens",
+  "priority": 1,
+  "last_record": 2024,
+  "rule": "Federal list of prohibited invasive plants",
+  "action": "Pull before seeding, gloves, bag it, never compost"
+ },
+ {
+  "species": "Cherry laurel",
+  "latin": "Prunus laurocerasus",
+  "priority": 2,
+  "last_record": 2026,
+  "rule": "Sale banned in Switzerland since September 2024",
+  "action": "Cut and remove stumps; no new planting"
+ },
+ {
+  "species": "Black locust",
+  "latin": "Robinia pseudoacacia",
+  "priority": 3,
+  "last_record": null,
+  "rule": "Invasive list (Info Flora)",
+  "action": "Ring-bark over two or three years; cutting makes it sucker"
+ },
+ {
+  "species": "Armenian blackberry",
+  "latin": "Rubus armeniacus",
+  "priority": 4,
+  "last_record": 2024,
+  "rule": "Invasive list (Info Flora)",
+  "action": "Cut back repeatedly, dig out roots"
+ },
+ {
+  "species": "Annual fleabane",
+  "latin": "Erigeron annuus",
+  "priority": 5,
+  "last_record": 2025,
+  "rule": "Invasive list (Info Flora)",
+  "action": "Watch meadows once they are extensified; pull before flowering"
+ },
+ {
+  "species": "Box-tree moth",
+  "latin": "Cydalima perspectalis",
+  "priority": 6,
+  "last_record": 2025,
+  "rule": "Pest",
+  "action": "Replace any box with native evergreens"
+ },
+ {
+  "species": "Nuttall's and Canadian waterweed",
+  "latin": "Elodea spp.",
+  "priority": 7,
+  "last_record": 2021,
+  "rule": "Invasive in the lake",
+  "action": "Lake-wide; nothing to do on land"
+ },
+ {
+  "species": "Quagga mussel",
+  "latin": "Dreissena bugensis",
+  "priority": 8,
+  "last_record": 2024,
+  "rule": "Boat cleaning duty around the lake",
+  "action": "Clean any boats, boards and gear Stella brings"
+ }
+]

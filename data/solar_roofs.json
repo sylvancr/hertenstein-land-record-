@@ -1,0 +1,116 @@
+[
+ {
+  "roof": 1,
+  "area_m2": 34.69,
+  "rating": 1,
+  "yield_kwh": 3680
+ },
+ {
+  "roof": 2,
+  "area_m2": 33.28,
+  "rating": 4,
+  "yield_kwh": 6625
+ },
+ {
+  "roof": 3,
+  "area_m2": 100.68,
+  "rating": 3,
+  "yield_kwh": 18123
+ },
+ {
+  "roof": 4,
+  "area_m2": 44.02,
+  "rating": 1,
+  "yield_kwh": 4768
+ },
+ {
+  "roof": 5,
+  "area_m2": 43.1,
+  "rating": 4,
+  "yield_kwh": 8475
+ },
+ {
+  "roof": 6,
+  "area_m2": 111.93,
+  "rating": 1,
+  "yield_kwh": 6036
+ },
+ {
+  "roof": 7,
+  "area_m2": 50.62,
+  "rating": 1,
+  "yield_kwh": 4900
+ },
+ {
+  "roof": 8,
+  "area_m2": 104.58,
+  "rating": 2,
+  "yield_kwh": 13620
+ },
+ {
+  "roof": 9,
+  "area_m2": 27.96,
+  "rating": 3,
+  "yield_kwh": 5037
+ },
+ {
+  "roof": 10,
+  "area_m2": 75.61,
+  "rating": 2,
+  "yield_kwh": 9969
+ },
+ {
+  "roof": 11,
+  "area_m2": 97.88,
+  "rating": 3,
+  "yield_kwh": 18277
+ },
+ {
+  "roof": 12,
+  "area_m2": 71.9,
+  "rating": 1,
+  "yield_kwh": 3118
+ },
+ {
+  "roof": 13,
+  "area_m2": 61.84,
+  "rating": 1,
+  "yield_kwh": 6807
+ },
+ {
+  "roof": 14,
+  "area_m2": 98.61,
+  "rating": 1,
+  "yield_kwh": 8898
+ },
+ {
+  "roof": 15,
+  "area_m2": 61.81,
+  "rating": 4,
+  "yield_kwh": 12490
+ },
+ {
+  "roof": 16,
+  "area_m2": 19.16,
+  "rating": 3,
+  "yield_kwh": 3311
+ },
+ {
+  "roof": 17,
+  "area_m2": 30.17,
+  "rating": 1,
+  "yield_kwh": 2472
+ },
+ {
+  "roof": 18,
+  "area_m2": 16.62,
+  "rating": 3,
+  "yield_kwh": 2877
+ },
+ {
+  "roof": 19,
+  "area_m2": 107.53,
+  "rating": 2,
+  "yield_kwh": 14211
+ }
+]
