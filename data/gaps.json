@@ -1,6 +1,6 @@
 [
  {
-  "gap": "Which parcels are in the sale, and their areas",
+  "gap": "Which parcels make up the land, and their areas",
   "fill": "Land register plan with the green perimeter, received 14 October 2026",
   "blocks": "Almost every land decision",
   "status": "Done"
@@ -49,14 +49,8 @@
  },
  {
   "gap": "Whether parcel 288 (boathouse) is part of the land",
-  "fill": "Ask the owner side; it is shaded on the 2022 plan, but the concept screens the boathouse with a hedge",
+  "fill": "Still to confirm; it is shaded on the 2022 plan, but the concept screens the boathouse with a hedge",
   "blocks": "Shore plan for 505 and 288",
-  "status": "Open"
- },
- {
-  "gap": "60 acres quoted elsewhere against 14 acres in the green perimeter",
-  "fill": "Ask the owner side whether other land, leases or the neighbouring slope are meant",
-  "blocks": "Scale of grazing and woodland plans",
   "status": "Open"
  },
  {

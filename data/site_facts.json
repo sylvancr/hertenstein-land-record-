@@ -15,7 +15,7 @@
   "num": null,
   "unit": "",
   "status": "Checked",
-  "source": "2022 land register plan supplied by Sylvan; outlines from the federal cadastral map"
+  "source": "2022 land register plan supplied by Stella; outlines from the federal cadastral map"
  },
  {
   "key": "parcel_area",
@@ -28,12 +28,12 @@
  },
  {
   "key": "holding_area",
-  "label": "Compared with \"60 acres\"",
-  "value": "The green perimeter is about 14 acres (5.66 ha), a quarter of the 60 acres quoted elsewhere",
+  "label": "Area in acres",
+  "value": "About 14 acres (5.66 ha)",
   "num": 14,
   "unit": "acres",
-  "status": "Unknown",
-  "source": "Ask the owner side whether more land is meant"
+  "status": "Checked",
+  "source": "Sum of the five federal parcel outlines"
  },
  {
   "key": "height",
@@ -133,14 +133,5 @@
   "unit": "",
   "status": "Checked",
   "source": "Historical Lexicon of Switzerland; Kloster Baldegg"
- },
- {
-  "key": "sale",
-  "label": "Sale",
-  "value": "Preliminary contract June 2026; completes after official clearances",
-  "num": null,
-  "unit": "",
-  "status": "Checked",
-  "source": "Kloster Baldegg press release, 24 June 2026"
  }
 ]
