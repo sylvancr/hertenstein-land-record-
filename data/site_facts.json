@@ -11,29 +11,29 @@
  {
   "key": "parcel",
   "label": "Land register",
-  "value": "Weggis parcels 286, 289, 292, 505 and 288 (the green perimeter on the 2022 land register plan)",
+  "value": "Weggis parcels 286, 289, 292 and 505",
   "num": null,
   "unit": "",
   "status": "Checked",
-  "source": "2022 land register plan supplied by Stella; outlines from the federal cadastral map"
+  "source": "2022 land register plan, confirmed by Stella on 14 October 2026; outlines from the federal cadastral map"
  },
  {
   "key": "parcel_area",
   "label": "Area of the land",
-  "value": "5.66 ha",
-  "num": 5.66,
+  "value": "5.49 ha",
+  "num": 5.49,
   "unit": "ha",
   "status": "Checked",
-  "source": "Sum of the five federal parcel outlines (286: 1.70 ha, 292: 2.58, 505: 0.65, 289: 0.56, 288: 0.17)"
+  "source": "Sum of the four federal parcel outlines (286: 1.70 ha, 292: 2.58, 505: 0.65, 289: 0.56)"
  },
  {
   "key": "holding_area",
   "label": "Area in acres",
-  "value": "About 14 acres (5.66 ha)",
-  "num": 14,
+  "value": "About 13.6 acres (5.49 ha)",
+  "num": 13.6,
   "unit": "acres",
   "status": "Checked",
-  "source": "Sum of the five federal parcel outlines"
+  "source": "Sum of the four federal parcel outlines"
  },
  {
   "key": "height",

@@ -4,7 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hertenstein Land Record</title>
-<meta name="description" content="The shared record of the land at Stella Matutina, Hertenstein: public records, the landscape architect's proposals, and visitor readings.">
+<meta name="description" content="Stella Matutina's land on Lake Lucerne at Hertenstein: an interactive map of the landscape architect's proposals, and what we know about the place so far.">
+<meta property="og:title" content="Hertenstein Land Record">
+<meta property="og:description" content="Stella Matutina's land on Lake Lucerne at Hertenstein: an interactive map of the landscape architect's proposals, and what we know about the place so far.">
+<meta property="og:image" content="https://sylvancr.github.io/hertenstein-land-record-/og-image.jpg">
+<meta property="og:url" content="https://sylvancr.github.io/hertenstein-land-record-/">
+<meta name="twitter:card" content="summary_large_image">
 <style>
 :root {
   --color-fg: #1f1e1c; --color-fg-muted: #6b6862; --color-panel: #ffffff; --page-bg: #f5f4f0; --color-border-line: #e2dfd8;
@@ -126,6 +131,7 @@ a { color: inherit; }
 .hl-btn { font: inherit; font-size: var(--cds-font-size-caption); color: var(--color-fg); background: transparent; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 2px 8px; cursor: pointer; }
 .hl-btn:hover { background: color-mix(in srgb, var(--color-fg) 6%, transparent); }
 .hl-btn:focus-visible, .hl-ctl select:focus-visible, .hl-layers input:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.hl-layers::before { content: "Layers"; width: 100%; font-weight: var(--cds-font-weight-medium); color: var(--color-fg); }
 .hl-layers { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md); font-size: var(--cds-font-size-caption); }
 .hl-layers label { display: inline-flex; align-items: center; gap: .35em; cursor: pointer; }
 .hl-sw { width: .75rem; height: .75rem; border-radius: 3px; flex: none; }
@@ -143,7 +149,7 @@ a { color: inherit; }
 #proposals tbody tr, #parcels tbody tr { cursor: pointer; }
 #proposals tbody tr:hover td, #parcels tbody tr:hover td { background: color-mix(in srgb, var(--color-fg) 5%, transparent); }
 #proposals tbody tr.hl-on td, #parcels tbody tr.hl-on td { background: color-mix(in srgb, var(--color-fg) 9%, transparent); }
-@media (max-width: 640px) { .hl-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -16px; padding-inline: 16px; mask-image: linear-gradient(90deg, #000 85%, transparent); } .hl-tab { white-space: nowrap; flex: none; } .hl-hide-sm { display: none; } .hl-map { min-height: 340px; } }
+@media (max-width: 640px) { .hl-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -16px; padding-inline: 16px; } .hl-tab { white-space: nowrap; flex: none; } .hl-hide-sm { display: none; } .hl-map { min-height: 340px; } }
 .hl-headrow { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--cds-gap-md); flex-wrap: wrap; }
 .hl-about { border: 1px solid var(--color-border-line); border-radius: 12px; background: var(--color-panel); color: var(--color-fg); padding: 0; width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 48px); box-shadow: 0 12px 40px rgba(0,0,0,.18); }
 .hl-about::backdrop { background: rgba(20,20,18,.45); }
@@ -170,34 +176,31 @@ a { color: inherit; }
       <h1 class="hl-title">Hertenstein Land Record</h1>
       <button type="button" class="hl-btn" id="about-open">About this site</button>
     </div>
-    <p class="hl-take" id="takeaway">One shared picture of the land at Stella Matutina on Lake Lucerne: the five parcels, what public records say about them, the landscape architect's proposals, and how we plan to measure and care for the land over time.</p>
+    <p class="hl-take" id="takeaway">Stella Matutina's land on the shore of Lake Lucerne: meadow, oak park, woodland, garden and lakeshore. Explore the landscape architect's ideas on the map, and everything we know about the place so far.</p>
   </header>
 
   <dialog class="hl-about" id="about" aria-labelledby="about-title">
     <form method="dialog" class="hl-about-in">
       <button class="hl-x" value="close" aria-label="Close">&times;</button>
       <p class="hl-eyebrow">Stella Matutina, Hertenstein</p>
-      <h2 id="about-title">Welcome to the Hertenstein Land Record</h2>
-      <p>Everything we know about the land, in one place, so the team, the landscape architect and everyone working with us start from the same picture. It will grow as we survey the land and visitors add readings.</p>
+      <h2 id="about-title">Welcome to the land at Hertenstein</h2>
+      <p>Stella Matutina sits on four parcels on the shore of Lake Lucerne, about five and a half hectares of hay meadow, old oaks, woodland, garden and lakeshore. This site gathers what we know about the land and what we hope to do with it, so everyone working with us starts from the same picture.</p>
       <ul class="hl-about-list">
-        <li><b>Map</b> The five parcels (5.66 ha), the architect's sheets laid over them, and federal and cantonal environmental data. Zoom, drag, and click any proposal to read it.</li>
-        <li><b>Site and Public data</b> Facts, protections and zoning for each parcel, from the official registers.</li>
-        <li><b>Life</b> Species and habitats on record around the site.</li>
-        <li><b>Measures and Plan</b> What we intend to measure, and the first moves ranked.</li>
-        <li><b>Readings</b> Where visitors' readings of the land will appear.</li>
-        <li><b>Gaps and log</b> What we don't know yet, and what has changed.</li>
+        <li><b>Explore the map</b> Lay the landscape architect's drawings over the land, and click any proposal to read it.</li>
+        <li><b>See what's there</b> Species, habitats, protections and what the public records say about each parcel.</li>
+        <li><b>Follow what's next</b> The first moves, what we'll measure, and readings that visitors will add over time.</li>
       </ul>
-      <p class="hl-about-note">This is a first draft from October 2026. Nothing has been measured on the land yet, and every change shown is a proposal that needs the owner's agreement.</p>
+      <p class="hl-about-note">A first draft from October 2026 that will grow as we get to know the land. Every change shown is a proposal.</p>
       <div class="hl-about-act">
-        <button class="hl-btn hl-btn-main" value="map" autofocus>Open the map</button>
-        <button class="hl-btn" value="close">Start with the overview</button>
+        <button class="hl-btn hl-btn-main" value="map" autofocus>Explore the map</button>
+        <button class="hl-btn" value="overview">Read the overview</button>
       </div>
     </form>
   </dialog>
 
   <nav class="hl-tabs" role="tablist" aria-label="Sections">
-    <button class="hl-tab" role="tab" id="tab-overview" data-page="overview" aria-selected="true">Overview</button>
-    <button class="hl-tab" role="tab" id="tab-map" data-page="map" aria-selected="false">Map</button>
+    <button class="hl-tab" role="tab" id="tab-map" data-page="map" aria-selected="true">Map</button>
+    <button class="hl-tab" role="tab" id="tab-overview" data-page="overview" aria-selected="false">Overview</button>
     <button class="hl-tab" role="tab" id="tab-site" data-page="site" aria-selected="false">Site</button>
     <button class="hl-tab" role="tab" id="tab-public" data-page="public" aria-selected="false">Public data</button>
     <button class="hl-tab" role="tab" id="tab-life" data-page="life" aria-selected="false">Life</button>
@@ -208,14 +211,14 @@ a { color: inherit; }
   </nav>
 
   <!-- OVERVIEW -->
-  <section class="hl-page" id="overview" role="tabpanel" aria-labelledby="tab-overview">
+  <section class="hl-page" id="overview" role="tabpanel" aria-labelledby="tab-overview" hidden>
     <div class="hl-tiles" id="headline">
       <div class="hl-tile"><span class="hl-lab">The land</span><span class="hl-big"><span class="dash-skeleton" data-source="land_summary" data-field="ha" data-row="0">—</span><small>ha</small></span><span class="hl-note"><span data-source="land_summary" data-field="parcels" data-row="0">—</span> parcels, about <span data-source="land_summary" data-field="acres" data-row="0">—</span> acres</span></div>
       <div class="hl-tile"><span class="hl-lab">Species records nearby</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="records" data-row="0">—</span><span class="hl-note">Within about 2 km, GBIF</span></div>
       <div class="hl-tile"><span class="hl-lab">Invasive species on record</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="invasive_species" data-row="0">—</span><span class="hl-note">Plants, pests and the lake</span></div>
-      <div class="hl-tile"><span class="hl-lab">Measures with a baseline</span><span class="hl-big"><span class="dash-skeleton" data-source="overview_counts" data-field="measured" data-row="0">—</span><small>of <span data-source="overview_counts" data-field="measures" data-row="0">—</span></small></span><span class="hl-note">Baseline year planned for 2027</span></div>
-      <div class="hl-tile"><span class="hl-lab">Visitor readings</span><span class="hl-big dash-skeleton" data-source="readings_count" data-field="readings" data-row="0">—</span><span class="hl-note" id="readings-note">Form built, not yet live</span></div>
-      <div class="hl-tile"><span class="hl-lab">Open gaps in the record</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="open_gaps" data-row="0">—</span><span class="hl-note">See Gaps and log</span></div>
+      <div class="hl-tile"><span class="hl-lab">Things we'll measure</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="measures" data-row="0">—</span><span class="hl-note">Baseline survey planned for 2027</span></div>
+      <div class="hl-tile"><span class="hl-lab">Reading posts for visitors</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="posts" data-row="0">—</span><span class="hl-note" id="readings-note">Around the land, on the map</span></div>
+      <div class="hl-tile"><span class="hl-lab">Open questions</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="open_gaps" data-row="0">—</span><span class="hl-note">See Gaps and log</span></div>
     </div>
 
     <div class="hl-grid">
@@ -226,7 +229,7 @@ a { color: inherit; }
       </div>
       <div class="hl-card" id="card-siteplan">
         <h3>The land</h3>
-        <p class="hl-note">The five parcels shaded green on the 2022 land register plan, drawn from the federal cadastral map. The Map tab lays the landscape architect's sheets and the public data over them.</p>
+        <p class="hl-note">The four parcels of the land, drawn from the federal cadastral map. The Map tab lays the landscape architect's sheets and the public data over them.</p>
         <div class="hl-chart dash-skeleton" id="siteplan" data-source="parcels" style="min-height:300px"></div>
         <div><button type="button" class="hl-btn" id="open-map">Open the map</button></div>
       </div>
@@ -244,19 +247,19 @@ a { color: inherit; }
   </section>
 
   <!-- MAP -->
-  <section class="hl-page" id="map" role="tabpanel" aria-labelledby="tab-map" hidden>
+  <section class="hl-page" id="map" role="tabpanel" aria-labelledby="tab-map">
     <template id="map-tpl">
-    <p class="hl-prose">The land is the five parcels shaded green on the 2022 land register plan. The landscape architect's seven sheets of 29 July 2026 are pinned to real coordinates: pick one to lay over the land. Every proposal is a point, line or area you can click. Drag to move the map and use + and − to zoom; on a trackpad hold Ctrl (or ⌘) and scroll, on a phone use two fingers.</p>
+    <p class="hl-prose">Choose one of the landscape architect's drawings from July 2026 to lay over the land, turn layers on and off, and click anything on the map to read about it.</p>
     <div class="hl-card" id="card-map">
       <div class="hl-mapbar">
         <label class="hl-ctl">Drawing <select id="map-sheet"></select></label>
         <label class="hl-ctl">Opacity <input type="range" id="map-op" min="10" max="100" value="80" aria-label="Drawing opacity"></label>
         <span class="hl-ctl"><button type="button" class="hl-btn" id="map-all">Whole land</button> <button type="button" class="hl-btn" id="map-inst">Institute grounds</button> <button type="button" class="hl-btn" id="map-in" aria-label="Zoom in">+</button> <button type="button" class="hl-btn" id="map-out" aria-label="Zoom out">&minus;</button></span>
       </div>
-      <div class="hl-layers" id="map-layers" data-source="gov_shapes"></div>
       <div class="hl-map dash-skeleton" id="landmap" data-source="map_sheets"></div>
       <div class="hl-detail" id="map-detail" aria-live="polite"><span class="hl-note">Click a parcel, a proposal, a post or a public-data shape. Shore sections are coloured by the canton's rating: green near-natural, amber strongly impaired, red unnatural.</span></div>
-      <p class="hl-note">Sheets are pinned to the federal parcel corners, to within about 3 m. Proposal shapes are traced by hand from the sheets and are approximate. Suggested post positions are for the site walk to confirm.</p>
+      <div class="hl-layers" id="map-layers" data-source="gov_shapes"></div>
+      <p class="hl-note">Drag to move the map. Zoom with + and −, with Ctrl (or ⌘) and scroll, or with two fingers on a phone. Sheets are pinned to the federal parcel corners, to within about 3 m. Proposal shapes are traced by hand from the sheets and are approximate. Suggested post positions are for the site walk to confirm.</p>
     </div>
     <div class="hl-card" id="card-proposals">
       <h3>Proposals from the landscape architect</h3>
@@ -337,7 +340,7 @@ a { color: inherit; }
       <h3>What it means for the drawings</h3>
       <ul class="hl-list">
         <li><b>No mapped stream.</b> Neither the federal nor the cantonal water maps show a stream, open or piped, on the land. The overland-flow map does show storm runoff across 292 and 505. Ask the architect what the "re-open stream" line is based on.</li>
-        <li><b>Farm zone.</b> All five parcels are in agricultural zone 1, outside any building zone. The amphitheatre, pond, boardwalks and parking would each need a permit for building outside the zone.</li>
+        <li><b>Farm zone.</b> All four parcels are in agricultural zone 1, outside any building zone. The amphitheatre, pond, boardwalks and parking would each need a permit for building outside the zone.</li>
         <li><b>Legal forest across 292.</b> A band of about 1.3 ha is forest in law. Wood pasture and grazing there need the canton's forest service.</li>
         <li><b>Crop rotation land.</b> About 0.85 ha on the meadows of 505 and 289 counts towards the canton's protected crop rotation quota. Gardens and orchards keep it; ponds, paths and buildings would use it up.</li>
         <li><b>A shore the canton wants back.</b> Most of the 50 m shore sections are rated strongly impaired or unnatural, mainly from the wall. Removing the wall and making a wetland fits the canton's revitalisation planning, inside a keep-free water zone.</li>
@@ -513,7 +516,7 @@ a { color: inherit; }
   tabs.forEach((t) => t.addEventListener('click', () => { window.hlShow(t.dataset.page); dash.setLink(t.dataset.page); }));
   const fromHash = () => {
     const h = location.hash.slice(1);
-    window.hlShow(tabs.some((t) => t.dataset.page === h) ? h : 'overview');
+    window.hlShow(tabs.some((t) => t.dataset.page === h) ? h : 'map');
   };
   window.addEventListener('hashchange', fromHash);
   window.addEventListener('popstate', fromHash);
@@ -523,10 +526,11 @@ a { color: inherit; }
 
 <script>
 dash.calc('overview_counts', {
-  inputs: ['species_groups', 'invasives', 'indicators', 'gaps'],
+  inputs: ['species_groups', 'invasives', 'indicators', 'gaps', 'stations'],
   title: 'Headline counts',
   description: 'Totals of species records, invasive species, measures with a baseline and open gaps.',
-  fn: (species_groups, invasives, indicators, gaps) => [{
+  fn: (species_groups, invasives, indicators, gaps, stations) => [{
+    posts: stations.length,
     records: species_groups.reduce((s, r) => s + Number(r.records), 0),
     invasive_species: invasives.length,
     measured: indicators.filter((r) => r.state === 'Measured').length,
@@ -865,7 +869,7 @@ dash.calc('solar_summary', {
     const sh = dash.data('map_sheets');
     const sheets = sh.status === 'ok' ? sh.data : [];
     fillSheetSelect(sheets);
-    const W = box.clientWidth, H = Math.round(Math.min(680, Math.max(380, W * 0.95)));
+    const W = box.clientWidth, H = Math.round(Math.min(Math.max(420, window.innerHeight - 180), Math.max(380, W * 0.95)));
     const sig = [W, MS.sheet, [...MS.on].join(), sh.status, pd.status, dash.data('proposals').status, dash.data('gov_shapes').status, dash.data('gov_layers').status, dash.data('stations').status].join('|');
     if (sig === MS.sig) return;
     MS.sig = sig;
@@ -1155,14 +1159,15 @@ dash.calc('solar_summary', {
     hbars('habitats', 'habitats', 'habitat', 'polygons', 'mapped areas');
   };
   dash.onData(window.hlDraw);
-  window.addEventListener('resize', () => { MS.sig = ''; landmap(); });
+  let lastW = window.innerWidth;
+  window.addEventListener('resize', () => { if (window.innerWidth === lastW) return; lastW = window.innerWidth; MS.sig = ''; landmap(); });
   document.getElementById('open-map').addEventListener('click', () => { window.hlShow('map'); dash.setLink('map'); });
   const about = document.getElementById('about');
   const KEY = 'hl-about-seen';
   document.getElementById('about-open').addEventListener('click', () => about.showModal());
   about.addEventListener('close', () => {
     try { localStorage.setItem(KEY, '1'); } catch (e) {}
-    if (about.returnValue === 'map') { window.hlShow('map'); dash.setLink('map'); }
+    if (about.returnValue === 'overview') { window.hlShow('overview'); dash.setLink('overview'); }
   });
   about.addEventListener('click', (e) => { if (e.target === about) about.close('close'); });
   let seen = false;

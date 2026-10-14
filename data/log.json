@@ -14,7 +14,13 @@
  {
   "date": "2026-10-14",
   "kind": "Work",
-  "entry": "Mapped the land (parcels 286, 289, 292, 505, 288; 5.66 ha), pinned the landscape architect's seven sheets of 29 July 2026 to real coordinates, traced 50 proposals, and read 97 public data layers",
+  "entry": "Mapped the land (parcels 286, 289, 292, 505 and 288, 5.66 ha), pinned the landscape architect's seven sheets of 29 July 2026 to real coordinates, traced 50 proposals, and read 97 public data layers",
   "by": "Claude"
+ },
+ {
+  "date": "2026-10-14",
+  "kind": "Decision",
+  "entry": "Parcel 288 (the boathouse) confirmed as not part of the land. The land is four parcels, 5.49 ha.",
+  "by": "Stella"
  }
 ]
