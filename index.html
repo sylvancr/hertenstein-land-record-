@@ -26,6 +26,7 @@ html, body { margin: 0; background: var(--page-bg); color: var(--color-fg); }
 body { padding: 24px 16px 48px; font-family: var(--font-anthropic-sans); }
 a { color: inherit; }
 .dash-skeleton { color: transparent; background: linear-gradient(90deg, var(--cds-chart-grid), transparent, var(--cds-chart-grid)); background-size: 200% 100%; border-radius: 4px; }
+[hidden] { display: none !important; }
 .hl-foot { max-width: 1180px; margin: 32px auto 0; font-size: 12px; color: var(--color-fg-muted); }
 </style>
 <script src="vendor/d3-7.9.0.min.js"></script>
@@ -56,7 +57,7 @@ a { color: inherit; }
     },
     calc(id, c) { calcs[id] = c; },
     onData(f) { subs.push(f); },
-    setLink(id) { history.replaceState(null, '', '#' + id); },
+    setLink(id) { if (location.hash !== '#' + id) history.pushState(null, '', '#' + id); },
     params() { return {}; },
   };
   document.addEventListener('DOMContentLoaded', () => {
@@ -72,7 +73,7 @@ a { color: inherit; }
 .hl-head { display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
 .hl-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.15; margin: 0; text-wrap: balance; }
 .hl-take { font-size: var(--cds-font-size-body); color: var(--color-fg-muted); margin: 0; max-width: 70ch; }
-.hl-tabs { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); border-bottom: 1px solid var(--color-border-line); padding-bottom: var(--cds-pad-sm); }
+.hl-tabs { position: sticky; top: 0; z-index: 5; background: var(--page-bg); padding-top: var(--cds-pad-sm); display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); border-bottom: 1px solid var(--color-border-line); padding-bottom: var(--cds-pad-sm); }
 .hl-tab { font: inherit; font-size: var(--cds-font-size-body); background: transparent; color: var(--color-fg-muted); border: 1px solid transparent; border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); cursor: pointer; }
 .hl-tab:hover { color: var(--color-fg); border-color: var(--color-border-line); }
 .hl-tab[aria-selected="true"] { color: var(--color-fg); background: var(--color-panel); border-color: var(--color-border-line); }
@@ -128,7 +129,9 @@ a { color: inherit; }
 .hl-layers { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md); font-size: var(--cds-font-size-caption); }
 .hl-layers label { display: inline-flex; align-items: center; gap: .35em; cursor: pointer; }
 .hl-sw { width: .75rem; height: .75rem; border-radius: 3px; flex: none; }
-.hl-map { width: 100%; min-height: 420px; position: relative; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); overflow: hidden; touch-action: none; }
+.hl-map { width: 100%; min-height: 420px; position: relative; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); overflow: hidden; touch-action: pan-y; }
+.hl-hint { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(20,20,18,.45); color: #fff; font-size: var(--cds-font-size-heading); pointer-events: none; opacity: 0; transition: opacity .2s; }
+.hl-hint.on { opacity: 1; }
 .hl-map svg { display: block; cursor: grab; }
 .hl-map svg:active { cursor: grabbing; }
 .hl-map text { font-family: var(--font-anthropic-sans); fill: var(--color-fg); paint-order: stroke; stroke: var(--color-panel); stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
@@ -140,7 +143,7 @@ a { color: inherit; }
 #proposals tbody tr, #parcels tbody tr { cursor: pointer; }
 #proposals tbody tr:hover td, #parcels tbody tr:hover td { background: color-mix(in srgb, var(--color-fg) 5%, transparent); }
 #proposals tbody tr.hl-on td, #parcels tbody tr.hl-on td { background: color-mix(in srgb, var(--color-fg) 9%, transparent); }
-@media (max-width: 640px) { .hl-hide-sm { display: none; } .hl-map { min-height: 340px; } }
+@media (max-width: 640px) { .hl-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -16px; padding-inline: 16px; mask-image: linear-gradient(90deg, #000 85%, transparent); } .hl-tab { white-space: nowrap; flex: none; } .hl-hide-sm { display: none; } .hl-map { min-height: 340px; } }
 .hl-headrow { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--cds-gap-md); flex-wrap: wrap; }
 .hl-about { border: 1px solid var(--color-border-line); border-radius: 12px; background: var(--color-panel); color: var(--color-fg); padding: 0; width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 48px); box-shadow: 0 12px 40px rgba(0,0,0,.18); }
 .hl-about::backdrop { background: rgba(20,20,18,.45); }
@@ -243,12 +246,12 @@ a { color: inherit; }
   <!-- MAP -->
   <section class="hl-page" id="map" role="tabpanel" aria-labelledby="tab-map" hidden>
     <template id="map-tpl">
-    <p class="hl-prose">The land is the five parcels shaded green on the 2022 land register plan. The landscape architect's seven sheets of 29 July 2026 are pinned to real coordinates: pick one to lay over the land. Every proposal is a point, line or area you can click. Drag to move, scroll or pinch to zoom.</p>
+    <p class="hl-prose">The land is the five parcels shaded green on the 2022 land register plan. The landscape architect's seven sheets of 29 July 2026 are pinned to real coordinates: pick one to lay over the land. Every proposal is a point, line or area you can click. Drag to move the map and use + and − to zoom; on a trackpad hold Ctrl (or ⌘) and scroll, on a phone use two fingers.</p>
     <div class="hl-card" id="card-map">
       <div class="hl-mapbar">
         <label class="hl-ctl">Drawing <select id="map-sheet"></select></label>
         <label class="hl-ctl">Opacity <input type="range" id="map-op" min="10" max="100" value="80" aria-label="Drawing opacity"></label>
-        <span class="hl-ctl"><button type="button" class="hl-btn" id="map-all">Whole land</button> <button type="button" class="hl-btn" id="map-inst">Institute grounds</button></span>
+        <span class="hl-ctl"><button type="button" class="hl-btn" id="map-all">Whole land</button> <button type="button" class="hl-btn" id="map-inst">Institute grounds</button> <button type="button" class="hl-btn" id="map-in" aria-label="Zoom in">+</button> <button type="button" class="hl-btn" id="map-out" aria-label="Zoom out">&minus;</button></span>
       </div>
       <div class="hl-layers" id="map-layers" data-source="gov_shapes"></div>
       <div class="hl-map dash-skeleton" id="landmap" data-source="map_sheets"></div>
@@ -500,13 +503,21 @@ a { color: inherit; }
     tabs.forEach((t) => {
       const on = t.dataset.page === id;
       t.setAttribute('aria-selected', on ? 'true' : 'false');
+      if (on && t.scrollIntoView) t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
       document.getElementById(t.dataset.page).hidden = !on;
     });
     if (window.hlDraw) window.hlDraw();
+    const y = document.getElementById('top').getBoundingClientRect().bottom + window.scrollY;
+    if (window.scrollY > y) window.scrollTo(0, y);
   };
   tabs.forEach((t) => t.addEventListener('click', () => { window.hlShow(t.dataset.page); dash.setLink(t.dataset.page); }));
-  const start = location.hash.slice(1);
-  if (tabs.some((t) => t.dataset.page === start)) window.hlShow(start);
+  const fromHash = () => {
+    const h = location.hash.slice(1);
+    window.hlShow(tabs.some((t) => t.dataset.page === h) ? h : 'overview');
+  };
+  window.addEventListener('hashchange', fromHash);
+  window.addEventListener('popstate', fromHash);
+  fromHash();
 })();
 </script>
 
@@ -811,6 +822,8 @@ dash.calc('solar_summary', {
     document.getElementById('map-op').addEventListener('input', (ev) => { MS.op = Number(ev.target.value) / 100; d3.select('#landmap .hl-sheet').attr('opacity', MS.op); });
     document.getElementById('map-all').addEventListener('click', () => mapFit('all'));
     document.getElementById('map-inst').addEventListener('click', () => mapFit('inst'));
+    document.getElementById('map-in').addEventListener('click', () => MS.svg && MS.svg.transition().duration(250).call(MS.zoom.scaleBy, 1.6));
+    document.getElementById('map-out').addEventListener('click', () => MS.svg && MS.svg.transition().duration(250).call(MS.zoom.scaleBy, 1 / 1.6));
     LAYERS.forEach((l) => {
       const lab = document.createElement('label');
       const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = MS.on.has(l.id); cb.value = l.id;
@@ -950,10 +963,22 @@ dash.calc('solar_summary', {
     fr.append('text').attr('x', W - 22).attr('y', 42).attr('text-anchor', 'middle').style('font-size', '11px').text('N');
     const sb = fr.append('g').attr('class', 'hl-scale');
 
-    const zoom = d3.zoom().scaleExtent([0.7, 14]).on('zoom', (ev) => { MS.t = ev.transform; gz.attr('transform', ev.transform); restyle(); });
+    // Plain scrolling and one-finger swipes move the page; ctrl/cmd + scroll, pinch, drag or the buttons move the map.
+    const zoom = d3.zoom().scaleExtent([0.7, 14]).filter((ev) => {
+      if (ev.type === 'wheel') { if (ev.ctrlKey || ev.metaKey) return true; hint(); return false; }
+      if (ev.type === 'touchstart') { if (ev.touches.length > 1) return true; hint(); return false; }
+      return !ev.button;
+    }).on('zoom', (ev) => { MS.t = ev.transform; gz.attr('transform', ev.transform); restyle(); });
     MS.zoom = zoom; MS.svg = svg;
     svg.call(zoom).on('dblclick.zoom', null);
     svg.call(zoom.transform, MS.t || d3.zoomIdentity);
+    function hint() {
+      const box = svg.node().parentNode;
+      let h = box.querySelector('.hl-hint');
+      if (!h) { h = document.createElement('div'); h.className = 'hl-hint'; box.appendChild(h); }
+      h.textContent = matchMedia('(pointer: coarse)').matches ? 'Use two fingers to move the map' : 'Hold Ctrl (or ⌘) and scroll to zoom, or drag to move';
+      h.classList.add('on'); clearTimeout(MS.hintT); MS.hintT = setTimeout(() => h.classList.remove('on'), 1400);
+    }
 
     function restyle() {
       const k = k0 * (MS.t ? MS.t.k : 1);
