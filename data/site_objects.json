@@ -1,0 +1,682 @@
+[
+ {
+  "kind": "building",
+  "name": "Building 1",
+  "height_m": 14,
+  "radius_m": null,
+  "area_m2": 712,
+  "shape": "2673059.4,1209344.3 2673049.6,1209351.1 2673046.7,1209351.1 2673025.9,1209320.2 2673027.3,1209317.7 2673025.9,1209313.8 2673031.3,1209310.4 2673033.7,1209312.9 2673039.1,1209311.4 2673045.8,1209321.3 2673049.7,1209321.3 2673057.5,1209333.1 2673057.9,1209335.5 2673056.5,1209337.5 2673058.9,1209340.9",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 2",
+  "height_m": 14,
+  "radius_m": null,
+  "area_m2": 615,
+  "shape": "2673059.6,1209292.9 2673031.8,1209287.9 2673033.4,1209275.7 2673038.3,1209254.6 2673043.7,1209255.6 2673043.6,1209261.5 2673041.7,1209268.9 2673042.6,1209270.8 2673051.4,1209272.3 2673052.3,1209274.3 2673062.6,1209276.3",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 3",
+  "height_m": 14,
+  "radius_m": null,
+  "area_m2": 513,
+  "shape": "2672848.5,1209150.3 2672847.5,1209152.3 2672820.6,1209171.7 2672818.7,1209171.2 2672813.8,1209164.3 2672814.8,1209161.4 2672825.6,1209147.8 2672836.8,1209142.4 2672842.2,1209141.5",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 4",
+  "height_m": 9,
+  "radius_m": null,
+  "area_m2": 392,
+  "shape": "2673105.6,1209332.8 2673097.3,1209337.2 2673078.0,1209308.7 2673085.3,1209303.8 2673088.2,1209303.9 2673105.7,1209328.9",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 5",
+  "height_m": 9,
+  "radius_m": null,
+  "area_m2": 369,
+  "shape": "2673116.6,1209392.6 2673110.2,1209398.0 2673101.0,1209397.9 2673088.4,1209380.2 2673090.9,1209379.3 2673093.3,1209380.8 2673100.6,1209374.9 2673103.5,1209374.9 2673113.2,1209386.2 2673113.2,1209389.2 2673116.6,1209390.7",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 6",
+  "height_m": 9,
+  "radius_m": null,
+  "area_m2": 316,
+  "shape": "2672911.4,1209353.3 2672899.2,1209359.2 2672899.2,1209362.6 2672892.4,1209365.0 2672889.5,1209357.6 2672893.4,1209355.7 2672893.9,1209354.2 2672890.0,1209345.9 2672903.2,1209339.6 2672905.6,1209339.6",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 7",
+  "height_m": 9,
+  "radius_m": null,
+  "area_m2": 310,
+  "shape": "2673019.1,1209306.9 2673017.2,1209311.8 2673014.2,1209313.8 2673014.2,1209316.2 2673004.5,1209322.5 2673002.0,1209320.5 2672998.1,1209320.5 2672995.2,1209319.0 2672993.8,1209316.1 2672994.3,1209311.2 2672996.2,1209311.2 2672997.2,1209308.8 2673000.6,1209308.3 2673008.9,1209302.5 2673010.9,1209303.9 2673015.7,1209302.5",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 8",
+  "height_m": 9,
+  "radius_m": null,
+  "area_m2": 243,
+  "shape": "2673168.1,1209398.3 2673138.0,1209398.1 2673134.1,1209392.2 2673137.5,1209390.3 2673143.3,1209395.2 2673156.5,1209384.5 2673158.0,1209384.5 2673160.4,1209387.5 2673160.4,1209389.9 2673162.8,1209390.4",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 9",
+  "height_m": 9,
+  "radius_m": null,
+  "area_m2": 200,
+  "shape": "2673060.6,1209397.7 2673043.6,1209397.6 2673037.3,1209392.7 2673035.3,1209392.7 2673032.4,1209397.6 2673031.4,1209397.6 2673028.5,1209394.1 2673031.4,1209390.7 2673035.3,1209389.3 2673036.3,1209385.3 2673039.2,1209385.4 2673045.6,1209389.8 2673047.0,1209389.8 2673050.4,1209386.4 2673054.3,1209389.4 2673051.9,1209392.3 2673051.9,1209394.2 2673054.3,1209396.2 2673059.6,1209395.3",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 10",
+  "height_m": 9,
+  "radius_m": null,
+  "area_m2": 197,
+  "shape": "2672871.0,1209103.4 2672866.6,1209105.9 2672855.0,1209091.6 2672854.5,1209089.2 2672860.4,1209084.3 2672863.8,1209083.8 2672867.7,1209088.7 2672866.2,1209093.1 2672871.0,1209098.1 2672872.0,1209100.5",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 11",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 100,
+  "shape": "2672836.0,1209087.6 2672831.2,1209091.5 2672828.2,1209091.5 2672824.4,1209086.1 2672824.4,1209083.1 2672827.8,1209079.2 2672830.7,1209078.8 2672835.6,1209085.1",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 12",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 96,
+  "shape": "2672770.8,1209103.4 2672770.8,1209104.9 2672763.4,1209112.7 2672761.5,1209112.2 2672758.1,1209108.2 2672758.1,1209106.8 2672765.4,1209099.0",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 13",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 85,
+  "shape": "2672994.5,1209384.1 2672992.0,1209385.1 2672990.6,1209388.0 2672983.3,1209388.5 2672980.9,1209383.1 2672992.1,1209378.3",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 14",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 75,
+  "shape": "2673103.1,1209000.4 2673103.5,1209002.9 2673097.7,1209014.1 2673093.3,1209012.6 2673093.3,1209010.6 2673098.7,1209000.9 2673100.1,1208999.9",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 15",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 73,
+  "shape": "2672851.3,1209301.1 2672852.2,1209303.1 2672850.7,1209312.9 2672844.9,1209312.4 2672845.4,1209301.1",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 16",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 64,
+  "shape": "2672769.9,1209081.9 2672766.0,1209084.8 2672758.2,1209075.4 2672760.7,1209073.0 2672762.1,1209073.0 2672769.9,1209080.4",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 17",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 51,
+  "shape": "2672789.0,1209050.1 2672784.1,1209050.1 2672780.7,1209048.1 2672780.7,1209046.2 2672783.2,1209045.7 2672783.2,1209042.3 2672787.1,1209042.3 2672789.0,1209044.3",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 18",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 47,
+  "shape": "2673080.5,1209298.9 2673073.2,1209302.8 2673070.7,1209297.9 2673077.6,1209293.5",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 19",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 42,
+  "shape": "2672867.6,1209219.5 2672863.8,1209218.9 2672860.3,1209220.4 2672857.9,1209215.0 2672864.3,1209212.1 2672865.2,1209216.0",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 20",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 42,
+  "shape": "2672771.9,1209070.1 2672769.4,1209072.1 2672767.0,1209071.1 2672764.6,1209068.6 2672765.1,1209064.2 2672767.0,1209063.2 2672771.9,1209067.7",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 21",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 40,
+  "shape": "2672782.6,1209063.8 2672782.1,1209067.2 2672780.2,1209068.2 2672780.2,1209071.1 2672775.3,1209069.6 2672776.8,1209062.8",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 22",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 22,
+  "shape": "2673098.6,1209397.9 2673094.7,1209397.9 2673090.8,1209391.5 2673092.8,1209390.5",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 23",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 18,
+  "shape": "2672890.4,1209374.3 2672888.4,1209374.8 2672886.0,1209373.3 2672885.5,1209370.3 2672889.4,1209369.4",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 24",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 17,
+  "shape": "2673086.5,1209383.2 2673085.5,1209385.6 2673079.1,1209389.5 2673077.7,1209389.0 2673078.7,1209387.0 2673081.6,1209386.6 2673084.0,1209383.6",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 25",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 16,
+  "shape": "2672756.8,1209079.8 2672753.8,1209081.3 2672750.9,1209078.8 2672750.9,1209077.3 2672753.4,1209076.4",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 26",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 12,
+  "shape": "2673089.4,1209386.6 2673089.4,1209388.1 2673085.5,1209390.5 2673083.0,1209390.5 2673086.4,1209387.1",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 27",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 9,
+  "shape": "2672978.7,1209317.0 2672975.8,1209317.5 2672975.3,1209314.5 2672978.2,1209314.0",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "building",
+  "name": "Building 28",
+  "height_m": 5,
+  "radius_m": null,
+  "area_m2": 8,
+  "shape": "2672797.8,1209153.0 2672794.9,1209154.0 2672793.5,1209152.0 2672795.9,1209150.5",
+  "status": "Traced; height estimated",
+  "source": "Grey fills of the 2022 land register plan"
+ },
+ {
+  "kind": "tree",
+  "name": "Sweet chestnut",
+  "height_m": 20,
+  "radius_m": 7,
+  "area_m2": null,
+  "shape": "2673081.7,1209288.4",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Lime",
+  "height_m": 20,
+  "radius_m": 6,
+  "area_m2": null,
+  "shape": "2673065.4,1209291.5",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Tulip tree",
+  "height_m": 22,
+  "radius_m": 6,
+  "area_m2": null,
+  "shape": "2673056.6,1209308.3",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Catalpa",
+  "height_m": 10,
+  "radius_m": 4,
+  "area_m2": null,
+  "shape": "2673038.6,1209305.8",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Privet",
+  "height_m": 6,
+  "radius_m": 2.5,
+  "area_m2": null,
+  "shape": "2673032.6,1209293.0",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Chaste tree",
+  "height_m": 5,
+  "radius_m": 2.5,
+  "area_m2": null,
+  "shape": "2673031.2,1209270.3",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Judas tree",
+  "height_m": 7,
+  "radius_m": 3,
+  "area_m2": null,
+  "shape": "2673033.9,1209259.8",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Birch",
+  "height_m": 16,
+  "radius_m": 4,
+  "area_m2": null,
+  "shape": "2673048.6,1209243.4",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Maple",
+  "height_m": 16,
+  "radius_m": 5,
+  "area_m2": null,
+  "shape": "2673041.3,1209243.4",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Birch",
+  "height_m": 16,
+  "radius_m": 4,
+  "area_m2": null,
+  "shape": "2673041.3,1209235.1",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Beech",
+  "height_m": 22,
+  "radius_m": 7,
+  "area_m2": null,
+  "shape": "2673020.6,1209359.8",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Magnolia",
+  "height_m": 8,
+  "radius_m": 4,
+  "area_m2": null,
+  "shape": "2673023.9,1209339.0",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Sweet chestnut",
+  "height_m": 20,
+  "radius_m": 7,
+  "area_m2": null,
+  "shape": "2673011.9,1209297.6",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Maple",
+  "height_m": 16,
+  "radius_m": 5,
+  "area_m2": null,
+  "shape": "2672999.0,1209296.8",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Maple",
+  "height_m": 16,
+  "radius_m": 5,
+  "area_m2": null,
+  "shape": "2673024.3,1209215.9",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Oak",
+  "height_m": 22,
+  "radius_m": 8,
+  "area_m2": null,
+  "shape": "2673021.3,1209196.3",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Fruit tree",
+  "height_m": 6,
+  "radius_m": 3,
+  "area_m2": null,
+  "shape": "2672905.3,1209182.0",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Fruit tree",
+  "height_m": 6,
+  "radius_m": 3,
+  "area_m2": null,
+  "shape": "2672903.9,1209159.7",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Fruit tree",
+  "height_m": 6,
+  "radius_m": 3,
+  "area_m2": null,
+  "shape": "2672895.6,1209169.4",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Fruit tree",
+  "height_m": 6,
+  "radius_m": 3,
+  "area_m2": null,
+  "shape": "2672890.3,1209144.2",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Fruit tree",
+  "height_m": 6,
+  "radius_m": 3,
+  "area_m2": null,
+  "shape": "2672881.6,1209131.9",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Fruit tree",
+  "height_m": 6,
+  "radius_m": 3,
+  "area_m2": null,
+  "shape": "2672871.1,1209138.0",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Fruit tree",
+  "height_m": 6,
+  "radius_m": 3,
+  "area_m2": null,
+  "shape": "2672861.7,1209126.9",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Fruit tree",
+  "height_m": 6,
+  "radius_m": 3,
+  "area_m2": null,
+  "shape": "2672872.7,1209108.8",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Fruit tree",
+  "height_m": 5,
+  "radius_m": 2.5,
+  "area_m2": null,
+  "shape": "2672851.8,1209096.5",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Fruit tree",
+  "height_m": 6,
+  "radius_m": 3,
+  "area_m2": null,
+  "shape": "2672903.6,1209242.7",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Fruit tree",
+  "height_m": 6,
+  "radius_m": 3,
+  "area_m2": null,
+  "shape": "2672896.5,1209247.0",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Fruit tree",
+  "height_m": 6,
+  "radius_m": 3,
+  "area_m2": null,
+  "shape": "2672899.0,1209232.4",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Fruit tree",
+  "height_m": 6,
+  "radius_m": 3,
+  "area_m2": null,
+  "shape": "2672873.9,1209224.9",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Fruit tree",
+  "height_m": 6,
+  "radius_m": 3,
+  "area_m2": null,
+  "shape": "2672858.3,1209185.9",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Robinia",
+  "height_m": 14,
+  "radius_m": 4,
+  "area_m2": null,
+  "shape": "2672858.1,1209239.5",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Shore tree",
+  "height_m": 14,
+  "radius_m": 4,
+  "area_m2": null,
+  "shape": "2672854.0,1209232.1",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Shore tree",
+  "height_m": 14,
+  "radius_m": 4,
+  "area_m2": null,
+  "shape": "2672852.1,1209223.5",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Shore tree",
+  "height_m": 14,
+  "radius_m": 4,
+  "area_m2": null,
+  "shape": "2672849.7,1209210.8",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Shore tree",
+  "height_m": 14,
+  "radius_m": 4,
+  "area_m2": null,
+  "shape": "2672845.8,1209203.9",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Shore tree",
+  "height_m": 14,
+  "radius_m": 4,
+  "area_m2": null,
+  "shape": "2672841.7,1209197.3",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Shore tree",
+  "height_m": 14,
+  "radius_m": 4,
+  "area_m2": null,
+  "shape": "2672836.6,1209191.1",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Shore tree",
+  "height_m": 14,
+  "radius_m": 4,
+  "area_m2": null,
+  "shape": "2672832.7,1209185.5",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "tree",
+  "name": "Lime",
+  "height_m": 18,
+  "radius_m": 6,
+  "area_m2": null,
+  "shape": "2672799.2,1209043.3",
+  "status": "Placed by hand; size typical for the species",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ },
+ {
+  "kind": "grove",
+  "name": "Mature trees, garden of 287 (neighbour)",
+  "height_m": 18,
+  "radius_m": null,
+  "area_m2": null,
+  "shape": "2672941.4,1209384.3 2672957.1,1209367.3 2672963.5,1209338.0 2672958.3,1209308.6 2672945.7,1209280.1 2672927.3,1209268.2 2672912.6,1209283.8 2672914.5,1209313.2 2672921.2,1209337.7 2672918.2,1209367.1 2672925.9,1209385.7",
+  "status": "Outline traced by hand; height typical",
+  "source": "Landscape architect, Site analysis sheet, 29.7.2026"
+ }
+]

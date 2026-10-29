@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hertenstein Terrain and Sun</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="A 3D model of the Stella Matutina land at Hertenstein with sun and shade through the day and year, slope, facing direction, wetness and frost hollows.">
+<style>
+/* Layout: one working screen. The 3D model takes the main column; controls and the point readout sit in a side column that drops below on phones. */
+:root {
+  --color-fg: #1f1e1c; --color-fg-muted: #6b6862; --color-panel: #ffffff; --page-bg: #f5f4f0; --color-border-line: #e2dfd8;
+  --accent: #3f7d5a; --sun: #d99a1e; --sky: #dfe7ea; --water: #9fbccb; --grid: #ebe8e1;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; --font-serif: Georgia, "Times New Roman", serif;
+  --radius: 8px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --color-fg: #ecebe7; --color-fg-muted: #a7a39a; --color-panel: #23221f; --page-bg: #181816; --color-border-line: #3a3833;
+    --accent: #6cbf8c; --sun: #f0b443; --sky: #1d2428; --water: #2f4a58; --grid: #302e2a; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --color-fg: #ecebe7; --color-fg-muted: #a7a39a; --color-panel: #23221f; --page-bg: #181816; --color-border-line: #3a3833;
+  --accent: #6cbf8c; --sun: #f0b443; --sky: #1d2428; --water: #2f4a58; --grid: #302e2a; color-scheme: dark; }
+html, body { margin: 0; background: var(--page-bg); color: var(--color-fg); }
+body { font-family: var(--font-sans); font-size: 14.5px; line-height: 1.5;
+  padding-block: 20px 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: inherit; }
+.wrap { max-width: 1280px; margin: 0 auto; display: grid; gap: 16px; }
+header { display: grid; gap: 6px; }
+.eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--color-fg-muted); margin: 0; }
+h1 { font-family: var(--font-serif); font-weight: 400; font-size: 28px; line-height: 1.2; margin: 0; text-wrap: balance; }
+.lede { margin: 0; max-width: 68ch; color: var(--color-fg-muted); }
+.lede a { color: var(--color-fg); }
+.main { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 16px; align-items: start; }
+@media (max-width: 900px) { .main { grid-template-columns: minmax(0, 1fr); } }
+.stage { position: relative; background: var(--sky); border: 1px solid var(--color-border-line); border-radius: var(--radius); overflow: hidden; height: min(72vh, 720px); min-height: 380px; }
+.stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.stage .hint { position: absolute; left: 10px; bottom: 8px; font-size: 12px; color: var(--color-fg-muted); background: color-mix(in srgb, var(--color-panel) 80%, transparent); padding: 2px 8px; border-radius: 4px; pointer-events: none; }
+.stage .loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--color-fg-muted); }
+.legend { position: absolute; right: 10px; top: 10px; background: color-mix(in srgb, var(--color-panel) 88%, transparent); border: 1px solid var(--color-border-line); border-radius: 6px; padding: 8px 10px; font-size: 12px; max-width: 230px; display: grid; gap: 4px; }
+.legend b { font-weight: 600; }
+.legend canvas { width: 200px; height: 10px; border-radius: 2px; max-width: 100%; }
+.legend .ticks { display: flex; justify-content: space-between; font-variant-numeric: tabular-nums; color: var(--color-fg-muted); }
+.legend .swatches { display: grid; gap: 2px; }
+.legend .sw { display: flex; gap: 6px; align-items: center; }
+.legend .sw i { width: 12px; height: 12px; border-radius: 2px; flex: none; }
+.compass { position: absolute; left: 10px; top: 10px; width: 40px; height: 40px; }
+.side { display: grid; gap: 12px; min-width: 0; }
+.panel { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--radius); padding: 12px 14px; display: grid; gap: 10px; min-width: 0; }
+.panel h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--color-fg-muted); margin: 0; font-weight: 600; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 2px; }
+legend.grp { font-size: 12px; color: var(--color-fg-muted); padding: 0; margin: 6px 0 2px; }
+.opt { display: flex; gap: 8px; align-items: baseline; padding: 3px 4px; border-radius: 5px; cursor: pointer; }
+.opt:hover { background: var(--grid); }
+.opt input { margin: 0; accent-color: var(--accent); }
+.opt small { color: var(--color-fg-muted); font-size: 12px; }
+.row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.btn { font: inherit; font-size: 13px; border: 1px solid var(--color-border-line); background: var(--page-bg); color: var(--color-fg); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+.btn:hover { border-color: var(--color-fg-muted); }
+.btn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--color-panel); }
+.btn:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+input[type="date"], select { font: inherit; font-size: 13px; padding: 3px 6px; border: 1px solid var(--color-border-line); border-radius: 6px; background: var(--page-bg); color: var(--color-fg); }
+input[type="range"] { width: 100%; accent-color: var(--sun); }
+.time { display: flex; justify-content: space-between; align-items: baseline; font-variant-numeric: tabular-nums; }
+.time b { font-size: 20px; font-weight: 600; }
+.muted { color: var(--color-fg-muted); font-size: 12.5px; }
+dl.read { display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; margin: 0; font-size: 13.5px; }
+dl.read dt { color: var(--color-fg-muted); }
+dl.read dd { margin: 0; font-variant-numeric: tabular-nums; text-align: right; }
+.sunpath { width: 100%; height: auto; display: block; }
+.sunpath text { font-size: 10px; fill: var(--color-fg-muted); font-family: var(--font-sans); }
+.notes-more > summary { cursor: pointer; font-weight: 600; padding: 10px 14px; background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--radius); }
+.notes-more[open] > summary { margin-bottom: 12px; }
+.notes-more > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.notes .panel { align-content: start; }
+.notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.notes .panel p { margin: 0; max-width: 65ch; }
+.notes .panel p + p { margin-top: 0; }
+body.embed { padding: 0 0 16px; }
+body.embed #pagehead { display: none; }
+body.embed .stage { height: 640px; }
+@media (max-width: 900px) { body.embed .stage { height: 460px; } }
+.notes ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script type="importmap">{ "imports": { "three": "./vendor/three-0.169.0.module.min.js", "three/addons/OrbitControls.js": "./vendor/three-0.169.0-OrbitControls.js" } }</script>
+</head>
+<body>
+<div class="wrap">
+  <header id="pagehead">
+    <p class="eyebrow">Stella Matutina, Hertenstein · Weggis parcels 286, 289, 292, 505</p>
+    <h1>Terrain and sun on the land</h1>
+    <p class="lede">Turn the model to see the shape of the ground, then pick a day and an hour to see where the sun falls and where the buildings, the trees, the hills and the mountains across the lake cut it off. The ground layers show how steep it is, which way it faces, where water gathers and where cold air settles. Click anywhere on the land to read that spot. Part of the <a href="./">Hertenstein Land Record</a>.</p>
+  </header>
+
+  <div class="main">
+    <div class="stage" id="stage">
+      <div class="loading" id="loading">Loading the terrain…</div>
+      <svg class="compass" id="compass" viewBox="-20 -20 40 40" aria-label="North arrow"><circle r="18" fill="var(--color-panel)" stroke="var(--color-border-line)"></circle><g id="needle"><path d="M0 -14 L5 4 L0 1 L-5 4 Z" fill="var(--color-fg)"></path></g><text id="nlab" font-size="9" text-anchor="middle" fill="var(--color-fg-muted)" y="16">N</text></svg>
+      <div class="legend" id="legend" aria-live="polite"></div>
+      <span class="hint">Drag to turn · scroll or pinch to zoom · right-drag or two fingers to pan · click to read a spot</span>
+    </div>
+
+    <div class="side">
+      <div class="panel">
+        <h2>Show on the ground</h2>
+        <fieldset id="layers">
+          <legend class="grp">Sun</legend>
+          <label class="opt"><input type="radio" name="layer" value="moment" checked> <span>Sun and shade <small>at the time below</small></span></label>
+          <label class="opt"><input type="radio" name="layer" value="hours"> <span>Hours of direct sun <small>on the day</small></span></label>
+          <label class="opt"><input type="radio" name="layer" value="energy"> <span>Solar energy <small>on the day, clear sky</small></span></label>
+          <label class="opt"><input type="radio" name="layer" value="year"> <span>Sun over the year <small>vs. open flat ground</small></span></label>
+          <legend class="grp">Ground</legend>
+          <label class="opt"><input type="radio" name="layer" value="elev"> <span>Height above sea level</span></label>
+          <label class="opt"><input type="radio" name="layer" value="slope"> <span>Steepness</span></label>
+          <label class="opt"><input type="radio" name="layer" value="aspect"> <span>Which way it faces</span></label>
+          <label class="opt"><input type="radio" name="layer" value="twi"> <span>Where water gathers</span></label>
+          <label class="opt"><input type="radio" name="layer" value="tpi"> <span>Hollows and ridges <small>frost pockets</small></span></label>
+        </fieldset>
+      </div>
+
+      <div class="panel" id="sunpanel">
+        <h2>Day and time</h2>
+        <div class="row">
+          <input type="date" id="date" aria-label="Date">
+          <button class="btn" type="button" data-day="12-21">Midwinter</button>
+          <button class="btn" type="button" data-day="03-20">Equinox</button>
+          <button class="btn" type="button" data-day="06-21">Midsummer</button>
+        </div>
+        <div class="time"><b id="timelab">12:00</b><span class="muted" id="sunlab"></span></div>
+        <input type="range" id="time" min="240" max="1320" step="5" value="720" aria-label="Time of day">
+        <div class="row"><button class="btn" type="button" id="play" aria-pressed="false">Play the day</button><span class="muted" id="daylab"></span></div>
+      </div>
+
+      <div class="panel">
+        <h2>Lines and public maps</h2>
+        <fieldset>
+          <label class="opt"><input type="checkbox" id="ov-objects" checked> <span>Trees and buildings <small>their shade always counts</small></span></label>
+          <label class="opt"><input type="checkbox" id="ov-parcels" checked> <span>Parcels <small>the land in bold</small></span></label>
+          <label class="opt"><input type="checkbox" id="ov-flow"> <span>Canton overland flow <small>100-year storm, over 25 cm</small></span></label>
+          <label class="opt"><input type="checkbox" id="ov-slope"> <span>Canton slope classes <small>18–25% and over 25%</small></span></label>
+          <label class="opt"><input type="checkbox" id="ov-forest"> <span>Legal forest</span></label>
+          <label class="opt"><input type="checkbox" id="ov-hazard"> <span>Landslide hazard areas</span></label>
+        </fieldset>
+        <label class="muted" for="exag">Height exaggeration <b id="exaglab">2×</b></label>
+        <input type="range" id="exag" min="1" max="4" step="0.5" value="2">
+      </div>
+
+      <div class="panel" id="readout">
+        <h2 id="rd-title">Middle of the hay meadow, 289</h2>
+        <dl class="read" id="rd"></dl>
+        <svg class="sunpath" id="sunpath" viewBox="0 0 320 150" role="img" aria-label="Skyline and sun paths seen from the chosen spot"></svg>
+        <p class="muted" style="margin:0">The grey shape is the skyline from this spot, from east through south to west. The curves are the sun's path on midsummer, the equinox, midwinter and the chosen day. Where a curve dips into the grey, the spot is in shade.</p>
+      </div>
+    </div>
+  </div>
+
+  <details class="notes-more">
+  <summary>How to read it, and where the data comes from</summary>
+  <div class="notes">
+    <div class="panel">
+      <h2>How to read it</h2>
+      <ul>
+        <li><b>Sun and shade</b> lights the ground for the moment you pick. Blue-grey is in shadow, cast by a building, a tree, a hill or a mountain; dark brown faces away from the sun.</li>
+        <li><b>Hours of direct sun</b> counts when the sun is above the skyline and shining on the slope, in five-minute steps. The skyline includes the buildings, the single trees and the woods, so the ground beside them loses sun the way it does on the day.</li>
+        <li><b>Under trees and on roofs</b> the colours show the sun on the tree tops and roofs, not the ground below them.</li>
+        <li><b>Sun over the year</b> adds up clear-sky energy on the 21st of each month and compares it with open flat ground at the same place. Over 100% means the slope gains from facing the sun.</li>
+        <li><b>Steepness</b> uses the canton's farming limits: up to 18% is easy to mow, 18–25% is harder, over 25% is steep ground.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h2>Wetness and frost</h2>
+      <ul>
+        <li><b>Where water gathers</b> is a wetness index: it is high where a lot of ground drains through a spot that is nearly flat. Use it to look for damp meadow, springs or places a path will stay muddy. The canton's overland-flow map is the official picture of storm runoff.</li>
+        <li><b>Hollows and ridges</b> compares each spot with the ground 30 to 90 m around it. Hollows collect cold air on clear, still nights, so late frost hits them first; ridges and the upper slope stay a little warmer.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h2>Where this comes from</h2>
+      <p>Heights come from AWS Terrain Tiles, which in Switzerland carry about 25 to 30 m detail, shifted 3.4 m to match Swiss heights at the lake and the house. That is good for the shape of the slopes and for the skyline out to 20 km, but it smooths terraces, walls, banks and the shoreline. The swisstopo 0.5 m model (swissALTI3D) would sharpen everything and can replace it with one script run (<code>tools/build_terrain.py</code>). Sun positions are calculated for Swiss time; energy is a clear-sky estimate without clouds or haze.</p>
+      <p>Buildings are traced from the grey footprints on the 2022 land register plan; their heights are estimates from their size (5, 9 or 14 m) until someone measures them. Single trees are placed from the circles on the landscape architect's site analysis, with heights and crowns typical for the species they wrote beside them. The woods are the canton's legal forest, at 20 m. All of it is in <code>data/site_objects.json</code>, one row per building or tree, so a site walk can correct it. Rebuilt 29 October 2026.</p>
+    </div>
+  </div>
+  </details>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/OrbitControls.js';
+
+const LAT = 47.031, LON = 8.3995;
+const START = [2672995, 1209214]; // middle of the hay meadow on 289
+const $ = (id) => document.getElementById(id);
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+const [T, parcels, shapes, objects] = await Promise.all(['terrain', 'parcels', 'gov_shapes', 'site_objects'].map((n) => fetch(`data/${n}.json`).then((r) => r.json())));
+const dec = (s, C) => { const b = atob(s), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return C === Uint8Array ? u : new C(u.buffer); };
+const NX = T.nx, NY = T.ny, D = T.d, NA = T.n_az, NC = NX * NY;
+const elev = dec(T.elev, Float32Array), slope = dec(T.slope, Float32Array), aspect = dec(T.aspect, Float32Array);
+const twi = dec(T.twi, Float32Array), tpi = dec(T.tpi, Float32Array), svf = dec(T.svf, Float32Array);
+const water = dec(T.water, Uint8Array), hq = dec(T.horizon, Uint8Array), cover = dec(T.cover, Uint8Array);
+const toCell = (E, N) => [Math.round((E - T.e0) / D), Math.round((T.n0 - N) / D)];
+
+// Which cells lie on the land (the four parcels), for summaries.
+const ring = (s) => s.split(' ').map((p) => p.split(',').map(Number));
+function inRing(E, N, r) { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { if ((r[i][1] > N) !== (r[j][1] > N) && E < (r[j][0] - r[i][0]) * (N - r[i][1]) / (r[j][1] - r[i][1]) + r[i][0]) c = !c; } return c; }
+const landRings = parcels.filter((p) => p.in_land === 'Yes').map((p) => ({ id: p.parcel, r: ring(p.shape) }));
+const allRings = parcels.map((p) => ({ p, r: ring(p.shape) }));
+const parcelOf = new Array(NC).fill(null);
+for (let y = 0; y < NY; y++) for (let x = 0; x < NX; x++) {
+  const E = T.e0 + x * D, N = T.n0 - y * D;
+  for (const p of allRings) if (inRing(E, N, p.r)) { parcelOf[y * NX + x] = p.p; break; }
+}
+
+// ---------- Sun ----------
+const rad = Math.PI / 180;
+function zurichOffset(y, m, d) { // hours ahead of UTC, CET/CEST
+  const lastSun = (mm) => { const t = new Date(Date.UTC(y, mm + 1, 0)); return t.getUTCDate() - t.getUTCDay(); };
+  const md = m * 100 + d;
+  return (md > 200 + lastSun(2) && md < 900 + lastSun(9)) || md === 200 + lastSun(2) || md === 900 + lastSun(9) ? 2 : 1;
+}
+function sunAt(y, m, d, minutes) { // local Swiss clock minutes; returns altitude and azimuth (deg, from north)
+  const utc = Date.UTC(y, m, d) + (minutes - zurichOffset(y, m, d) * 60) * 60000;
+  const n = utc / 86400000 + 2440587.5 - 2451545.0;
+  const L = (280.46 + 0.9856474 * n) % 360, g = ((357.528 + 0.9856003 * n) % 360) * rad;
+  const lam = (L + 1.915 * Math.sin(g) + 0.02 * Math.sin(2 * g)) * rad, eps = (23.439 - 4e-7 * n) * rad;
+  const ra = Math.atan2(Math.cos(eps) * Math.sin(lam), Math.cos(lam)), dcl = Math.asin(Math.sin(eps) * Math.sin(lam));
+  const gmst = (18.697374558 + 24.06570982441908 * n) % 24;
+  const H = ((gmst * 15 + LON) * rad - ra);
+  const alt = Math.asin(Math.sin(LAT * rad) * Math.sin(dcl) + Math.cos(LAT * rad) * Math.cos(dcl) * Math.cos(H));
+  const az = Math.atan2(-Math.sin(H), Math.tan(dcl) * Math.cos(LAT * rad) - Math.sin(LAT * rad) * Math.cos(H));
+  let alt2 = alt / rad; if (alt2 > -1) alt2 += 1.02 / Math.tan((alt2 + 10.3 / (alt2 + 5.11)) * rad) / 60; // refraction
+  return { alt: alt2, az: (az / rad + 360) % 360 };
+}
+function clearSky(alt) { // W/m2 beam normal and diffuse horizontal
+  if (alt <= 0) return [0, 0];
+  const am = 1 / (Math.sin(alt * rad) + 0.50572 * Math.pow(alt + 6.07995, -1.6364));
+  const dni = 1361 * Math.pow(0.7, Math.pow(am, 0.678)) * 1.06;
+  return [dni, 0.1 * dni * Math.sin(alt * rad) + 20 * Math.sin(alt * rad)];
+}
+function horizonAt(i, az) { const f = az / 360 * NA, a = Math.floor(f) % NA, b = (a + 1) % NA, t = f - Math.floor(f); return (hq[i * NA + a] * (1 - t) + hq[i * NA + b] * t) * T.horizon_q; }
+const sS = new Float32Array(NC), cS = new Float32Array(NC), sA = new Float32Array(NC), cA = new Float32Array(NC);
+for (let i = 0; i < NC; i++) { sS[i] = Math.sin(slope[i] * rad); cS[i] = Math.cos(slope[i] * rad); sA[i] = Math.sin(aspect[i] * rad); cA[i] = Math.cos(aspect[i] * rad); }
+function incidence(i, alt, az) { // cosine of the angle between sun and the ground's normal
+  const a = alt * rad, z = az * rad;
+  return Math.sin(a) * cS[i] + Math.cos(a) * sS[i] * (Math.cos(z) * cA[i] + Math.sin(z) * sA[i]);
+}
+function lit(i, s) { return s.alt > horizonAt(i, s.az) && incidence(i, s.alt, s.az) > 0; }
+
+function dayPath(y, m, d, step) { const out = []; for (let t = 0; t < 1440; t += step) { const s = sunAt(y, m, d, t + step / 2); s._t = t + step / 2; if (s.alt > 0) out.push(s); } return out; }
+function dayStats(y, m, d, step = 5) { // per cell: hours of direct sun, kWh/m2; plus flat open reference
+  const path = dayPath(y, m, d, step), h = new Float32Array(NC), e = new Float32Array(NC); let flat = 0;
+  for (const s of path) {
+    const [dni, dhi] = clearSky(s.alt), dt = step / 60;
+    flat += (dni * Math.sin(s.alt * rad) + dhi) * dt;
+    for (let i = 0; i < NC; i++) {
+      let g = dhi * svf[i] * (1 + cS[i]) / 2;
+      if (s.alt > horizonAt(i, s.az)) { const c = incidence(i, s.alt, s.az); if (c > 0) { h[i] += dt; g += dni * c; } }
+      e[i] += g * dt;
+    }
+  }
+  for (let i = 0; i < NC; i++) e[i] /= 1000;
+  return { h, e, flat: flat / 1000, path };
+}
+let yearRel = null, yearKwh = null;
+function computeYear() {
+  const tot = new Float32Array(NC); let flat = 0;
+  for (let m = 0; m < 12; m++) { const r = dayStats(2026, m, 21, 15); const days = new Date(2026, m + 1, 0).getDate(); for (let i = 0; i < NC; i++) tot[i] += r.e[i] * days; flat += r.flat * days; }
+  yearKwh = tot; yearRel = new Float32Array(NC); for (let i = 0; i < NC; i++) yearRel[i] = tot[i] / flat * 100;
+}
+
+// ---------- State ----------
+const st = { layer: 'moment', y: 2026, m: 11, d: 21, t: 720, exag: 2, cell: toCell(...START), day: null };
+const today = new Date(); st.y = today.getFullYear(); st.m = today.getMonth(); st.d = today.getDate();
+const fmtT = (mins) => `${String(Math.floor(mins / 60)).padStart(2, '0')}:${String(Math.round(mins % 60)).padStart(2, '0')}`;
+const cardinal = (a) => ['north', 'north-east', 'east', 'south-east', 'south', 'south-west', 'west', 'north-west'][Math.round(a / 45) % 8];
+
+// ---------- Colour ----------
+const lerp = (a, b, t) => a + (b - a) * t;
+function ramp(stops) { return (t) => { t = Math.max(0, Math.min(1, t)); const f = t * (stops.length - 1), k = Math.min(stops.length - 2, Math.floor(f)), u = f - k; return [0, 1, 2].map((j) => lerp(stops[k][j], stops[k + 1][j], u)); }; }
+const hex = (h) => [1, 3, 5].map((k) => parseInt(h.slice(k, k + 2), 16));
+const sunRamp = ramp(['#2b2f4a', '#5a4a6e', '#9c5d5a', '#d38b3c', '#f2c35a', '#fbeaa8'].map(hex));
+const heightRamp = ramp(['#3d6b4f', '#7c9a5e', '#c2b77a', '#b98a5a', '#8a6a52'].map(hex));
+const wetRamp = ramp(['#e9dcc0', '#bcd0c4', '#6fa2b6', '#2f6491', '#1d3a66'].map(hex));
+const tpiRamp = ramp(['#2f5f99', '#8fb0d3', '#e6e3dc', '#e3a873', '#b5572b'].map(hex));
+const slopeBreaks = [[0, '#d9e3c4', 'Under 9% · gentle'], [5.14, '#b9cf8f', '9–18% · easy to mow'], [10.2, '#e8c45c', '18–25% · harder'], [14.04, '#dc8a4a', '25–35% · steep'], [19.3, '#b0473a', 'Over 35% · very steep']];
+const WATER = hex('#9fbccb');
+function hsl2rgb(h, s, l) { const k = (n) => (n + h / 30) % 12, a = s * Math.min(l, 1 - l), f = (n) => l - a * Math.max(-1, Math.min(k(n) - 3, 9 - k(n), 1)); return [f(0) * 255, f(8) * 255, f(4) * 255]; }
+
+// Soft hillshade from the north-west for the ground layers.
+const shade = new Float32Array(NC);
+for (let i = 0; i < NC; i++) shade[i] = Math.max(0, incidence(i, 40, 315)) / Math.sin(40 * rad);
+
+const range = { elev: [434, 476] };
+function cellColor(i, data) {
+  if (water[i]) return WATER;
+  const L = st.layer;
+  let c;
+  if (L === 'moment') {
+    const s = data.sun;
+    if (s.alt <= 0) c = [40, 44, 66];
+    else if (s.alt <= horizonAt(i, s.az)) c = [92, 112, 140];
+    else { const k = incidence(i, s.alt, s.az); c = k <= 0 ? [86, 66, 58] : sunRamp(0.25 + 0.75 * k); }
+    return c;
+  }
+  if (L === 'hours') c = sunRamp((data.day.h[i] - data.min) / (data.max - data.min));
+  else if (L === 'energy') c = sunRamp((data.day.e[i] - data.min) / (data.max - data.min));
+  else if (L === 'year') c = sunRamp((yearRel[i] - 60) / 55);
+  else if (L === 'elev') c = heightRamp((elev[i] - range.elev[0]) / (range.elev[1] - range.elev[0]));
+  else if (L === 'slope') { let k = 0; for (let j = 0; j < slopeBreaks.length; j++) if (slope[i] >= slopeBreaks[j][0]) k = j; c = hex(slopeBreaks[k][1]); }
+  else if (L === 'aspect') { const s = Math.min(1, slope[i] / 8); c = slope[i] < 2 ? [215, 212, 204] : hsl2rgb((aspect[i] + 200) % 360, 0.25 + 0.45 * s, 0.62); }
+  else if (L === 'twi') c = wetRamp((twi[i] - 4.5) / 5);
+  else if (L === 'tpi') c = tpiRamp((tpi[i] + 5) / 10);
+  const k = 0.72 + 0.4 * shade[i];
+  return c.map((v) => Math.min(255, v * k));
+}
+
+// ---------- Scene ----------
+const stage = $('stage');
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(2, devicePixelRatio));
+stage.prepend(renderer.domElement);
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(40, 1, 1, 20000);
+const W = (NX - 1) * D, H = (NY - 1) * D, BASE = T.lake - 2;
+const geo = new THREE.PlaneGeometry(W, H, NX - 1, NY - 1);
+geo.rotateX(-Math.PI / 2); // plane now in x (east) / z (south); vertex k = row-major from north-west
+const pos = geo.attributes.position;
+function applyHeights() { for (let i = 0; i < NC; i++) pos.setY(i, (elev[i] - BASE) * st.exag); pos.needsUpdate = true; geo.computeVertexNormals(); geo.computeBoundingSphere(); skirt(); if (typeof placeObjects === 'function') placeObjects(); }
+const TEX = 8, tcan = document.createElement('canvas'); tcan.width = NX * TEX; tcan.height = NY * TEX;
+const small = document.createElement('canvas'); small.width = NX; small.height = NY;
+const tex = new THREE.CanvasTexture(tcan); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
+const mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: tex }));
+scene.add(mesh);
+
+// ---------- Buildings and trees ----------
+const objGroup = new THREE.Group(); scene.add(objGroup);
+scene.add(new THREE.HemisphereLight(0xeef2f5, 0x6b6250, 1.6));
+const sunLight = new THREE.DirectionalLight(0xfff1d6, 1.8); scene.add(sunLight);
+const lx = (E) => E - T.e0 - W / 2, lz = (N) => T.n0 - N - H / 2;
+function groundAt(E, N) {
+  const fx = Math.max(0, Math.min(NX - 1.001, (E - T.e0) / D)), fy = Math.max(0, Math.min(NY - 1.001, (T.n0 - N) / D));
+  const x0 = Math.floor(fx), y0 = Math.floor(fy), u = fx - x0, v = fy - y0, g = (x, y) => elev[y * NX + x];
+  return g(x0, y0) * (1 - u) * (1 - v) + g(x0 + 1, y0) * u * (1 - v) + g(x0, y0 + 1) * (1 - u) * v + g(x0 + 1, y0 + 1) * u * v;
+}
+let rnd = 7; const rand = () => (rnd = (rnd * 16807) % 2147483647) / 2147483647;
+const treeList = [];
+for (const o of objects) {
+  if (o.kind === 'tree') { const [e, n] = o.shape.split(',').map(Number); treeList.push({ e, n, h: o.height_m, r: o.radius_m, fruit: o.name === 'Fruit tree', name: o.name }); }
+}
+const woods = shapes.filter((r) => r.group === 'Legal forest').map((r) => ({ r: ring(r.shape), h: 20 }))
+  .concat(objects.filter((o) => o.kind === 'grove').map((o) => ({ r: ring(o.shape), h: o.height_m })));
+for (const w of woods) {
+  const xs = w.r.map((q) => q[0]), ys = w.r.map((q) => q[1]);
+  for (let e = Math.min(...xs); e < Math.max(...xs); e += 7) for (let n = Math.min(...ys); n < Math.max(...ys); n += 7) {
+    const je = e + rand() * 5, jn = n + rand() * 5;
+    if (inRing(je, jn, w.r)) treeList.push({ e: je, n: jn, h: w.h * (0.8 + rand() * 0.35), r: 3.8 + rand() * 1.8, wood: true });
+  }
+}
+const crownGeo = new THREE.IcosahedronGeometry(1, 1), trunkGeo = new THREE.CylinderGeometry(0.25, 0.35, 1, 6);
+const crowns = new THREE.InstancedMesh(crownGeo, new THREE.MeshLambertMaterial({ color: 0xffffff }), treeList.length);
+const trunks = new THREE.InstancedMesh(trunkGeo, new THREE.MeshLambertMaterial({ color: 0x6b5440 }), treeList.length);
+const cols = { wood: new THREE.Color(0x3f6b3a), park: new THREE.Color(0x5a8a45), fruit: new THREE.Color(0x8fae55) };
+objGroup.add(crowns, trunks);
+const bMat = new THREE.MeshLambertMaterial({ color: 0xd9d2c5 }), roofMat = new THREE.MeshLambertMaterial({ color: 0x9a5b47 });
+const buildings = objects.filter((o) => o.kind === 'building').map((o) => {
+  const r = ring(o.shape), base = Math.min(...r.map(([e, n]) => groundAt(e, n)));
+  const shape = new THREE.Shape(r.map(([e, n]) => new THREE.Vector2(lx(e), -lz(n))));
+  const g = new THREE.ExtrudeGeometry(shape, { depth: o.height_m, bevelEnabled: false }); g.rotateX(-Math.PI / 2);
+  const m = new THREE.Mesh(g, [roofMat, bMat]); objGroup.add(m);
+  return { m, base };
+});
+function placeObjects() {
+  const M = new THREE.Matrix4(), q = new THREE.Quaternion(), v = new THREE.Vector3(), sc = new THREE.Vector3();
+  treeList.forEach((t, k) => {
+    const g = (groundAt(t.e, t.n) - BASE) * st.exag, crownH = t.h * 0.7;
+    M.compose(v.set(lx(t.e), g + t.h - crownH / 2, lz(t.n)), q, sc.set(t.r, crownH / 2, t.r)); crowns.setMatrixAt(k, M);
+    crowns.setColorAt(k, t.wood ? cols.wood : t.fruit ? cols.fruit : cols.park);
+    M.compose(v.set(lx(t.e), g + (t.h - crownH) / 2 + 0.5, lz(t.n)), q, sc.set(1, t.h - crownH + 1, 1)); trunks.setMatrixAt(k, M);
+  });
+  crowns.instanceMatrix.needsUpdate = trunks.instanceMatrix.needsUpdate = true; if (crowns.instanceColor) crowns.instanceColor.needsUpdate = true;
+  buildings.forEach((b) => { b.m.position.y = (b.base - BASE) * st.exag - 0.5; });
+}
+// Sides of the block, so the model reads as a cut piece of ground.
+const skirtMat = new THREE.MeshBasicMaterial({ color: 0x8a7f70, side: THREE.DoubleSide });
+let skirtMesh = null;
+function skirt() {
+  if (skirtMesh) { scene.remove(skirtMesh); skirtMesh.geometry.dispose(); }
+  const v = [], idx = [];
+  const edge = (cells) => { const start = v.length / 3; cells.forEach((i) => { v.push(pos.getX(i), pos.getY(i), pos.getZ(i), pos.getX(i), -6, pos.getZ(i)); }); for (let k = 0; k < cells.length - 1; k++) { const a = start + 2 * k; idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); } };
+  edge([...Array(NX).keys()]); edge([...Array(NX).keys()].map((x) => (NY - 1) * NX + x));
+  edge([...Array(NY).keys()].map((y) => y * NX)); edge([...Array(NY).keys()].map((y) => y * NX + NX - 1));
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(v, 3)); g.setIndex(idx);
+  skirtMesh = new THREE.Mesh(g, skirtMat); scene.add(skirtMesh);
+}
+const sunMesh = new THREE.Mesh(new THREE.SphereGeometry(14, 20, 12), new THREE.MeshBasicMaterial({ color: 0xf2b43c }));
+scene.add(sunMesh);
+const pin = new THREE.Mesh(new THREE.ConeGeometry(4, 16, 12), new THREE.MeshBasicMaterial({ color: 0xc0392b }));
+pin.rotation.x = Math.PI; scene.add(pin);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.maxPolarAngle = Math.PI * 0.47; controls.minDistance = 80; controls.maxDistance = 3000;
+const ctr = toCell(2672960, 1209180);
+function cellXYZ(x, y) { const i = y * NX + x; return new THREE.Vector3(pos.getX(i), pos.getY(i), pos.getZ(i)); }
+controls.target.copy(cellXYZ(...ctr));
+camera.position.set(controls.target.x - 120, 380, controls.target.z + 620); // from the lake, looking north
+
+function resize() { const r = stage.getBoundingClientRect(); renderer.setSize(r.width, r.height, false); camera.aspect = r.width / r.height; camera.updateProjectionMatrix(); }
+new ResizeObserver(resize).observe(stage);
+
+// ---------- Overlays ----------
+const ovDefs = {
+  'ov-parcels': null,
+  'ov-flow': { group: 'Overland flow', fill: 'rgba(40,110,200,.45)', stroke: '#1f5fae' },
+  'ov-slope': { group: 'Slope classes', fill: (r) => r.label.includes('groesser') ? 'rgba(176,71,58,.30)' : 'rgba(232,196,92,.35)', stroke: '#8a4a2e' },
+  'ov-forest': { group: 'Legal forest', fill: 'rgba(40,100,55,.35)', stroke: '#2b5e3a' },
+  'ov-hazard': { group: 'Natural hazards', fill: 'rgba(160,60,140,.22)', stroke: '#8c3c7c', dash: [10, 6] },
+};
+function tp(E, N) { return [(E - T.e0) / W * tcan.width, (T.n0 - N) / H * tcan.height]; }
+function drawPath(ctx, pts, close) { ctx.beginPath(); pts.forEach(([E, N], k) => { const [x, y] = tp(E, N); k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); if (close) ctx.closePath(); }
+function drawOverlays(ctx) {
+  for (const [id, def] of Object.entries(ovDefs)) {
+    if (!$(id).checked || !def) continue;
+    for (const r of shapes.filter((s) => s.group === def.group && s.type === 'Polygon')) {
+      drawPath(ctx, ring(r.shape), true);
+      ctx.fillStyle = typeof def.fill === 'function' ? def.fill(r) : def.fill; ctx.fill('evenodd');
+      ctx.setLineDash(def.dash || []); ctx.strokeStyle = def.stroke; ctx.lineWidth = 2; ctx.stroke(); ctx.setLineDash([]);
+    }
+  }
+  if ($('ov-parcels').checked) {
+    for (const p of parcels) {
+      drawPath(ctx, ring(p.shape), true);
+      const mine = p.in_land === 'Yes';
+      ctx.lineWidth = mine ? 5 : 2; ctx.strokeStyle = mine ? 'rgba(255,255,255,.95)' : 'rgba(255,255,255,.55)';
+      ctx.setLineDash(mine ? [] : [8, 6]); ctx.stroke(); ctx.setLineDash([]);
+      if (mine) { ctx.lineWidth = 1.6; ctx.strokeStyle = '#1f1e1c'; ctx.stroke(); }
+    }
+    ctx.font = '600 22px system-ui, sans-serif'; ctx.textAlign = 'center';
+    for (const p of landRings) { const c = p.r.reduce((a, q) => [a[0] + q[0] / p.r.length, a[1] + q[1] / p.r.length], [0, 0]); const [x, y] = tp(...c); ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(255,255,255,.9)'; ctx.strokeText(p.id, x, y); ctx.fillStyle = '#1f1e1c'; ctx.fillText(p.id, x, y); }
+  }
+}
+
+// ---------- Paint ----------
+function legend(data) {
+  const L = st.layer, el = $('legend');
+  const bar = (title, rampFn, lo, hi, note) => {
+    el.innerHTML = `<b>${title}</b><canvas width="200" height="10"></canvas><div class="ticks"><span>${lo}</span><span>${hi}</span></div>${note ? `<span class="muted">${note}</span>` : ''}`;
+    const c = el.querySelector('canvas').getContext('2d'); for (let x = 0; x < 200; x++) { const v = rampFn(x / 199); c.fillStyle = `rgb(${v.map(Math.round)})`; c.fillRect(x, 0, 1, 10); }
+  };
+  const sw = (title, items, note) => { el.innerHTML = `<b>${title}</b><div class="swatches">${items.map(([c, t]) => `<span class="sw"><i style="background:${c}"></i>${t}</span>`).join('')}</div>${note ? `<span class="muted">${note}</span>` : ''}`; };
+  if (L === 'moment') {
+    if (data.sun.alt <= 0) sw('Sun and shade', [['rgb(40,44,66)', 'Sun below the horizon']]);
+    else sw('Sun and shade', [['#fbeaa8', 'Full sun, facing it'], ['#d38b3c', 'Sun at a low angle'], ['rgb(86,66,58)', 'Slope faces away'], ['rgb(92,112,140)', 'In shadow of a building, tree or hill']], `Sun ${Math.round(data.sun.alt)}° up, in the ${cardinal(data.sun.az)}`);
+  } else if (L === 'hours') bar('Hours of direct sun', sunRamp, `${data.min.toFixed(1)} h`, `${data.max.toFixed(1)} h`, 'Scaled to the least and most on the parcels that day');
+  else if (L === 'energy') bar('Solar energy, clear day', sunRamp, data.min.toFixed(1), `${data.max.toFixed(1)} kWh/m²`, 'Scaled to the least and most on the parcels that day');
+  else if (L === 'year') bar('Sun over the year', sunRamp, '60%', '115% of flat open ground');
+  else if (L === 'elev') bar('Height above sea', heightRamp, `${range.elev[0]} m`, `${range.elev[1]} m`, `Lake at about ${T.lake} m`);
+  else if (L === 'slope') sw('Steepness', slopeBreaks.map(([, c, t]) => [c, t]), 'Canton farming limits at 18% and 25%');
+  else if (L === 'aspect') sw('Facing', [0, 90, 180, 270].map((a) => [`rgb(${hsl2rgb((a + 200) % 360, 0.7, 0.62).map(Math.round)})`, cardinal(a)[0].toUpperCase() + cardinal(a).slice(1)]).concat([['rgb(215,212,204)', 'Flat']]), 'Paler colours are gentler slopes');
+  else if (L === 'twi') bar('Where water gathers', wetRamp, 'Drains well', 'Collects water');
+  else if (L === 'tpi') bar('Hollows and ridges', tpiRamp, 'Hollow −5 m', 'Ridge +5 m', 'Cold air pools in the blue');
+}
+function paint() {
+  const data = {};
+  if (st.layer === 'moment') data.sun = sunAt(st.y, st.m, st.d, st.t);
+  if (st.layer === 'hours' || st.layer === 'energy') {
+    data.day = st.day; let mx = 0, mn = Infinity; const a = st.layer === 'hours' ? st.day.h : st.day.e;
+    for (let i = 0; i < NC; i++) if (parcelOf[i] && !water[i]) { if (a[i] > mx) mx = a[i]; if (a[i] < mn) mn = a[i]; }
+    data.max = mx; data.min = Math.min(mn, mx - 0.5);
+  }
+  if (st.layer === 'year' && !yearRel) computeYear();
+  const sctx = small.getContext('2d'), img = sctx.createImageData(NX, NY);
+  for (let i = 0; i < NC; i++) { const c = cellColor(i, data); img.data[i * 4] = c[0]; img.data[i * 4 + 1] = c[1]; img.data[i * 4 + 2] = c[2]; img.data[i * 4 + 3] = 255; }
+  sctx.putImageData(img, 0, 0);
+  const ctx = tcan.getContext('2d'); ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+  const half = TEX / 2 * NX / (NX - 1);
+  ctx.drawImage(small, -half * (tcan.width / (NX * TEX)), -half * (tcan.height / (NY * TEX)), tcan.width * NX / (NX - 1), tcan.height * NY / (NY - 1));
+  drawOverlays(ctx);
+  tex.needsUpdate = true;
+  legend(data);
+  // Sun marker in the sky
+  const s = sunAt(st.y, st.m, st.d, st.t), R = 900;
+  sunMesh.visible = s.alt > 0;
+  sunLight.position.set(Math.cos(s.alt * rad) * Math.sin(s.az * rad), Math.max(0.05, Math.sin(s.alt * rad)), -Math.cos(s.alt * rad) * Math.cos(s.az * rad));
+  sunLight.intensity = s.alt > 0 ? 1.8 : 0.2;
+  sunMesh.position.set(controls.target.x + R * Math.cos(s.alt * rad) * Math.sin(s.az * rad), R * Math.sin(s.alt * rad) + 40, controls.target.z - R * Math.cos(s.alt * rad) * Math.cos(s.az * rad));
+  $('timelab').textContent = fmtT(st.t);
+  $('sunlab').textContent = s.alt > 0 ? `sun ${Math.round(s.alt)}° up, ${cardinal(s.az)}` : 'sun below the horizon';
+  readout();
+}
+// ---------- Readout ----------
+function sunTimesAt(i, path) { let first = null, last = null; for (const s of path) if (lit(i, s)) { if (first === null) first = s._t; last = s._t; } return [first, last]; }
+function readout() {
+  const [x, y] = st.cell, i = y * NX + x;
+  pin.position.copy(cellXYZ(x, y)).add(new THREE.Vector3(0, 9, 0));
+  const p = parcelOf[i];
+  const isStart = x === toCell(...START)[0] && y === toCell(...START)[1];
+  const where = p ? (p.in_land === 'Yes' ? `parcel ${p.parcel}` : `neighbouring parcel ${p.parcel}`) : 'outside the parcels';
+  const what = cover[i] === 2 ? 'Roof' : cover[i] === 1 ? 'Tree tops' : '';
+  $('rd-title').textContent = isStart ? 'Middle of the hay meadow, 289' : water[i] ? 'On the lake' : what ? `${what}, ${where}` : where[0].toUpperCase() + where.slice(1);
+  const rows = [];
+  if (!water[i]) {
+    const [a, b] = sunTimesAt(i, st.day.path);
+    if (!yearRel) computeYear();
+    const pct = Math.tan(slope[i] * rad) * 100;
+    rows.push(['Height', `${elev[i].toFixed(0)} m · ${(elev[i] - T.lake).toFixed(0)} m above the lake`],
+      ['Steepness', `${pct.toFixed(0)}% (${slope[i].toFixed(0)}°)`],
+      ['Faces', slope[i] < 2 ? 'flat' : `${cardinal(aspect[i])} (${aspect[i].toFixed(0)}°)`],
+      ['Direct sun on the day', `${st.day.h[i].toFixed(1)} h${a !== null ? ` · ${fmtT(a - 2.5)}–${fmtT(b + 2.5)}` : ''}`],
+      ['Energy on the day', `${st.day.e[i].toFixed(1)} kWh/m²`],
+      ['Over the year', `${yearKwh[i].toFixed(0)} kWh/m² · ${yearRel[i].toFixed(0)}% of flat ground`],
+      ['Open sky', `${(svf[i] * 100).toFixed(0)}%`],
+      ['Water gathering', twi[i] > 7.5 ? 'high' : twi[i] > 6 ? 'moderate' : 'low'],
+      ['Cold air', tpi[i] < -1.5 ? 'hollow, collects it' : tpi[i] > 1.5 ? 'raised, drains it' : 'even ground']);
+  } else rows.push(['Lake level', `about ${T.lake} m`]);
+  $('rd').innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
+  sunpath(i);
+}
+function sunpath(i) {
+  const svg = $('sunpath'), w = 320, h = 150, l = 24, r = 6, t = 8, b = 20;
+  const X = (az) => l + (az - 45) / 270 * (w - l - r), Y = (alt) => h - b - alt / 70 * (h - t - b);
+  let s = '';
+  for (const a of [0, 20, 40, 60]) s += `<line x1="${l}" x2="${w - r}" y1="${Y(a)}" y2="${Y(a)}" stroke="var(--grid)"/><text x="${l - 4}" y="${Y(a) + 3}" text-anchor="end">${a}°</text>`;
+  for (const [az, n] of [[90, 'E'], [135, 'SE'], [180, 'S'], [225, 'SW'], [270, 'W']]) s += `<text x="${X(az)}" y="${h - 6}" text-anchor="middle">${n}</text>`;
+  if (!water[i]) {
+    let d = `M${X(45)},${Y(0)}`; for (let az = 45; az <= 315; az += 2.5) d += ` L${X(az).toFixed(1)},${Y(horizonAt(i, az)).toFixed(1)}`; d += ` L${X(315)},${Y(0)} Z`;
+    s += `<path d="${d}" fill="var(--color-fg-muted)" fill-opacity=".35" stroke="var(--color-fg-muted)" stroke-width="1"/>`;
+  }
+  const days = [[5, 21, 'var(--sun)', 'Jun'], [2, 20, 'var(--color-fg-muted)', 'Mar'], [11, 21, 'var(--accent)', 'Dec'], [st.m, st.d, 'var(--color-fg)', 'Day']];
+  days.forEach(([m, dd, col, lab], k) => {
+    const pts = dayPath(st.y, m, dd, 10).filter((q) => q.az >= 45 && q.az <= 315);
+    if (!pts.length) return;
+    s += `<polyline points="${pts.map((q) => `${X(q.az).toFixed(1)},${Y(q.alt).toFixed(1)}`).join(' ')}" fill="none" stroke="${col}" stroke-width="${k === 3 ? 2 : 1.5}" ${k === 3 ? 'stroke-dasharray="4 3"' : ''}/>`;
+    const top = pts.reduce((a, q) => (q.alt > a.alt ? q : a));
+    if (k < 3) s += `<text x="${X(top.az)}" y="${Y(top.alt) - 4}" text-anchor="middle">${lab}</text>`;
+  });
+  const now = sunAt(st.y, st.m, st.d, st.t);
+  if (now.alt > 0 && now.az >= 45 && now.az <= 315) s += `<circle cx="${X(now.az)}" cy="${Y(now.alt)}" r="5" fill="var(--sun)" stroke="var(--color-panel)" stroke-width="2"/>`;
+  svg.innerHTML = s;
+}
+
+// ---------- Events ----------
+document.querySelectorAll('input[name="layer"]').forEach((el) => el.addEventListener('change', () => { st.layer = el.value; $('sunpanel').style.opacity = ['elev', 'slope', 'aspect', 'twi', 'tpi', 'year'].includes(st.layer) ? 0.6 : 1; paint(); }));
+Object.keys(ovDefs).forEach((id) => $(id).addEventListener('change', paint));
+$('ov-objects').addEventListener('change', (e) => { objGroup.visible = e.target.checked; });
+$('time').addEventListener('input', (e) => { st.t = +e.target.value; paint(); });
+$('date').addEventListener('change', (e) => { const [y, m, d] = e.target.value.split('-').map(Number); if (!y) return; st.y = y; st.m = m - 1; st.d = d; refreshDay(); paint(); });
+document.querySelectorAll('[data-day]').forEach((b) => b.addEventListener('click', () => { const [m, d] = b.dataset.day.split('-').map(Number); st.m = m - 1; st.d = d; refreshDay(); paint(); }));
+$('exag').addEventListener('input', (e) => { st.exag = +e.target.value; $('exaglab').textContent = `${st.exag}×`; applyHeights(); readout(); });
+let playing = null;
+$('play').addEventListener('click', () => {
+  if (playing) { clearInterval(playing); playing = null; $('play').setAttribute('aria-pressed', 'false'); $('play').textContent = 'Play the day'; return; }
+  if (st.layer !== 'moment') { document.querySelector('input[value="moment"]').checked = true; st.layer = 'moment'; $('sunpanel').style.opacity = 1; }
+  $('play').setAttribute('aria-pressed', 'true'); $('play').textContent = 'Pause';
+  const p = st.day.path, lo = p.length ? p[0]._t - 20 : 300, hi = p.length ? p[p.length - 1]._t + 20 : 1200;
+  if (st.t >= hi - 5) st.t = lo;
+  playing = setInterval(() => { st.t += 5; if (st.t > hi) st.t = lo; $('time').value = st.t; paint(); }, 90);
+});
+const ray = new THREE.Raycaster(), ptr = new THREE.Vector2();
+let down = null;
+renderer.domElement.addEventListener('pointerdown', (e) => { down = [e.clientX, e.clientY]; });
+renderer.domElement.addEventListener('pointerup', (e) => {
+  if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 5) return;
+  const r = renderer.domElement.getBoundingClientRect();
+  ptr.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1);
+  ray.setFromCamera(ptr, camera);
+  const hit = ray.intersectObject(mesh)[0];
+  if (hit) { st.cell = [Math.round(hit.uv.x * (NX - 1)), Math.round((1 - hit.uv.y) * (NY - 1))]; readout(); }
+});
+
+function refreshDay() {
+  st.day = dayStats(st.y, st.m, st.d);
+  $('date').value = `${st.y}-${String(st.m + 1).padStart(2, '0')}-${String(st.d).padStart(2, '0')}`;
+  const p = st.day.path; $('daylab').textContent = p.length ? `Sunrise ${fmtT(p[0]._t - 2.5)}, sunset ${fmtT(p[p.length - 1]._t + 2.5)} over open ground` : '';
+  document.querySelectorAll('[data-day]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.day === $('date').value.slice(5))));
+}
+
+// ---------- Start ----------
+if (location.hash === '#embed') {
+  document.body.classList.add('embed');
+  const tell = () => parent.postMessage({ hlTerrainHeight: document.documentElement.scrollHeight }, '*');
+  new ResizeObserver(tell).observe(document.body); tell();
+}
+const s0 = $('time'); st.t = Math.min(Math.max(+s0.value, 240), 1320);
+if (st.m === today.getMonth() && st.d === today.getDate()) { st.t = Math.round((today.getHours() * 60 + today.getMinutes()) / 5) * 5; if (st.t < 480 || st.t > 1080) st.t = 720; s0.value = st.t; }
+refreshDay(); applyHeights(); resize(); paint();
+$('loading').remove();
+const needle = $('needle');
+(function loop() {
+  controls.update();
+  const v = new THREE.Vector3().subVectors(camera.position, controls.target);
+  needle.setAttribute('transform', `rotate(${(Math.atan2(v.x, v.z) * 180 / Math.PI).toFixed(1)})`);
+  renderer.render(scene, camera);
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
