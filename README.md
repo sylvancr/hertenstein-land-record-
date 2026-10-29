@@ -6,8 +6,8 @@ Live page: https://sylvancr.github.io/hertenstein-land-record-/ . You can also o
 
 ## What is here
 
-- `index.html`: the whole page. No build step.
-- `terrain.html`: a 3D model of the land with sun and shade by day and hour, hours of sun, yearly sun, steepness, facing, wetness and frost hollows. Reads `data/terrain.json`, which `tools/build_terrain.py` builds from public elevation tiles (run it again to rebuild, or point it at swissALTI3D for sharper detail).
+- `index.html`: the whole page, in four tabs (Map, Sun and terrain, The land, Plan); the detail sits in sections that open on a click. No build step.
+- `terrain.html`: a 3D model of the land with its buildings and trees: sun and shade by day and hour, hours of sun, yearly sun, steepness, facing, wetness and frost hollows. It is the Sun and terrain tab of `index.html` and also works on its own. It reads `data/terrain.json`, which `tools/build_terrain.py` builds from public elevation tiles, and `data/site_objects.json`, one row per building, tree or grove, traced from the plans by `tools/trace_sheets.py`. Correct a height or a tree there, then run `tools/build_terrain.py` again so the shade follows.
 - `data/`: one JSON file per table (parcels, proposals, public data layers, species, measures, stations, gaps, log and so on). The page reads these files on load.
 - `docs/`: the ecological master plan and the visitor readings protocol (first drafts, 13 October 2026).
 - `readings-form/`: the Google Apps Script form visitors will use to log readings. Not deployed yet; see `readings-form/SETUP.md`.

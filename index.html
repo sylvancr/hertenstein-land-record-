@@ -118,6 +118,20 @@ a { color: inherit; }
 .hl-tip .hl-k { color: var(--cds-text-secondary); }
 .hl-empty { font-size: var(--cds-font-size-body); color: var(--color-fg-muted); border: 1px dashed var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
 .hl-prose { font-size: var(--cds-font-size-body); max-width: 70ch; margin: 0; }
+#card-what .hl-list { font-size: var(--cds-font-size-body); gap: var(--cds-gap-sm); }
+p.hl-sec { color: var(--color-fg-muted); margin-top: var(--cds-gap-sm); }
+.hl-more { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); }
+.hl-more > summary { cursor: pointer; padding: var(--cds-pad-md) 44px var(--cds-pad-md) var(--cds-pad-lg); display: flex; flex-direction: column; gap: 2px; list-style: none; position: relative; }
+.hl-more > summary::-webkit-details-marker { display: none; }
+.hl-more > summary::after { content: "+"; position: absolute; right: var(--cds-pad-lg); top: 50%; transform: translateY(-50%); font-size: 20px; line-height: 1; color: var(--color-fg-muted); }
+.hl-more[open] > summary::after { content: "\2212"; }
+.hl-more > summary:hover .hl-more-t { text-decoration: underline; text-underline-offset: 3px; }
+.hl-more > summary:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; border-radius: var(--cds-radius); }
+.hl-more-t { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); }
+.hl-more-in { display: flex; flex-direction: column; gap: var(--cds-gap-md); padding: 0 var(--cds-pad-md) var(--cds-pad-md); }
+.hl-more-in .hl-card { background: var(--page-bg); }
+.hl-terrain { width: 100%; height: 1500px; border: 0; display: block; background: var(--page-bg); }
+@media (max-width: 900px) { .hl-terrain { height: 2900px; } }
 .hl-list { margin: 0; padding-left: 1.2em; font-size: var(--cds-font-size-caption); display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
 [data-dash-source-state=empty] { color: transparent; }
 [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
@@ -174,7 +188,7 @@ a { color: inherit; }
   <header class="hl-head" id="top">
     <div class="hl-headrow">
       <h1 class="hl-title">Hertenstein Land Record</h1>
-      <span><a class="hl-btn" href="terrain.html" style="text-decoration:none">Terrain and sun in 3D</a> <button type="button" class="hl-btn" id="about-open">About this site</button></span>
+      <button type="button" class="hl-btn" id="about-open">About this site</button>
     </div>
     <p class="hl-take" id="takeaway">Stella Matutina's land on the shore of Lake Lucerne: meadow, oak park, woodland, garden and lakeshore. Explore the landscape architect's ideas on the map, and everything we know about the place so far.</p>
   </header>
@@ -187,64 +201,25 @@ a { color: inherit; }
       <p>Stella Matutina sits on four parcels on the shore of Lake Lucerne, about five and a half hectares of hay meadow, old oaks, woodland, garden and lakeshore. This site gathers what we know about the land and what we hope to do with it, so everyone working with us starts from the same picture.</p>
       <ul class="hl-about-list">
         <li><b>Explore the map</b> Lay the landscape architect's drawings over the land, and click any proposal to read it.</li>
+        <li><b>See sun and shade</b> Turn the land in 3D, with its trees and buildings, and watch the sun cross it on any day of the year.</li>
         <li><b>See what's there</b> Species, habitats, protections and what the public records say about each parcel.</li>
         <li><b>Follow what's next</b> The first moves, what we'll measure, and readings that visitors will add over time.</li>
       </ul>
       <p class="hl-about-note">A first draft from October 2026 that will grow as we get to know the land. Every change shown is a proposal.</p>
       <div class="hl-about-act">
         <button class="hl-btn hl-btn-main" value="map" autofocus>Explore the map</button>
-        <button class="hl-btn" value="overview">Read the overview</button>
+        <button class="hl-btn" value="terrain">See sun and terrain</button>
       </div>
     </form>
   </dialog>
 
   <nav class="hl-tabs" role="tablist" aria-label="Sections">
     <button class="hl-tab" role="tab" id="tab-map" data-page="map" aria-selected="true">Map</button>
-    <button class="hl-tab" role="tab" id="tab-overview" data-page="overview" aria-selected="false">Overview</button>
-    <button class="hl-tab" role="tab" id="tab-site" data-page="site" aria-selected="false">Site</button>
-    <button class="hl-tab" role="tab" id="tab-public" data-page="public" aria-selected="false">Public data</button>
-    <button class="hl-tab" role="tab" id="tab-life" data-page="life" aria-selected="false">Life</button>
-    <button class="hl-tab" role="tab" id="tab-measures" data-page="measures" aria-selected="false">Measures</button>
+    <button class="hl-tab" role="tab" id="tab-terrain" data-page="terrain" aria-selected="false">Sun and terrain</button>
+    <button class="hl-tab" role="tab" id="tab-overview" data-page="overview" aria-selected="false">The land</button>
     <button class="hl-tab" role="tab" id="tab-plan" data-page="plan" aria-selected="false">Plan</button>
-    <button class="hl-tab" role="tab" id="tab-readings" data-page="readings" aria-selected="false">Readings</button>
-    <button class="hl-tab" role="tab" id="tab-record" data-page="record" aria-selected="false">Gaps and log</button>
   </nav>
 
-  <!-- OVERVIEW -->
-  <section class="hl-page" id="overview" role="tabpanel" aria-labelledby="tab-overview" hidden>
-    <div class="hl-tiles" id="headline">
-      <div class="hl-tile"><span class="hl-lab">The land</span><span class="hl-big"><span class="dash-skeleton" data-source="land_summary" data-field="ha" data-row="0">—</span><small>ha</small></span><span class="hl-note"><span data-source="land_summary" data-field="parcels" data-row="0">—</span> parcels, about <span data-source="land_summary" data-field="acres" data-row="0">—</span> acres</span></div>
-      <div class="hl-tile"><span class="hl-lab">Species records nearby</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="records" data-row="0">—</span><span class="hl-note">Within about 2 km, GBIF</span></div>
-      <div class="hl-tile"><span class="hl-lab">Invasive species on record</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="invasive_species" data-row="0">—</span><span class="hl-note">Plants, pests and the lake</span></div>
-      <div class="hl-tile"><span class="hl-lab">Things we'll measure</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="measures" data-row="0">—</span><span class="hl-note">Baseline survey planned for 2027</span></div>
-      <div class="hl-tile"><span class="hl-lab">Reading posts for visitors</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="posts" data-row="0">—</span><span class="hl-note" id="readings-note">Around the land, on the map</span></div>
-      <div class="hl-tile"><span class="hl-lab">Open questions</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="open_gaps" data-row="0">—</span><span class="hl-note">See Gaps and log</span></div>
-    </div>
-
-    <div class="hl-grid">
-      <div class="hl-card" id="card-first-moves">
-        <h3>First moves</h3>
-        <p class="hl-note">The top of the ranked plan. Each needs the owners' agreement and, for the shore, permits.</p>
-        <ol class="hl-moves" id="first-moves" data-source="moves"></ol>
-      </div>
-      <div class="hl-card" id="card-siteplan">
-        <h3>The land</h3>
-        <p class="hl-note">The four parcels of the land, drawn from the federal cadastral map. The Map tab lays the landscape architect's sheets and the public data over them.</p>
-        <div class="hl-chart dash-skeleton" id="siteplan" data-source="parcels" style="min-height:300px"></div>
-        <div><button type="button" class="hl-btn" id="open-map">Open the map</button></div>
-      </div>
-    </div>
-
-    <div class="hl-card" id="card-what">
-      <h3>What the records say, in short</h3>
-      <ul class="hl-list">
-        <li>A lakeside patchwork of hay meadow, an oak park of more than a hundred trees, small woods, garden and buildings, on ground polished by the last glaciation, inside the federal landscape inventory for Lake Lucerne.</li>
-        <li>Strongest: the oaks, an orchid recorded beside the house, and rich underwater plant beds in the bays the canton names as fish nurseries.</li>
-        <li>Weakest: meadows mapped as over-fertile, a walled shore, several invasive plants, and no public records of amphibians, mammals or bats.</li>
-        <li>The lake is changing fast: quagga mussel since 2024, and a summer surface of 26.3 °C in June 2026.</li>
-      </ul>
-    </div>
-  </section>
 
   <!-- MAP -->
   <section class="hl-page" id="map" role="tabpanel" aria-labelledby="tab-map">
@@ -261,7 +236,10 @@ a { color: inherit; }
       <div class="hl-layers" id="map-layers" data-source="gov_shapes"></div>
       <p class="hl-note">Drag to move the map. Zoom with + and −, with Ctrl (or ⌘) and scroll, or with two fingers on a phone. Sheets are pinned to the federal parcel corners, to within about 3 m. Proposal shapes are traced by hand from the sheets and are approximate. Suggested post positions are for the site walk to confirm.</p>
     </div>
-    <div class="hl-card" id="card-proposals">
+    <details class="hl-more">
+      <summary><span class="hl-more-t">Proposals and parcels as a list</span><span class="hl-note">Every proposal in a table; click a row to find it on the map</span></summary>
+      <div class="hl-more-in">
+<div class="hl-card" id="card-proposals">
       <h3>Proposals from the landscape architect</h3>
       <p class="hl-note">From the sheets of 29 July 2026. All are proposals: changes to the ground need the owner's agreement, and some are drawn on neighbouring parcels. Click a row to find it on the map.</p>
       <div class="hl-scroll">
@@ -271,7 +249,7 @@ a { color: inherit; }
         </table>
       </div>
     </div>
-    <div class="hl-card" id="card-parcels">
+<div class="hl-card" id="card-parcels">
       <h3>Parcels</h3>
       <p class="hl-note">Areas computed from the federal cadastral outlines. Neighbours are listed because the drawings touch them.</p>
       <div class="hl-scroll">
@@ -281,12 +259,49 @@ a { color: inherit; }
         </table>
       </div>
     </div>
+      </div>
+    </details>
     </template>
   </section>
 
-  <!-- SITE -->
-  <section class="hl-page" id="site" role="tabpanel" aria-labelledby="tab-site" hidden>
-    <div class="hl-card" id="card-facts">
+  <!-- SUN AND TERRAIN -->
+  <section class="hl-page" id="terrain" role="tabpanel" aria-labelledby="tab-terrain" hidden>
+    <p class="hl-prose">The land in 3D with its buildings and trees. Pick a day and an hour to see where the sun falls and where shade lies, or switch to steepness, wetness and frost hollows. Click a spot to read it.</p>
+    <iframe class="hl-terrain" id="terrain-frame" title="3D model of the land with sun and shade" data-src="terrain.html#embed"></iframe>
+    <p class="hl-note"><a href="terrain.html">Open the 3D view on its own page</a></p>
+  </section>
+
+  <!-- THE LAND -->
+  <section class="hl-page" id="overview" role="tabpanel" aria-labelledby="tab-overview" hidden>
+    <div class="hl-tiles" id="headline">
+      <div class="hl-tile"><span class="hl-lab">The land</span><span class="hl-big"><span class="dash-skeleton" data-source="land_summary" data-field="ha" data-row="0">—</span><small>ha</small></span><span class="hl-note"><span data-source="land_summary" data-field="parcels" data-row="0">—</span> parcels, about <span data-source="land_summary" data-field="acres" data-row="0">—</span> acres</span></div>
+      <div class="hl-tile"><span class="hl-lab">Species records nearby</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="records" data-row="0">—</span><span class="hl-note">Within about 2 km, GBIF</span></div>
+      <div class="hl-tile"><span class="hl-lab">Invasive species on record</span><span class="hl-big dash-skeleton" data-source="overview_counts" data-field="invasive_species" data-row="0">—</span><span class="hl-note">Plants, pests and the lake</span></div>
+    </div>
+
+    <div class="hl-grid">
+      <div class="hl-card" id="card-what">
+      <h3>What the records say, in short</h3>
+      <ul class="hl-list">
+        <li>A lakeside patchwork of hay meadow, an oak park of more than a hundred trees, small woods, garden and buildings, on ground polished by the last glaciation, inside the federal landscape inventory for Lake Lucerne.</li>
+        <li>Strongest: the oaks, an orchid recorded beside the house, and rich underwater plant beds in the bays the canton names as fish nurseries.</li>
+        <li>Weakest: meadows mapped as over-fertile, a walled shore, several invasive plants, and no public records of amphibians, mammals or bats.</li>
+        <li>The lake is changing fast: quagga mussel since 2024, and a summer surface of 26.3 °C in June 2026.</li>
+      </ul>
+    </div>
+      <div class="hl-card" id="card-siteplan">
+        <h3>The land</h3>
+        <p class="hl-note">The four parcels of the land, drawn from the federal cadastral map. The Map tab lays the architect's drawings over them; Sun and terrain shows them in 3D.</p>
+        <div class="hl-chart dash-skeleton" id="siteplan" data-source="parcels" style="min-height:300px"></div>
+        <div><button type="button" class="hl-btn" id="open-map">Open the map</button></div>
+      </div>
+    </div>
+
+    <p class="hl-sec">More about the land</p>
+    <details class="hl-more">
+      <summary><span class="hl-more-t">Site facts, climate and roofs</span><span class="hl-note">Address, heights, the weather and solar roofs</span></summary>
+      <div class="hl-more-in">
+<div class="hl-card" id="card-facts">
       <h3>Site facts</h3>
       <p class="hl-note">Checked: read from a named public source. Inferred: a reading of the checked facts. Unknown: needs a visit, a survey or a document.</p>
       <div class="hl-scroll">
@@ -296,13 +311,11 @@ a { color: inherit; }
         </table>
       </div>
     </div>
-    <div class="hl-grid">
-      <div class="hl-card" id="card-climate">
+<div class="hl-grid"><div class="hl-card" id="card-climate">
         <h3>Climate, Lucerne 1991–2020</h3>
         <p class="hl-note">Monthly rain as bars, average daily high and low as lines. The nearest long record; Hertenstein's föhn-warmed shore runs a little milder.</p>
         <div class="hl-chart dash-skeleton" id="climate" data-source="climate_monthly"></div>
-      </div>
-      <div class="hl-card" id="card-solar">
+      </div><div class="hl-card" id="card-solar">
         <h3>Roofs around the main building</h3>
         <p class="hl-note">Federal solar roof data for the roofs within 30 m of the main building.</p>
         <div class="hl-tiles">
@@ -311,32 +324,13 @@ a { color: inherit; }
           <div><span class="hl-note">Modelled yield on those</span><div class="hl-big"><span class="dash-skeleton" data-source="solar_summary" data-field="yield_good_mwh" data-row="0">—</span><small>MWh a year</small></div></div>
         </div>
         <p class="hl-note">Some roofs already carry green roofs. Heritage rules for the Zinnen ensemble may apply.</p>
+      </div></div>
       </div>
-    </div>
-    <div class="hl-card" id="card-protections">
-      <h3>Protections and public plans</h3>
-      <div class="hl-scroll">
-        <table class="hl-tbl" id="protections" data-source="protections" data-row-key="name">
-          <thead><tr><th data-field="name">Name</th><th data-field="kind">Kind</th><th data-field="applies">Applies to</th><th class="hl-hide-sm" data-field="detail">What it asks</th><th data-field="status">Status</th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
-    <div class="hl-card" id="card-history">
-      <h3>History of the place</h3>
-      <div class="hl-scroll">
-        <table class="hl-tbl" id="history" data-source="history" data-row-key="year">
-          <thead><tr><th data-field="year">Year</th><th data-field="event">Event</th><th class="hl-hide-sm" data-field="source">Source</th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- PUBLIC DATA -->
-  <section class="hl-page" id="public" role="tabpanel" aria-labelledby="tab-public" hidden>
-    <p class="hl-prose" id="public-take">What federal and cantonal public data say about the land, layer by layer. A layer that does not touch the land is a finding too, and is kept.</p>
-    <div class="hl-card" id="card-public-means">
+    </details>
+    <details class="hl-more">
+      <summary><span class="hl-more-t">Rules and public maps</span><span class="hl-note">What the federal and cantonal records say, and what it means for the drawings</span></summary>
+      <div class="hl-more-in">
+<div class="hl-card" id="card-public-means">
       <h3>What it means for the drawings</h3>
       <ul class="hl-list">
         <li><b>No mapped stream.</b> Neither the federal nor the cantonal water maps show a stream, open or piped, on the land. The overland-flow map does show storm runoff across 292 and 505. Ask the architect what the "re-open stream" line is based on.</li>
@@ -348,7 +342,16 @@ a { color: inherit; }
         <li><b>No federal inventory object on the land</b> (amphibian sites, fens, dry meadows, reserves, corridors), and never soil-mapped.</li>
       </ul>
     </div>
-    <div class="hl-card" id="card-public">
+<div class="hl-card" id="card-protections">
+      <h3>Protections and public plans</h3>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="protections" data-source="protections" data-row-key="name">
+          <thead><tr><th data-field="name">Name</th><th data-field="kind">Kind</th><th data-field="applies">Applies to</th><th class="hl-hide-sm" data-field="detail">What it asks</th><th data-field="status">Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+<div class="hl-card" id="card-public">
       <div class="hl-mapbar"><label class="hl-ctl">Theme <select id="pub-theme" aria-label="Theme"></select></label></div>
       <div class="hl-scroll">
         <table class="hl-tbl" id="gov" data-source="gov_layers" data-row-key="layer,label">
@@ -358,23 +361,21 @@ a { color: inherit; }
       </div>
       <p class="hl-note">Read from the federal geoportal (geo.admin.ch) and other public services on 14 October 2026. Shapes that touch the land are drawn on the Map tab.</p>
     </div>
-  </section>
-
-  <!-- LIFE -->
-  <section class="hl-page" id="life" role="tabpanel" aria-labelledby="tab-life" hidden>
-    <div class="hl-grid">
-      <div class="hl-card" id="card-groups">
+      </div>
+    </details>
+    <details class="hl-more">
+      <summary><span class="hl-more-t">Plants and animals</span><span class="hl-note">Species on record, habitats and invasive plants</span></summary>
+      <div class="hl-more-in">
+<div class="hl-grid"><div class="hl-card" id="card-groups">
         <h3>Species records by group</h3>
         <p class="hl-note">GBIF records in a box of about 2.5 by 2.2 km around the peninsula. Zero is a gap in looking, not proof of absence.</p>
         <div class="hl-chart dash-skeleton" id="groups" data-source="species_groups"></div>
-      </div>
-      <div class="hl-card" id="card-habitats">
+      </div><div class="hl-card" id="card-habitats">
         <h3>Habitats within 40 m of the main building</h3>
         <p class="hl-note">Mapped areas in the federal habitat map, by type. The whole holding is not mapped yet.</p>
         <div class="hl-chart dash-skeleton" id="habitats" data-source="habitats"></div>
-      </div>
-    </div>
-    <div class="hl-card" id="card-notable">
+      </div></div>
+<div class="hl-card" id="card-notable">
       <h3>Species that matter here</h3>
       <p class="hl-note">Sensitive records (orchids, nests) are never published with a location.</p>
       <div class="hl-scroll">
@@ -384,7 +385,7 @@ a { color: inherit; }
         </table>
       </div>
     </div>
-    <div class="hl-card" id="card-invasives">
+<div class="hl-card" id="card-invasives">
       <h3>Invasive species, in order of priority</h3>
       <div class="hl-scroll">
         <table class="hl-tbl" id="invasives" data-source="invasives" data-row-key="latin">
@@ -393,78 +394,26 @@ a { color: inherit; }
         </table>
       </div>
     </div>
-  </section>
-
-  <!-- MEASURES -->
-  <section class="hl-page" id="measures" role="tabpanel" aria-labelledby="tab-measures" hidden>
-    <p class="hl-prose">Ten measures of ecological health, each one something a designer can act on and a later year can be compared with. Targets come after the baseline year; for now each has a direction.</p>
-    <div class="hl-card" id="card-indicators">
-      <h3>The ten measures</h3>
+      </div>
+    </details>
+    <details class="hl-more">
+      <summary><span class="hl-more-t">History</span><span class="hl-note">From the 1864 pension to today</span></summary>
+      <div class="hl-more-in">
+<div class="hl-card" id="card-history">
+      <h3>History of the place</h3>
       <div class="hl-scroll">
-        <table class="hl-tbl" id="indicators" data-source="indicators" data-row-key="id">
-          <thead><tr><th data-field="id">#</th><th data-field="measure">Measure</th><th class="hl-hide-sm" data-field="how">How</th><th data-field="who">Who</th><th class="hl-hide-sm" data-field="when">When</th><th data-field="direction">Better is</th><th data-field="state">State</th></tr></thead>
+        <table class="hl-tbl" id="history" data-source="history" data-row-key="year">
+          <thead><tr><th data-field="year">Year</th><th data-field="event">Event</th><th class="hl-hide-sm" data-field="source">Source</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
     </div>
-    <div class="hl-card" id="card-calendar">
-      <h3>Baseline survey calendar</h3>
-      <p class="hl-note">When each professional survey runs in the baseline year. None is commissioned yet.</p>
-      <div class="hl-chart dash-skeleton" id="calendar" data-source="surveys"></div>
-    </div>
-  </section>
-
-  <!-- PLAN -->
-  <section class="hl-page" id="plan" role="tabpanel" aria-labelledby="tab-plan" hidden>
-    <p class="hl-prose">The brief for landscape architects and permaculture designers, ranked. Protect what is old first; grow food on ground already worked; keep the best meadows lean; hold water and nutrients on the site.</p>
-    <div class="hl-card" id="card-moves">
-      <h3>Ranked moves</h3>
-      <div class="hl-scroll">
-        <table class="hl-tbl" id="moves" data-source="moves" data-row-key="rank">
-          <thead><tr><th data-field="rank">#</th><th data-field="move">Move</th><th data-field="does">What it does</th><th class="hl-hide-sm" data-field="depends">Depends on</th><th data-field="status">Status</th></tr></thead>
-          <tbody></tbody>
-        </table>
       </div>
-    </div>
-    <div class="hl-card" id="card-tensions">
-      <h3>Tensions to settle early</h3>
-      <ul class="hl-list">
-        <li><b>Food and meadow.</b> An edible landscape wants fertile, worked ground; species-rich meadow wants lean ground. Both fit if they are kept apart.</li>
-        <li><b>Path and quiet shore.</b> Weggis wants a public path round the peninsula; the canton wants quiet at the pond. Part of the route may cross the holding.</li>
-        <li><b>Tidy and alive.</b> Deadwood and long grass read as neglect to some guests. Mown paths and a few signs settle most of it.</li>
-        <li><b>Who decides.</b> Stella runs programmes; the land is owned and run by the Hertenstein side. Changes to the ground need their agreement.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- READINGS -->
-  <section class="hl-page" id="readings" role="tabpanel" aria-labelledby="tab-readings" hidden>
-    <p class="hl-prose">Visitors take short readings at ten numbered posts by scanning a QR code. Each reading becomes a row here once the form is live and connected.</p>
-    <div class="hl-card" id="card-readings">
-      <h3>Latest readings</h3>
-      <div class="hl-empty" id="readings-empty" hidden>No readings yet. Visitors will log readings at ten marked posts around the land with a short form on their phone, and each one will appear here. The form is built and goes live soon.</div>
-      <div class="hl-scroll" id="readings-wrap">
-        <table class="hl-tbl" id="readings-table" data-source="readings" data-row-key="Received">
-          <thead><tr><th data-field="Received">Received</th><th data-field="Station">Station</th><th data-field="Reading">Reading</th><th data-field="Summary">Summary</th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
-    <div class="hl-card" id="card-stations">
-      <h3>Stations</h3>
-      <p class="hl-note">Spots are suggested from the parcel map and the architect's concept, and shown on the Map tab. A site walk fixes them, ideally next to the permanent vegetation plots.</p>
-      <div class="hl-scroll">
-        <table class="hl-tbl" id="stations" data-source="stations" data-row-key="station">
-          <thead><tr><th data-field="station">Post</th><th data-field="habitat">Habitat</th><th data-field="readings">Readings that suit it</th><th class="hl-hide-sm" data-field="spot">Suggested spot</th><th data-field="status">Status</th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- RECORD -->
-  <section class="hl-page" id="record" role="tabpanel" aria-labelledby="tab-record" hidden>
-    <div class="hl-card" id="card-gaps">
+    </details>
+    <details class="hl-more">
+      <summary><span class="hl-more-t">Open questions, log and documents</span><span class="hl-note">What we still need to find out, what has happened, and the full plans</span></summary>
+      <div class="hl-more-in">
+<div class="hl-card" id="card-gaps">
       <h3>Gaps in the record</h3>
       <div class="hl-scroll">
         <table class="hl-tbl" id="gaps" data-source="gaps" data-row-key="gap">
@@ -473,7 +422,7 @@ a { color: inherit; }
         </table>
       </div>
     </div>
-    <div class="hl-card" id="card-log">
+<div class="hl-card" id="card-log">
       <h3>Land log</h3>
       <p class="hl-note">Decisions, work and observations on the land, newest first. Kept up to date by the Stella team.</p>
       <div class="hl-scroll">
@@ -483,7 +432,7 @@ a { color: inherit; }
         </table>
       </div>
     </div>
-    <div class="hl-card" id="card-docs">
+<div class="hl-card" id="card-docs">
       <h3>Working documents</h3>
       <ul class="hl-list">
         <li><a href="docs/hertenstein-ecology-master-plan-2026-10-13.pdf">Ecological master plan, first draft, 13 October 2026</a> (PDF)</li>
@@ -492,7 +441,97 @@ a { color: inherit; }
         <li><a href="data/">The tables behind this page</a> (JSON)</li>
       </ul>
     </div>
+      </div>
+    </details>
   </section>
+
+  <!-- PLAN -->
+  <section class="hl-page" id="plan" role="tabpanel" aria-labelledby="tab-plan" hidden>
+    <p class="hl-prose">Protect what is old first; grow food on ground already worked; keep the best meadows lean; hold water and nutrients on the site. Every change is a proposal until the owners agree.</p>
+    <div class="hl-grid">
+      <div class="hl-card" id="card-first-moves">
+        <h3>First moves</h3>
+        <p class="hl-note">The top of the ranked plan. Each needs the owners' agreement and, for the shore, permits.</p>
+        <ol class="hl-moves" id="first-moves" data-source="moves"></ol>
+      </div>
+      <div class="hl-card" id="card-tensions">
+      <h3>Tensions to settle early</h3>
+      <ul class="hl-list">
+        <li><b>Food and meadow.</b> An edible landscape wants fertile, worked ground; species-rich meadow wants lean ground. Both fit if they are kept apart.</li>
+        <li><b>Path and quiet shore.</b> Weggis wants a public path round the peninsula; the canton wants quiet at the pond. Part of the route may cross the holding.</li>
+        <li><b>Tidy and alive.</b> Deadwood and long grass read as neglect to some guests. Mown paths and a few signs settle most of it.</li>
+        <li><b>Who decides.</b> Stella runs programmes; the land is owned and run by the Hertenstein side. Changes to the ground need their agreement.</li>
+      </ul>
+    </div>
+    </div>
+
+    <p class="hl-sec">The detail</p>
+    <details class="hl-more">
+      <summary><span class="hl-more-t">All the ranked moves</span><span class="hl-note">The full brief for designers, in order</span></summary>
+      <div class="hl-more-in">
+<div class="hl-card" id="card-moves">
+      <h3>Ranked moves</h3>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="moves" data-source="moves" data-row-key="rank">
+          <thead><tr><th data-field="rank">#</th><th data-field="move">Move</th><th data-field="does">What it does</th><th class="hl-hide-sm" data-field="depends">Depends on</th><th data-field="status">Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+      </div>
+    </details>
+    <details class="hl-more">
+      <summary><span class="hl-more-t">What we'll measure</span><span class="hl-note">Ten measures of the land's health, and when the baseline surveys run</span></summary>
+      <div class="hl-more-in">
+<div class="hl-card" id="card-indicators">
+      <h3>The ten measures</h3>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="indicators" data-source="indicators" data-row-key="id">
+          <thead><tr><th data-field="id">#</th><th data-field="measure">Measure</th><th class="hl-hide-sm" data-field="how">How</th><th data-field="who">Who</th><th class="hl-hide-sm" data-field="when">When</th><th data-field="direction">Better is</th><th data-field="state">State</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+<div class="hl-card" id="card-calendar">
+      <h3>Baseline survey calendar</h3>
+      <p class="hl-note">When each professional survey runs in the baseline year. None is commissioned yet.</p>
+      <div class="hl-chart dash-skeleton" id="calendar" data-source="surveys"></div>
+    </div>
+      </div>
+    </details>
+    <details class="hl-more">
+      <summary><span class="hl-more-t">Visitor readings</span><span class="hl-note">Readings visitors take at ten posts around the land</span></summary>
+      <div class="hl-more-in">
+<div class="hl-card" id="card-readings">
+      <h3>Latest readings</h3>
+      <div class="hl-empty" id="readings-empty" hidden>No readings yet. Visitors will log readings at ten marked posts around the land with a short form on their phone, and each one will appear here. The form is built and goes live soon.</div>
+      <div class="hl-scroll" id="readings-wrap">
+        <table class="hl-tbl" id="readings-table" data-source="readings" data-row-key="Received">
+          <thead><tr><th data-field="Received">Received</th><th data-field="Station">Station</th><th data-field="Reading">Reading</th><th data-field="Summary">Summary</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+<div class="hl-card" id="card-stations">
+      <h3>Stations</h3>
+      <p class="hl-note">Spots are suggested from the parcel map and the architect's concept, and shown on the Map tab. A site walk fixes them, ideally next to the permanent vegetation plots.</p>
+      <div class="hl-scroll">
+        <table class="hl-tbl" id="stations" data-source="stations" data-row-key="station">
+          <thead><tr><th data-field="station">Post</th><th data-field="habitat">Habitat</th><th data-field="readings">Readings that suit it</th><th class="hl-hide-sm" data-field="spot">Suggested spot</th><th data-field="status">Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+      </div>
+    </details>
+  </section>
+
+
+
+
+
+
+
 </div>
 
 <script>
@@ -509,14 +548,24 @@ a { color: inherit; }
       if (on && t.scrollIntoView) t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
       document.getElementById(t.dataset.page).hidden = !on;
     });
+    if (id === 'terrain') { const f = document.getElementById('terrain-frame'); if (!f.getAttribute('src')) f.src = f.dataset.src; }
     if (window.hlDraw) window.hlDraw();
     const y = document.getElementById('top').getBoundingClientRect().bottom + window.scrollY;
     if (window.scrollY > y) window.scrollTo(0, y);
   };
   tabs.forEach((t) => t.addEventListener('click', () => { window.hlShow(t.dataset.page); dash.setLink(t.dataset.page); }));
+  // Charts inside a closed section draw when it opens.
+  document.querySelectorAll('details.hl-more').forEach((d) => d.addEventListener('toggle', () => { if (d.open && window.hlDraw) window.hlDraw(); }));
+  // The 3D view reports its height so the page scrolls as one.
+  window.addEventListener('message', (e) => {
+    const h = e.data && e.data.hlTerrainHeight;
+    if (h) document.getElementById('terrain-frame').style.height = Math.ceil(h) + 'px';
+  });
   const fromHash = () => {
     const h = location.hash.slice(1);
-    window.hlShow(tabs.some((t) => t.dataset.page === h) ? h : 'map');
+    const old = { site: 'overview', public: 'overview', life: 'overview', record: 'overview', measures: 'plan', readings: 'plan' };
+    const id = old[h] || h;
+    window.hlShow(tabs.some((t) => t.dataset.page === id) ? id : 'map');
   };
   window.addEventListener('hashchange', fromHash);
   window.addEventListener('popstate', fromHash);
@@ -802,17 +851,17 @@ dash.calc('solar_summary', {
 
   // ---------- Map ----------
   const LAYERS = [
-    { id: 'Immediate actions', label: 'Immediate actions', sheet: 'actions', color: () => dash.colors[2] },
+    { id: 'Immediate actions', label: 'Immediate actions', sheet: 'actions', color: () => dash.colors[2], off: true },
     { id: 'Concept, farm land', label: 'Concept, farm land', sheet: 'concept', color: () => dash.colors[1] },
     { id: 'Concept, institute grounds', label: 'Concept, institute grounds', sheet: 'concept500', color: () => dash.colors[3] },
-    { id: 'gov:Legal forest', label: 'Legal forest', color: () => dash.colors[4], gov: true },
-    { id: 'gov:Lake shore', label: 'Lake shore rating', color: () => 'var(--color-bad)', gov: true },
+    { id: 'gov:Legal forest', label: 'Legal forest', color: () => dash.colors[4], gov: true, off: true },
+    { id: 'gov:Lake shore', label: 'Lake shore rating', color: () => 'var(--color-bad)', gov: true, off: true },
     { id: 'gov:Zoning', label: 'Zoning', color: () => dash.colors[5], gov: true, off: true },
     { id: 'gov:Crop rotation areas', label: 'Crop rotation areas', color: () => dash.colors[6], gov: true, off: true },
     { id: 'gov:Slope classes', label: 'Slope classes', color: () => dash.colors[7], gov: true, off: true },
     { id: 'gov:Natural hazards', label: 'Natural hazards', color: () => 'var(--color-warn)', gov: true, off: true },
     { id: 'gov:Overland flow', label: 'Overland flow', color: () => dash.colors[2], gov: true, off: true },
-    { id: 'stations', label: 'Reading posts', color: () => 'var(--color-fg)' },
+    { id: 'stations', label: 'Reading posts', color: () => 'var(--color-fg)', off: true },
     { id: 'numbers', label: 'Parcel numbers', color: () => dash.colors[0] },
   ];
   const MS = { sheet: 'concept', op: 0.8, on: new Set(LAYERS.filter((l) => !l.off).map((l) => l.id)), sel: null, t: null, built: false, sig: '' };
@@ -1167,7 +1216,7 @@ dash.calc('solar_summary', {
   document.getElementById('about-open').addEventListener('click', () => about.showModal());
   about.addEventListener('close', () => {
     try { localStorage.setItem(KEY, '1'); } catch (e) {}
-    if (about.returnValue === 'overview') { window.hlShow('overview'); dash.setLink('overview'); }
+    if (about.returnValue === 'terrain') { window.hlShow('terrain'); dash.setLink('terrain'); }
   });
   about.addEventListener('click', (e) => { if (e.target === about) about.close('close'); });
   let seen = false;

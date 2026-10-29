@@ -68,8 +68,17 @@ dl.read dt { color: var(--color-fg-muted); }
 dl.read dd { margin: 0; font-variant-numeric: tabular-nums; text-align: right; }
 .sunpath { width: 100%; height: auto; display: block; }
 .sunpath text { font-size: 10px; fill: var(--color-fg-muted); font-family: var(--font-sans); }
+.notes-more > summary { cursor: pointer; font-weight: 600; padding: 10px 14px; background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--radius); }
+.notes-more[open] > summary { margin-bottom: 12px; }
+.notes-more > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.notes .panel { align-content: start; }
 .notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
 .notes .panel p { margin: 0; max-width: 65ch; }
+.notes .panel p + p { margin-top: 0; }
+body.embed { padding: 0 0 16px; }
+body.embed #pagehead { display: none; }
+body.embed .stage { height: 640px; }
+@media (max-width: 900px) { body.embed .stage { height: 460px; } }
 .notes ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -77,10 +86,10 @@ dl.read dd { margin: 0; font-variant-numeric: tabular-nums; text-align: right; }
 </head>
 <body>
 <div class="wrap">
-  <header>
+  <header id="pagehead">
     <p class="eyebrow">Stella Matutina, Hertenstein · Weggis parcels 286, 289, 292, 505</p>
     <h1>Terrain and sun on the land</h1>
-    <p class="lede">Turn the model to see the shape of the ground, then pick a day and an hour to see where the sun falls and where the hills and the mountains across the lake cut it off. The ground layers show how steep it is, which way it faces, where water gathers and where cold air settles. Click anywhere on the land to read that spot. Part of the <a href="./">Hertenstein Land Record</a>.</p>
+    <p class="lede">Turn the model to see the shape of the ground, then pick a day and an hour to see where the sun falls and where the buildings, the trees, the hills and the mountains across the lake cut it off. The ground layers show how steep it is, which way it faces, where water gathers and where cold air settles. Click anywhere on the land to read that spot. Part of the <a href="./">Hertenstein Land Record</a>.</p>
   </header>
 
   <div class="main">
@@ -125,6 +134,7 @@ dl.read dd { margin: 0; font-variant-numeric: tabular-nums; text-align: right; }
       <div class="panel">
         <h2>Lines and public maps</h2>
         <fieldset>
+          <label class="opt"><input type="checkbox" id="ov-objects" checked> <span>Trees and buildings <small>their shade always counts</small></span></label>
           <label class="opt"><input type="checkbox" id="ov-parcels" checked> <span>Parcels <small>the land in bold</small></span></label>
           <label class="opt"><input type="checkbox" id="ov-flow"> <span>Canton overland flow <small>100-year storm, over 25 cm</small></span></label>
           <label class="opt"><input type="checkbox" id="ov-slope"> <span>Canton slope classes <small>18–25% and over 25%</small></span></label>
@@ -136,7 +146,7 @@ dl.read dd { margin: 0; font-variant-numeric: tabular-nums; text-align: right; }
       </div>
 
       <div class="panel" id="readout">
-        <h2 id="rd-title">At the house</h2>
+        <h2 id="rd-title">Middle of the hay meadow, 289</h2>
         <dl class="read" id="rd"></dl>
         <svg class="sunpath" id="sunpath" viewBox="0 0 320 150" role="img" aria-label="Skyline and sun paths seen from the chosen spot"></svg>
         <p class="muted" style="margin:0">The grey shape is the skyline from this spot, from east through south to west. The curves are the sun's path on midsummer, the equinox, midwinter and the chosen day. Where a curve dips into the grey, the spot is in shade.</p>
@@ -144,12 +154,15 @@ dl.read dd { margin: 0; font-variant-numeric: tabular-nums; text-align: right; }
     </div>
   </div>
 
+  <details class="notes-more">
+  <summary>How to read it, and where the data comes from</summary>
   <div class="notes">
     <div class="panel">
       <h2>How to read it</h2>
       <ul>
-        <li><b>Sun and shade</b> lights the ground for the moment you pick. Blue-grey is in the shadow of a hill or a mountain; dark brown faces away from the sun.</li>
-        <li><b>Hours of direct sun</b> counts when the sun is above the skyline and shining on the slope, in five-minute steps. Trees and buildings are not in the model, so real shade is greater near them.</li>
+        <li><b>Sun and shade</b> lights the ground for the moment you pick. Blue-grey is in shadow, cast by a building, a tree, a hill or a mountain; dark brown faces away from the sun.</li>
+        <li><b>Hours of direct sun</b> counts when the sun is above the skyline and shining on the slope, in five-minute steps. The skyline includes the buildings, the single trees and the woods, so the ground beside them loses sun the way it does on the day.</li>
+        <li><b>Under trees and on roofs</b> the colours show the sun on the tree tops and roofs, not the ground below them.</li>
         <li><b>Sun over the year</b> adds up clear-sky energy on the 21st of each month and compares it with open flat ground at the same place. Over 100% means the slope gains from facing the sun.</li>
         <li><b>Steepness</b> uses the canton's farming limits: up to 18% is easy to mow, 18–25% is harder, over 25% is steep ground.</li>
       </ul>
@@ -163,9 +176,11 @@ dl.read dd { margin: 0; font-variant-numeric: tabular-nums; text-align: right; }
     </div>
     <div class="panel">
       <h2>Where this comes from</h2>
-      <p>Heights come from AWS Terrain Tiles, which in Switzerland carry about 25 to 30 m detail, shifted 3.4 m to match Swiss heights at the lake and the house. That is good for the shape of the slopes and for the skyline out to 20 km, but it smooths terraces, walls, banks and the shoreline. The swisstopo 0.5 m model (swissALTI3D) would sharpen everything and can replace it with one script run (<code>tools/build_terrain.py</code>). Sun positions are calculated for Swiss time; energy is a clear-sky estimate without clouds or haze. Built 21 October 2026.</p>
+      <p>Heights come from AWS Terrain Tiles, which in Switzerland carry about 25 to 30 m detail, shifted 3.4 m to match Swiss heights at the lake and the house. That is good for the shape of the slopes and for the skyline out to 20 km, but it smooths terraces, walls, banks and the shoreline. The swisstopo 0.5 m model (swissALTI3D) would sharpen everything and can replace it with one script run (<code>tools/build_terrain.py</code>). Sun positions are calculated for Swiss time; energy is a clear-sky estimate without clouds or haze.</p>
+      <p>Buildings are traced from the grey footprints on the 2022 land register plan; their heights are estimates from their size (5, 9 or 14 m) until someone measures them. Single trees are placed from the circles on the landscape architect's site analysis, with heights and crowns typical for the species they wrote beside them. The woods are the canton's legal forest, at 20 m. All of it is in <code>data/site_objects.json</code>, one row per building or tree, so a site walk can correct it. Rebuilt 29 October 2026.</p>
     </div>
   </div>
+  </details>
 </div>
 
 <script type="module">
@@ -173,16 +188,16 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/OrbitControls.js';
 
 const LAT = 47.031, LON = 8.3995;
-const HOUSE = [2673037, 1209337];
+const START = [2672995, 1209214]; // middle of the hay meadow on 289
 const $ = (id) => document.getElementById(id);
 const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 
-const [T, parcels, shapes] = await Promise.all(['terrain', 'parcels', 'gov_shapes'].map((n) => fetch(`data/${n}.json`).then((r) => r.json())));
+const [T, parcels, shapes, objects] = await Promise.all(['terrain', 'parcels', 'gov_shapes', 'site_objects'].map((n) => fetch(`data/${n}.json`).then((r) => r.json())));
 const dec = (s, C) => { const b = atob(s), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return C === Uint8Array ? u : new C(u.buffer); };
 const NX = T.nx, NY = T.ny, D = T.d, NA = T.n_az, NC = NX * NY;
 const elev = dec(T.elev, Float32Array), slope = dec(T.slope, Float32Array), aspect = dec(T.aspect, Float32Array);
 const twi = dec(T.twi, Float32Array), tpi = dec(T.tpi, Float32Array), svf = dec(T.svf, Float32Array);
-const water = dec(T.water, Uint8Array), hq = dec(T.horizon, Uint8Array);
+const water = dec(T.water, Uint8Array), hq = dec(T.horizon, Uint8Array), cover = dec(T.cover, Uint8Array);
 const toCell = (E, N) => [Math.round((E - T.e0) / D), Math.round((T.n0 - N) / D)];
 
 // Which cells lie on the land (the four parcels), for summaries.
@@ -254,7 +269,7 @@ function computeYear() {
 }
 
 // ---------- State ----------
-const st = { layer: 'moment', y: 2026, m: 11, d: 21, t: 720, exag: 2, cell: toCell(...HOUSE), day: null };
+const st = { layer: 'moment', y: 2026, m: 11, d: 21, t: 720, exag: 2, cell: toCell(...START), day: null };
 const today = new Date(); st.y = today.getFullYear(); st.m = today.getMonth(); st.d = today.getDate();
 const fmtT = (mins) => `${String(Math.floor(mins / 60)).padStart(2, '0')}:${String(Math.round(mins % 60)).padStart(2, '0')}`;
 const cardinal = (a) => ['north', 'north-east', 'east', 'south-east', 'south', 'south-west', 'west', 'north-west'][Math.round(a / 45) % 8];
@@ -310,12 +325,61 @@ const W = (NX - 1) * D, H = (NY - 1) * D, BASE = T.lake - 2;
 const geo = new THREE.PlaneGeometry(W, H, NX - 1, NY - 1);
 geo.rotateX(-Math.PI / 2); // plane now in x (east) / z (south); vertex k = row-major from north-west
 const pos = geo.attributes.position;
-function applyHeights() { for (let i = 0; i < NC; i++) pos.setY(i, (elev[i] - BASE) * st.exag); pos.needsUpdate = true; geo.computeVertexNormals(); geo.computeBoundingSphere(); skirt(); }
+function applyHeights() { for (let i = 0; i < NC; i++) pos.setY(i, (elev[i] - BASE) * st.exag); pos.needsUpdate = true; geo.computeVertexNormals(); geo.computeBoundingSphere(); skirt(); if (typeof placeObjects === 'function') placeObjects(); }
 const TEX = 8, tcan = document.createElement('canvas'); tcan.width = NX * TEX; tcan.height = NY * TEX;
 const small = document.createElement('canvas'); small.width = NX; small.height = NY;
 const tex = new THREE.CanvasTexture(tcan); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
 const mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: tex }));
 scene.add(mesh);
+
+// ---------- Buildings and trees ----------
+const objGroup = new THREE.Group(); scene.add(objGroup);
+scene.add(new THREE.HemisphereLight(0xeef2f5, 0x6b6250, 1.6));
+const sunLight = new THREE.DirectionalLight(0xfff1d6, 1.8); scene.add(sunLight);
+const lx = (E) => E - T.e0 - W / 2, lz = (N) => T.n0 - N - H / 2;
+function groundAt(E, N) {
+  const fx = Math.max(0, Math.min(NX - 1.001, (E - T.e0) / D)), fy = Math.max(0, Math.min(NY - 1.001, (T.n0 - N) / D));
+  const x0 = Math.floor(fx), y0 = Math.floor(fy), u = fx - x0, v = fy - y0, g = (x, y) => elev[y * NX + x];
+  return g(x0, y0) * (1 - u) * (1 - v) + g(x0 + 1, y0) * u * (1 - v) + g(x0, y0 + 1) * (1 - u) * v + g(x0 + 1, y0 + 1) * u * v;
+}
+let rnd = 7; const rand = () => (rnd = (rnd * 16807) % 2147483647) / 2147483647;
+const treeList = [];
+for (const o of objects) {
+  if (o.kind === 'tree') { const [e, n] = o.shape.split(',').map(Number); treeList.push({ e, n, h: o.height_m, r: o.radius_m, fruit: o.name === 'Fruit tree', name: o.name }); }
+}
+const woods = shapes.filter((r) => r.group === 'Legal forest').map((r) => ({ r: ring(r.shape), h: 20 }))
+  .concat(objects.filter((o) => o.kind === 'grove').map((o) => ({ r: ring(o.shape), h: o.height_m })));
+for (const w of woods) {
+  const xs = w.r.map((q) => q[0]), ys = w.r.map((q) => q[1]);
+  for (let e = Math.min(...xs); e < Math.max(...xs); e += 7) for (let n = Math.min(...ys); n < Math.max(...ys); n += 7) {
+    const je = e + rand() * 5, jn = n + rand() * 5;
+    if (inRing(je, jn, w.r)) treeList.push({ e: je, n: jn, h: w.h * (0.8 + rand() * 0.35), r: 3.8 + rand() * 1.8, wood: true });
+  }
+}
+const crownGeo = new THREE.IcosahedronGeometry(1, 1), trunkGeo = new THREE.CylinderGeometry(0.25, 0.35, 1, 6);
+const crowns = new THREE.InstancedMesh(crownGeo, new THREE.MeshLambertMaterial({ color: 0xffffff }), treeList.length);
+const trunks = new THREE.InstancedMesh(trunkGeo, new THREE.MeshLambertMaterial({ color: 0x6b5440 }), treeList.length);
+const cols = { wood: new THREE.Color(0x3f6b3a), park: new THREE.Color(0x5a8a45), fruit: new THREE.Color(0x8fae55) };
+objGroup.add(crowns, trunks);
+const bMat = new THREE.MeshLambertMaterial({ color: 0xd9d2c5 }), roofMat = new THREE.MeshLambertMaterial({ color: 0x9a5b47 });
+const buildings = objects.filter((o) => o.kind === 'building').map((o) => {
+  const r = ring(o.shape), base = Math.min(...r.map(([e, n]) => groundAt(e, n)));
+  const shape = new THREE.Shape(r.map(([e, n]) => new THREE.Vector2(lx(e), -lz(n))));
+  const g = new THREE.ExtrudeGeometry(shape, { depth: o.height_m, bevelEnabled: false }); g.rotateX(-Math.PI / 2);
+  const m = new THREE.Mesh(g, [roofMat, bMat]); objGroup.add(m);
+  return { m, base };
+});
+function placeObjects() {
+  const M = new THREE.Matrix4(), q = new THREE.Quaternion(), v = new THREE.Vector3(), sc = new THREE.Vector3();
+  treeList.forEach((t, k) => {
+    const g = (groundAt(t.e, t.n) - BASE) * st.exag, crownH = t.h * 0.7;
+    M.compose(v.set(lx(t.e), g + t.h - crownH / 2, lz(t.n)), q, sc.set(t.r, crownH / 2, t.r)); crowns.setMatrixAt(k, M);
+    crowns.setColorAt(k, t.wood ? cols.wood : t.fruit ? cols.fruit : cols.park);
+    M.compose(v.set(lx(t.e), g + (t.h - crownH) / 2 + 0.5, lz(t.n)), q, sc.set(1, t.h - crownH + 1, 1)); trunks.setMatrixAt(k, M);
+  });
+  crowns.instanceMatrix.needsUpdate = trunks.instanceMatrix.needsUpdate = true; if (crowns.instanceColor) crowns.instanceColor.needsUpdate = true;
+  buildings.forEach((b) => { b.m.position.y = (b.base - BASE) * st.exag - 0.5; });
+}
 // Sides of the block, so the model reads as a cut piece of ground.
 const skirtMat = new THREE.MeshBasicMaterial({ color: 0x8a7f70, side: THREE.DoubleSide });
 let skirtMesh = null;
@@ -385,7 +449,7 @@ function legend(data) {
   const sw = (title, items, note) => { el.innerHTML = `<b>${title}</b><div class="swatches">${items.map(([c, t]) => `<span class="sw"><i style="background:${c}"></i>${t}</span>`).join('')}</div>${note ? `<span class="muted">${note}</span>` : ''}`; };
   if (L === 'moment') {
     if (data.sun.alt <= 0) sw('Sun and shade', [['rgb(40,44,66)', 'Sun below the horizon']]);
-    else sw('Sun and shade', [['#fbeaa8', 'Full sun, facing it'], ['#d38b3c', 'Sun at a low angle'], ['rgb(86,66,58)', 'Slope faces away'], ['rgb(92,112,140)', 'Shadow of hill or mountain']], `Sun ${Math.round(data.sun.alt)}° up, in the ${cardinal(data.sun.az)}`);
+    else sw('Sun and shade', [['#fbeaa8', 'Full sun, facing it'], ['#d38b3c', 'Sun at a low angle'], ['rgb(86,66,58)', 'Slope faces away'], ['rgb(92,112,140)', 'In shadow of a building, tree or hill']], `Sun ${Math.round(data.sun.alt)}° up, in the ${cardinal(data.sun.az)}`);
   } else if (L === 'hours') bar('Hours of direct sun', sunRamp, `${data.min.toFixed(1)} h`, `${data.max.toFixed(1)} h`, 'Scaled to the least and most on the parcels that day');
   else if (L === 'energy') bar('Solar energy, clear day', sunRamp, data.min.toFixed(1), `${data.max.toFixed(1)} kWh/m²`, 'Scaled to the least and most on the parcels that day');
   else if (L === 'year') bar('Sun over the year', sunRamp, '60%', '115% of flat open ground');
@@ -416,6 +480,8 @@ function paint() {
   // Sun marker in the sky
   const s = sunAt(st.y, st.m, st.d, st.t), R = 900;
   sunMesh.visible = s.alt > 0;
+  sunLight.position.set(Math.cos(s.alt * rad) * Math.sin(s.az * rad), Math.max(0.05, Math.sin(s.alt * rad)), -Math.cos(s.alt * rad) * Math.cos(s.az * rad));
+  sunLight.intensity = s.alt > 0 ? 1.8 : 0.2;
   sunMesh.position.set(controls.target.x + R * Math.cos(s.alt * rad) * Math.sin(s.az * rad), R * Math.sin(s.alt * rad) + 40, controls.target.z - R * Math.cos(s.alt * rad) * Math.cos(s.az * rad));
   $('timelab').textContent = fmtT(st.t);
   $('sunlab').textContent = s.alt > 0 ? `sun ${Math.round(s.alt)}° up, ${cardinal(s.az)}` : 'sun below the horizon';
@@ -427,8 +493,10 @@ function readout() {
   const [x, y] = st.cell, i = y * NX + x;
   pin.position.copy(cellXYZ(x, y)).add(new THREE.Vector3(0, 9, 0));
   const p = parcelOf[i];
-  const isHouse = x === toCell(...HOUSE)[0] && y === toCell(...HOUSE)[1];
-  $('rd-title').textContent = isHouse ? 'At the house' : water[i] ? 'On the lake' : p ? (p.in_land === 'Yes' ? `Parcel ${p.parcel}` : `Neighbouring parcel ${p.parcel}`) : 'Outside the parcels';
+  const isStart = x === toCell(...START)[0] && y === toCell(...START)[1];
+  const where = p ? (p.in_land === 'Yes' ? `parcel ${p.parcel}` : `neighbouring parcel ${p.parcel}`) : 'outside the parcels';
+  const what = cover[i] === 2 ? 'Roof' : cover[i] === 1 ? 'Tree tops' : '';
+  $('rd-title').textContent = isStart ? 'Middle of the hay meadow, 289' : water[i] ? 'On the lake' : what ? `${what}, ${where}` : where[0].toUpperCase() + where.slice(1);
   const rows = [];
   if (!water[i]) {
     const [a, b] = sunTimesAt(i, st.day.path);
@@ -473,6 +541,7 @@ function sunpath(i) {
 // ---------- Events ----------
 document.querySelectorAll('input[name="layer"]').forEach((el) => el.addEventListener('change', () => { st.layer = el.value; $('sunpanel').style.opacity = ['elev', 'slope', 'aspect', 'twi', 'tpi', 'year'].includes(st.layer) ? 0.6 : 1; paint(); }));
 Object.keys(ovDefs).forEach((id) => $(id).addEventListener('change', paint));
+$('ov-objects').addEventListener('change', (e) => { objGroup.visible = e.target.checked; });
 $('time').addEventListener('input', (e) => { st.t = +e.target.value; paint(); });
 $('date').addEventListener('change', (e) => { const [y, m, d] = e.target.value.split('-').map(Number); if (!y) return; st.y = y; st.m = m - 1; st.d = d; refreshDay(); paint(); });
 document.querySelectorAll('[data-day]').forEach((b) => b.addEventListener('click', () => { const [m, d] = b.dataset.day.split('-').map(Number); st.m = m - 1; st.d = d; refreshDay(); paint(); }));
@@ -506,6 +575,11 @@ function refreshDay() {
 }
 
 // ---------- Start ----------
+if (location.hash === '#embed') {
+  document.body.classList.add('embed');
+  const tell = () => parent.postMessage({ hlTerrainHeight: document.documentElement.scrollHeight }, '*');
+  new ResizeObserver(tell).observe(document.body); tell();
+}
 const s0 = $('time'); st.t = Math.min(Math.max(+s0.value, 240), 1320);
 if (st.m === today.getMonth() && st.d === today.getDate()) { st.t = Math.round((today.getHours() * 60 + today.getMinutes()) / 5) * 5; if (st.t < 480 || st.t > 1080) st.t = 720; s0.value = st.t; }
 refreshDay(); applyHeights(); resize(); paint();
